@@ -10,15 +10,15 @@ with outdoor seating.
 - Hiking Project API: https://www.hikingproject.com/data
 - Yelp API: https://www.yelp.com/fusion
 - Weather API: https://openweathermap.org/api
+- The geolocation feature provided by browsers 
 
 ### Data
 
-- User email, password
+- User's username, email, password
 - User's general location via latitude/longitude 
-    - Perhaps saved walked that they enjoyed 
 - Ratings 
     - Reviews of how well the restaurants/food trucks are adhering to COVID safety precautions 
-    - Reviews about a particular walk (easy/difficult; crowded/isolated)
+    - Reviews about a particular trail (easy/difficult; crowded/isolated)
 - Maybe: user photos from the walks 
 
 ### Roadmap
