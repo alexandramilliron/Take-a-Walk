@@ -1,15 +1,18 @@
+"""Server for Take a Walk app."""
+
 from flask import (Flask, render_template, request, flash, session, redirect)
 from model import connect_to_db
-import os 
+import crud 
+
 
 app = Flask(__name__)
-
-app.secret_key = "dev"
-
+app.secret_key = 'dev'
 app.config['PRESERVE_CONTEXT_ON_EXCEPTION'] = True
 
 
-
+@app.route('/')
+def homepage():
+    """Render the application's homepage."""
 
 
 
