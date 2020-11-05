@@ -2,7 +2,7 @@
 
 ### Overview
 
-A app that allows users to plan a COVID-safe walk by providing information on a nearby trail, the weather, and restaurants/food trucks
+An app that allows users to plan a COVID-safe walk by providing information on a nearby trail, the weather, and restaurants/food trucks
 with outdoor seating. 
 
 ### Technologies required (besides typical Hackbright tech stack)
