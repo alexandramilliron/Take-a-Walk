@@ -1,6 +1,6 @@
 """CRUD operations to populate the database."""
 
-from model import db, User, Trail, Restaurant, TrailRating, RestRating, Itinerary, ItineraryTrail, ItineraryRest, connect_to_db
+from model import db, User, Trail, Restaurant, TrailRating, RestRating, Walk, WalkTrail, WalkRest, connect_to_db
 
 
 def create_user(username, email, password):
@@ -66,18 +66,40 @@ def create_rest_rating(restaurant, user, rest_comment=None, rest_star=None,
     return rest_rating
 
 
-def create_itinerary(user, itin_date=None):
-    """Create a new itinerary.""" 
+def create_walk(user, walk_date=None):
+    """Create a new walk.""" 
 
-    itinerary = Itinerary(user=user, itin_date=itin_date)
+    walk = Walk(user=user, walk_date=walk_date)
 
-    db.session.add(itinerary)
+    db.session.add(walk)
     db.session.commit()
 
-    return itinerary
+    return walk
 
 
+def create_walk_trail(trail, walk):
 
+    walk_trail = WalkTrail(trail=trail, walk=walk)
+
+    db.session.add(walk_trail)
+    db.session.commit()
+
+    return walk_trail
+
+
+def create_walk_restaurant(restaurant, walk):
+
+    walk_rest = WalkRest(restaurant=restaurant, walk=walk)
+
+    db.session.add(walk_rest)
+    db.session.commit()
+
+    return walk_rest
+
+
+def get_user_walks(user):
+    
+    return User.query.get(walks)
 
 
 

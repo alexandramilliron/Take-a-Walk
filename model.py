@@ -1,3 +1,5 @@
+"""Models for Take a Walk app."""
+
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -17,7 +19,7 @@ class User(db.Model):
 
     trail_ratings = db.relationship('TrailRating')
     restaurant_ratings = db.relationship('RestRating')
-    itinerary = db.relationship('Itinerary')
+    walks = db.relationship('Walk')
 
     def __repr__(self):
         return f'<User user_id={self.user_id} email={self.email} username={self.username}>'
@@ -104,60 +106,60 @@ class RestRating(db.Model):
         return f'<Restaurant Rating rest_rating_id={self.rest_rating_id} rest_id={self.rest_id} user_id={self.user_id}>'
 
 
-class Itinerary(db.Model):
-    """A user's itinerary."""
+class Walk(db.Model):
+    """A user's walk."""
 
-    __tablename__ = 'itineraries'
+    __tablename__ = 'walks'
 
-    itin_id = db.Column(db.Integer,
+    walk_id = db.Column(db.Integer,
                         autoincrement=True,
                         primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    itin_date = db.Column(db.DateTime)
+    walk_date = db.Column(db.DateTime)
 
     user = db.relationship('User')
     
     def __repr__(self):
-        return f'<Itinerary itin_id={self.itin_id} user_id={self.user_id} itin_date={self.itin_date}>'
+        return f'<Walk walk_id={self.walk_id} user_id={self.user_id} walk_date={self.walk_date}>'
 
 
-class ItineraryTrail(db.Model):
+class WalkTrail(db.Model):
     """A user's trails."""
 
-    __tablename__ = 'itineraty_trails'
+    __tablename__ = 'walk_trails'
 
-    itin_trail_id = db.Column(db.Integer,
+    walk_trail_id = db.Column(db.Integer,
                         autoincrement=True,
                         primary_key=True)
-    itin_id = db.Column(db.Integer, db.ForeignKey('intineraries.itin_id'))
+    walk_id = db.Column(db.Integer, db.ForeignKey('walks.walk_id'))
     trail_id = db.Column(db.Integer, db.ForeignKey('trails.trail_id'))
 
     trail = db.relationship('Trail')
-    itinerary = db.relationship('Itinerary')
+    walk = db.relationship('Walk')
 
     def __repr__(self):
-        return f'<ItineraryTrail itin_trail_id={self.itin_trail_id} itin_id={self.itin_id} trail_id={self.trail_id}>'
+        return f'<WalkTrail walk_trail_id={self.walk_trail_id} walk_id={self.walk_id} trail_id={self.trail_id}>'
 
 
-class ItineraryRest(db.Model):
+class WalkRest(db.Model):
     """A user's restaurants."""
 
-    __tablename__ = 'itineraty_restaurants'
+    __tablename__ = 'walk_restaurants'
 
-    itin_rest_id = db.Column(db.Integer,
+    walk_rest_id = db.Column(db.Integer,
                         autoincrement=True,
                         primary_key=True)
-    itin_id = db.Column(db.Integer, db.ForeignKey('intineraries.itin_id'))
+    walk_id = db.Column(db.Integer, db.ForeignKey('walks.walk_id'))
     rest_id = db.Column(db.Integer, db.ForeignKey('restaurants.rest_id'))
 
     restaurant = db.relationship('Restaurant')
-    itinerary = db.relationship('Itinerary')
+    walk = db.relationship('Walk')
 
     def __repr__(self):
-        return f'<ItineraryRestaurant itin_rest_id={self.itin_rest_id} itin_id={self.itin_id} rest_id={self.rest_id}>'
+        return f'<WalkRestaurant walk_rest_id={self.walk_rest_id} walk_id={self.walk_id} rest_id={self.rest_id}>'
 
 
-def connect_to_db(flask_app, db_uri='postgresql:///', echo=False):
+def connect_to_db(flask_app, db_uri='postgresql:///takeawalk', echo=False):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     flask_app.config['SQLALCHEMY_ECHO'] = echo
     flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
