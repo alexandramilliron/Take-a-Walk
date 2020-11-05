@@ -62,20 +62,20 @@ CREATE TABLE "ItineraryRest" (
   "rest_id" int
 );
 
--- ALTER TABLE "TrailRating" ADD FOREIGN KEY ("user_id") REFERENCES "User" ("user_id");
+ALTER TABLE "TrailRating" ADD FOREIGN KEY ("user_id") REFERENCES "User" ("user_id");
 
--- ALTER TABLE "TrailRating" ADD FOREIGN KEY ("trail_id") REFERENCES "Trail" ("trail_id");
+ALTER TABLE "TrailRating" ADD FOREIGN KEY ("trail_id") REFERENCES "Trail" ("trail_id");
 
--- ALTER TABLE "RestRating" ADD FOREIGN KEY ("user_id") REFERENCES "User" ("user_id");
+ALTER TABLE "RestRating" ADD FOREIGN KEY ("user_id") REFERENCES "User" ("user_id");
 
--- ALTER TABLE "RestRating" ADD FOREIGN KEY ("rest_id") REFERENCES "Restaurant" ("rest_id");
+ALTER TABLE "RestRating" ADD FOREIGN KEY ("rest_id") REFERENCES "Restaurant" ("rest_id");
 
--- ALTER TABLE "Itinerary" ADD FOREIGN KEY ("user_id") REFERENCES "User" ("user_id");
+ALTER TABLE "Itinerary" ADD FOREIGN KEY ("user_id") REFERENCES "User" ("user_id");
 
--- ALTER TABLE "ItineraryTrail" ADD FOREIGN KEY ("itin_id") REFERENCES "Itinerary" ("itin_id");
+ALTER TABLE "ItineraryTrail" ADD FOREIGN KEY ("itin_id") REFERENCES "Itinerary" ("itin_id");
 
--- ALTER TABLE "ItineraryTrail" ADD FOREIGN KEY ("trail_id") REFERENCES "Trail" ("trail_id");
+ALTER TABLE "ItineraryTrail" ADD FOREIGN KEY ("trail_id") REFERENCES "Trail" ("trail_id");
 
--- ALTER TABLE "ItineraryRest" ADD FOREIGN KEY ("itin_id") REFERENCES "Itinerary" ("itin_id");
+ALTER TABLE "ItineraryRest" ADD FOREIGN KEY ("itin_id") REFERENCES "Itinerary" ("itin_id");
 
--- ALTER TABLE "ItineraryRest" ADD FOREIGN KEY ("rest_id") REFERENCES "Restaurant" ("rest_id");
+ALTER TABLE "ItineraryRest" ADD FOREIGN KEY ("rest_id") REFERENCES "Restaurant" ("rest_id");
