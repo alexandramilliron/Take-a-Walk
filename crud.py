@@ -78,6 +78,7 @@ def create_walk(user, walk_date=None):
 
 
 def create_walk_trail(trail, walk):
+    """Create a new trail associated with a walk."""
 
     walk_trail = WalkTrail(trail=trail, walk=walk)
 
@@ -88,6 +89,7 @@ def create_walk_trail(trail, walk):
 
 
 def create_walk_restaurant(restaurant, walk):
+    """Create a new restaurant associated with a walk."""
 
     walk_rest = WalkRest(restaurant=restaurant, walk=walk)
 
@@ -97,11 +99,29 @@ def create_walk_restaurant(restaurant, walk):
     return walk_rest
 
 
-def get_user_walks(user):
+def get_user_walks(username):
+    """Return the walks associated with a particular user."""
     
-    return User.query.get(walks)
+    user = User.query.filter(User.username == username)
+
+    return user.walks 
 
 
+def get_user_trail_ratings(username):
+    """Return the trail ratings associated with a particular user."""
+
+    user = User.query.filter(User.username == username)
+
+    return user.trail_ratings 
+
+
+def get_user_rest_ratings(username):
+    """Return the trail ratings associated with a particular user."""
+
+    user = User.query.filter(User.username == username)
+
+    return user.restaurant_ratings 
+    
 
 
 
