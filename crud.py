@@ -99,10 +99,18 @@ def create_walk_restaurant(restaurant, walk):
     return walk_rest
 
 
+def get_user_from_username(username):
+    """Return a user instance from the username."""
+
+    user = User.query.filter(User.username == username)
+
+    return user
+
+
 def get_user_walks(username):
     """Return the walks associated with a particular user."""
     
-    user = User.query.filter(User.username == username)
+    user = get_user_from_username(username)
 
     return user.walks 
 
@@ -110,7 +118,7 @@ def get_user_walks(username):
 def get_user_trail_ratings(username):
     """Return the trail ratings associated with a particular user."""
 
-    user = User.query.filter(User.username == username)
+    user = get_user_from_username(username)
 
     return user.trail_ratings 
 
@@ -118,10 +126,12 @@ def get_user_trail_ratings(username):
 def get_user_rest_ratings(username):
     """Return the trail ratings associated with a particular user."""
 
-    user = User.query.filter(User.username == username)
+    user = get_user_from_username(username)
 
     return user.restaurant_ratings 
     
+
+
 
 
 
