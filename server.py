@@ -36,6 +36,24 @@ def load_user_ratings(username):
     return render_template('ratings.html', user_ratings=user_ratings)
 
 
+@app.route('/new-walk/<username>')
+def create_walk(username):
+
+    user = crud.get_user_from_username(username)
+
+    new_walk = crud.create_walk(user)
+
+    return jsonify(new_walk)
+    # this will prompt an edit walk component 
+
+    #after a user makes a choice: 
+    #create_walk_restaurant 
+    #create_walk_trail
+    # 
+    # there needs to be a route that corresponds to the data in the database  
+
+
+
 
 
 
