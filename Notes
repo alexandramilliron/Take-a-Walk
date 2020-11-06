@@ -1,0 +1,24 @@
+Potential Features: 
+
+<< search bar in the middle of the page >>
+<< drop-down restaurant / trail / location >>
+<< input box for search term >>
+
+// << whenever you show a trail / restaurant, include a rating option >>
+
+/////////////////// flow for generating a walk /////////////////
+// 1. click "New Walk" on homepage 
+// 2. choose location
+// 3. get options for trails / restaurants
+// 3.5 << filters for trails / restaurants >>
+// 4. choose a date
+// 5. user adds trail and restaurant to walk
+// 5.5 << ability to add more than one trail / restaurant >>
+// 6. generate walk itinerary (pull in weather info based on date)
+
+//////////////////// flow for generating a review /////////////////
+// 1. walk must be generated
+// 2. "add review" option for walk
+// 3. review page for trail
+// 4. review page for restaurant
+// 5. << options for which part(s) to review >>
