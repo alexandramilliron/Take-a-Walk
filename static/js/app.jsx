@@ -1,4 +1,4 @@
 ReactDOM.render(
-    <Main/>, 
+    <Navbar/>, 
     document.getElementById("app")
   );
