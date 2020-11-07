@@ -14,7 +14,7 @@ app.config['PRESERVE_CONTEXT_ON_EXCEPTION'] = True
 def homepage():
     """Render the application's homepage."""
 
-    return render_template('homepage.html')
+    return render_template('base.html')
 
 
 @app.route('/saved-walks/<username>')
