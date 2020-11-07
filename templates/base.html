@@ -9,14 +9,13 @@
   <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
 
-  <script src="/static/dependencies/react-router-dom.js" 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/5.2.0/react-router-dom.js" 
   integrity="sha512-LOOlcIrzggklo15g/pbJis06755L5SZYg2RZEUw7t8k/aALW/atg2qg6h8oSLIvk25ulbzhz/p4LH2PUYa+rLw==" 
   crossorigin="anonymous"></script>
 
   <script>
   const Router = ReactRouterDOM.Router
   const NavLink = ReactRouterDOM.NavLink;
-  const HashRouter = ReactRouterDOM.HashRouter;
   const useHistory = ReactRouterDOM.useHistory;
   const Route = ReactRouterDOM.Route;
   const useParams = ReactRouterDOM.useParams;
@@ -24,6 +23,7 @@
   const Switch = ReactRouterDOM.Switch;
   const Prompt = ReactRouterDOM.Prompt;
   const Link = ReactRouterDOM.Link;
+  const BrowserRouter = ReactRouterDOM.BrowserRouter;
   </script>
 
   <!-- Link to CSS: -->
@@ -35,12 +35,10 @@
 <body>
 
   <div id="app">
+  <script src="/static/js/navbar.jsx" type="text/jsx"></script>
   <script src="/static/js/homepage.jsx" type="text/jsx"></script>
   <script src="/static/js/login.jsx" type="text/jsx"></script>
-  <script src="/static/js/new-walk.jsx" type="text/jsx"></script>
   <script src="/static/js/app.jsx" type="text/jsx"></script>
-  words
-
   </div>
 
 </body>
