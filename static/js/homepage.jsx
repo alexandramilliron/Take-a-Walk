@@ -6,10 +6,11 @@
 // brief introduction to site
 // "New Walk" button 
 
-
 function Home() {
     return (
-        <div>hi it's the home component</div>
+        <div>
+            <h2>Home</h2>
+        </div>
     );
 }
-
+  
