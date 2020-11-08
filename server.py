@@ -14,7 +14,29 @@ app.config['PRESERVE_CONTEXT_ON_EXCEPTION'] = True
 def homepage():
     """Render the application's homepage."""
 
-    return render_template('base.html')
+    return render_template('index.html')
+
+
+@app.route('/login', methods=['POST'])
+def user_login():
+    """Login an existing user."""
+    pass
+
+
+@app.route('/register', methods=['POST'])
+def user_registration():
+    """Register a new user."""
+    
+    post_request = request.get_json()
+
+    username = post_request['username']
+    email = post_request['email']
+    password = post_request['password']
+
+    new_user = crud.create_user(username, email, password)
+    print(new_user)
+
+    return jsonify('Successful registration.')
 
 
 @app.route('/saved-walks/<username>')
