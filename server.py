@@ -20,7 +20,17 @@ def homepage():
 @app.route('/login', methods=['POST'])
 def user_login():
     """Login an existing user."""
-    pass
+    
+    post_request = request.get_json()
+
+    username = post_request['username']
+    password = post_request['password']
+
+    if crud.confirm_username_and_password(username, password) == True:
+        user = crud.get_user_from_username(username)
+        session['current_user'] = user.username
+    
+    return username
 
 
 @app.route('/register', methods=['POST'])
@@ -34,9 +44,10 @@ def user_registration():
     password = post_request['password']
 
     new_user = crud.create_user(username, email, password)
-    print(new_user)
 
-    return jsonify('Successful registration.')
+    session['current_user'] = new_user.username 
+
+    return jsonify(username)
 
 
 @app.route('/saved-walks/<username>')
