@@ -14,6 +14,23 @@ def create_user(username, email, password):
     return user
 
 
+def get_user_from_username(username):
+    """Return a user instance from the username."""
+
+    user = User.query.filter(User.username == username).one()
+
+    return user
+
+
+def confirm_username_and_password(username, password): 
+    """Check the database to confirm user credentials upon login."""
+
+    user = get_user_from_username(username)
+    
+    if user.username == username and user.password == password:
+        return True 
+    
+
 def create_trail(latitude, longitude, name, length=None, location=None):
     """Create and return a new trail."""
 
@@ -97,14 +114,6 @@ def create_walk_restaurant(restaurant, walk):
     db.session.commit()
 
     return walk_rest
-
-
-def get_user_from_username(username):
-    """Return a user instance from the username."""
-
-    user = User.query.filter(User.username == username)
-
-    return user
 
 
 def get_user_walks(username):
