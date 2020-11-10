@@ -1,55 +1,45 @@
 function Login() {
 
-    const [emailReg, setEmailReg] = useState("");
-    const [usernameReg, setUsernameReg] = useState("");
-    const [passwordReg, setPasswordReg] = useState("");
-  
-    function validateForm() {
-      return email.length > 0 && password.length > 0;
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [validUsername, setValidUsername] = useState();
+
+    if (validUsername) {
+      return <div>{username} is logged in</div>;
     }
   
-    function handleSubmit(event) {
+    function handleLogin(event) {
       event.preventDefault();
 
       const requestOptions = {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({username: usernameReg, password: passwordReg, email: emailReg})
+        body: JSON.stringify({username: username, password: password})
         };
 
-        fetch('/register', requestOptions)
+        fetch('/login', requestOptions)
             .then(response => response.json())
-            .then(data => console.log(data));
+            .then((data) => {
+              setValidUsername(data);
+              localStorage.setItem('username', data);
+              console.log(data)
+            });
     }
   
     return (
-      <div className="">
-        <div className="registration">
-        <h1>Register</h1>
-            <form onSubmit={handleSubmit}>
-            <label>Email</label>
-                <input type="text" 
-                onChange={(event) => {setEmailReg(event.target.value)}}/>
-            <label>Username</label>
-                <input type="text" 
-                onChange={(event) => {setUsernameReg(event.target.value)}}/>
-            <label>Password</label>
-                <input type="text" 
-                onChange={(event) => {setPasswordReg(event.target.value)}}/>
-            <button>Register</button>
-            </form>
-        </div>
-
-
-
-        <div className="login">
+      <div className="login">
         <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="username"/>
-            <input type="text" placeholder="password"/>
-            <button>Login</button>
+            <form onSubmit={handleLogin}>
+            
+            <input type="text" placeholder="username"
+            onChange={(event) => {setUsername(event.target.value)}}/>
+
+            <input type="text" placeholder="password" 
+            onChange={(event) => {setPassword(event.target.value)}}/>
+
+            <button type="submit">Login</button>
+            
             </form>
-        </div>
       </div>
     );
-  }
+}
