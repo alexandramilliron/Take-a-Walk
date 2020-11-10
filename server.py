@@ -47,7 +47,7 @@ def user_registration():
 
     session['current_user'] = new_user.username 
 
-    return jsonify(username)
+    return username
 
 
 @app.route('/saved-walks/<username>')
