@@ -1,13 +1,40 @@
+"use strict";
+
 function Login() {
+
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [validUsername, setValidUsername] = useState();
+    const [validUsername, setValidUsername] = useState('');
+
+
+    useEffect(() => {
+      const loggedInUser = localStorage.getItem('username');
+      if (loggedInUser) {
+        const foundUser = loggedInUser;
+        setValidUsername(foundUser);
+      }
+    }, []);
+
+
+    function handleLogout() {
+      setValidUsername('');
+      setUsername('');
+      setPassword('');
+      localStorage.clear();
+    };
+
 
     if (validUsername) {
-      return <div>{username} is logged in</div>;
+      return (
+        <div>
+          {username} is logged in <br/>
+          <button onClick={handleLogout}>Logout</button>
+        </div>
+      );
     }
   
+
     function handleLogin(event) {
       event.preventDefault();
 
@@ -18,14 +45,14 @@ function Login() {
         };
 
         fetch('/login', requestOptions)
-            .then(response => response.json())
+            .then(response => response.text())
             .then((data) => {
               setValidUsername(data);
-              localStorage.setItem('username', data);
-              console.log(data)
+              localStorage.setItem('username', (data));
             });
     }
   
+
     return (
       <div className="login">
         <h1>Login</h1>
@@ -43,3 +70,4 @@ function Login() {
       </div>
     );
 }
+
