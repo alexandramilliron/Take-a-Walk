@@ -1,3 +1,5 @@
+"use strict";
+
 // navigation bar at top of page 
     // Login/Logout embedded      
         // if logged in: 
