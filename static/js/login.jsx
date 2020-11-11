@@ -1,7 +1,8 @@
 "use strict";
 
-function Login() {
+function Login(props) {
 
+    const history = useHistory();
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -18,9 +19,11 @@ function Login() {
 
 
     function handleLogout() {
+      console.log('logging out');
       setValidUsername('');
       setUsername('');
       setPassword('');
+      props.setUser(false);
       localStorage.clear();
     };
 
@@ -48,6 +51,8 @@ function Login() {
             .then(response => response.text())
             .then((data) => {
               setValidUsername(data);
+              history.push('/');
+              props.setUser(true); //info about logged in user 
               localStorage.setItem('username', (data));
             });
     }
