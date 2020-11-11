@@ -21,6 +21,8 @@ class User(db.Model):
     restaurant_ratings = db.relationship('RestRating')
     walks = db.relationship('Walk')
 
+    # TODO: add method for validating passwords? 
+
     def __repr__(self):
         return f'<User user_id={self.user_id} email={self.email} username={self.username}>'
 
