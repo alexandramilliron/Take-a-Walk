@@ -1,8 +1,21 @@
+"use strict";
+
 function Register() {
 
-    const [emailReg, setEmailReg] = useState("");
-    const [usernameReg, setUsernameReg] = useState("");
-    const [passwordReg, setPasswordReg] = useState("");
+    const [emailReg, setEmailReg] = useState('');
+    const [usernameReg, setUsernameReg] = useState('');
+    const [passwordReg, setPasswordReg] = useState('');
+    const [validUsername, setValidUsername] = useState(''); // added validUsername state to handle data returned from server 
+    
+
+    useEffect(() => {
+        const loggedInUser = localStorage.getItem('username');
+        if (loggedInUser) {
+          const foundUser = loggedInUser;
+          setValidUsername(foundUser);
+        }
+      }, []);
+
 
     function handleRegistration(event) {
         event.preventDefault();
@@ -14,9 +27,14 @@ function Register() {
           };
   
           fetch('/register', requestOptions)
-              .then(response => response.json())
-              .then(data => console.log(data));
+              .then(response => response.text())
+              .then((data) => {
+                setValidUsername(data);
+                localStorage.setItem('username', (data));
+              });
+              // added username to localStorage to reflect that they're logged in 
     }
+
 
     return (
         <div className="">
