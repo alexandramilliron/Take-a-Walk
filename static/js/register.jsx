@@ -1,12 +1,14 @@
 "use strict";
 
-function Register() {
+function Register(props) {
+
+    const history = useHistory();
 
     const [emailReg, setEmailReg] = useState('');
     const [usernameReg, setUsernameReg] = useState('');
     const [passwordReg, setPasswordReg] = useState('');
     const [validUsername, setValidUsername] = useState(''); // added validUsername state to handle data returned from server 
-    
+
 
     useEffect(() => {
         const loggedInUser = localStorage.getItem('username');
@@ -29,7 +31,10 @@ function Register() {
           fetch('/register', requestOptions)
               .then(response => response.text())
               .then((data) => {
+                // TODO: refactor code to include login function  
                 setValidUsername(data);
+                history.push('/');
+                props.setUser(true); //info about logged in user 
                 localStorage.setItem('username', (data));
               });
               // added username to localStorage to reflect that they're logged in 
