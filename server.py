@@ -49,6 +49,8 @@ def user_registration():
 
     return username
 
+    # TODO: update this to have more info for the user about whether or not the login was successful
+
 
 @app.route('/saved-walks/<username>')
 def load_user_walks(username):
