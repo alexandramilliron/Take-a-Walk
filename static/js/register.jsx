@@ -20,11 +20,15 @@ function Register(props) {
   
           fetch('/register', requestOptions)
               .then(response => response.json())
-              .then((data) => {
+              .then(data => {
                 // TODO: refactor code to include login function  
-                history.push('/');
-                props.setUser(true); 
-                localStorage.setItem('user', (data));
+                if (data['Error']) {
+                    alert('This email or username already exists.')
+                  } else {
+                    props.setUser(data); 
+                    localStorage.setItem('user', (data));
+                    history.push('/');
+                  };
               });
     }
 
