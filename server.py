@@ -29,9 +29,9 @@ def user_login():
     if crud.confirm_username_and_password(username, password) == True:
         user = crud.get_user_from_username(username)
         session['current_user'] = {'user_id': user.user_id, 'username': user.username}
-        return {'Success': 'Logged in.'}
+        return {'user_id': user.user_id, 'username': user.username}
     else:
-        return {'Error': 'Username or Password is incorrect.'}
+        return {'Error': 'Invalid username or password.'}
 
 
 @app.route('/register', methods=['POST'])
@@ -48,7 +48,7 @@ def user_registration():
 
     if new_user:
         session['current_user'] = {'user_id': new_user.user_id, 'username': new_user.username}
-        return {'Success': 'Logged in.'}
+        return {'user_id': new_user.user_id, 'username': new_user.username}
     else:
         return {'Error': 'This email or username already exists.'}
 
