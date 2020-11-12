@@ -6,18 +6,22 @@ from model import db, User, Trail, Restaurant, TrailRating, RestRating, Walk, Wa
 def create_user(username, email, password):
     """Create and return a new user."""
 
-    user = User(username=username, email=email, password=password)
+    user = {}
 
-    db.session.add(user)
-    db.session.commit()
-
+    try:
+        user = User(username=username, email=email, password=password)
+        db.session.add(user)
+        db.session.commit()
+    except:
+        user = None 
+    
     return user
 
 
 def get_user_from_username(username):
     """Return a user instance from the username."""
 
-    user = User.query.filter(User.username == username).one()
+    user = User.query.filter(User.username == username).first()
 
     return user
 
@@ -27,7 +31,7 @@ def confirm_username_and_password(username, password):
 
     user = get_user_from_username(username)
     
-    if user.username == username and user.password == password:
+    if user is not None and user.username == username and user.password == password:
         return True 
     
 
