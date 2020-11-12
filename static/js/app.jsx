@@ -3,7 +3,12 @@
 
 function App() {
 
-  const [user, setUser] = useState(null);
+  function getUser() {
+    return localStorage.getItem('user');
+  }
+
+  const [user, setUser] = useState(getUser);
+  console.log(user);
   
 
   // function doStuff() {
