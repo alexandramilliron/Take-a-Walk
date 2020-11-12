@@ -2,7 +2,6 @@
 
 
 function App() {
-  //keep logged in here 
 
   const [user, setUser] = useState(null);
   
@@ -18,11 +17,13 @@ function App() {
   // }
 
 
+
+
   return (
     <BrowserRouter>
       <div>
         <h2>Welcome to Take a Walk!</h2>
-          <Nav user = {user}/>
+          <Nav user={user} setUser={setUser}/>
         <hr/>
         <Switch>
           <Route exact path="/" component={Home}/>
@@ -31,7 +32,8 @@ function App() {
             <Login setUser = {setUser}/>
           </Route>
           <Route exact path="/register">
-            <Register setUser = {setUser}/> 
+            <Register setUser={setUser}/> 
+      
             {/* {doStuff()} */}
           </Route>
         </Switch>
