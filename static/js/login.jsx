@@ -19,10 +19,14 @@ function Login(props) {
 
         fetch('/login', requestOptions)
             .then(response => response.json())
-            .then((data) => {
-              history.push('/');
-              props.setUser(true); 
-              localStorage.setItem('user', (data));
+            .then(data => {
+              if (data['Error']) {
+                alert('Invalid username or password.')
+              } else {
+                props.setUser(data); 
+                localStorage.setItem('user', (data));
+                history.push('/');
+              };
             });
     }
   
