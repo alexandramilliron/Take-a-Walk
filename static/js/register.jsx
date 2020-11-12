@@ -7,16 +7,6 @@ function Register(props) {
     const [emailReg, setEmailReg] = useState('');
     const [usernameReg, setUsernameReg] = useState('');
     const [passwordReg, setPasswordReg] = useState('');
-    const [validUsername, setValidUsername] = useState(''); // added validUsername state to handle data returned from server 
-
-
-    useEffect(() => {
-        const loggedInUser = localStorage.getItem('username');
-        if (loggedInUser) {
-          const foundUser = loggedInUser;
-          setValidUsername(foundUser);
-        }
-      }, []);
 
 
     function handleRegistration(event) {
@@ -29,15 +19,13 @@ function Register(props) {
           };
   
           fetch('/register', requestOptions)
-              .then(response => response.text())
+              .then(response => response.json())
               .then((data) => {
                 // TODO: refactor code to include login function  
-                setValidUsername(data);
                 history.push('/');
-                props.setUser(true); //info about logged in user 
-                localStorage.setItem('username', (data));
+                props.setUser(true); 
+                localStorage.setItem('user', (data));
               });
-              // added username to localStorage to reflect that they're logged in 
     }
 
 
