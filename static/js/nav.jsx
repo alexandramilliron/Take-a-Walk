@@ -12,7 +12,7 @@ function Nav(props) {
     //     links.push(<li><Link key={4} to={"ß/register"} className="nav-link">Register</Link></li>);
     // };
     function handleLogout() {
-          props.setUser(false);
+          props.setUser(null);
           localStorage.clear();
     };
     
