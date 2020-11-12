@@ -28,9 +28,10 @@ def user_login():
 
     if crud.confirm_username_and_password(username, password) == True:
         user = crud.get_user_from_username(username)
-        session['current_user'] = user.username
-    
-    return username
+        session['current_user'] = {'user_id': user.user_id, 'username': user.username}
+        return {'Success': 'Logged in.'}
+    else:
+        return {'Error': 'Username or Password is incorrect.'}
 
 
 @app.route('/register', methods=['POST'])
@@ -45,11 +46,11 @@ def user_registration():
 
     new_user = crud.create_user(username, email, password)
 
-    session['current_user'] = new_user.username 
-
-    return username
-
-    # TODO: update this to have more info for the user about whether or not the login was successful
+    if new_user:
+        session['current_user'] = {'user_id': new_user.user_id, 'username': new_user.username}
+        return {'Success': 'Logged in.'}
+    else:
+        return {'Error': 'This email or username already exists.'}
 
 
 @app.route('/saved-walks/<username>')
@@ -79,6 +80,12 @@ def create_walk(username):
     new_walk = crud.create_walk(user)
 
     return jsonify(new_walk)
+
+
+@app.route('/api/weather')
+def get_weather():
+    
+    return weather_data_api(40, -122)
 
 
 
