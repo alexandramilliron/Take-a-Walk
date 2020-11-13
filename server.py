@@ -84,8 +84,11 @@ def create_walk(username):
 
 @app.route('/api/weather')
 def get_weather():
+
+    latitude = request.args.get('latitude')
+    longitude = request.args.get('longitude')
     
-    return weather_data_api(40, -122)
+    return weather_data_api(latitude, longitude)
 
 
 
@@ -103,4 +106,4 @@ def get_weather():
 
 if __name__ == '__main__':
     connect_to_db(app)
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0', debug=True, ssl_context='adhoc')
