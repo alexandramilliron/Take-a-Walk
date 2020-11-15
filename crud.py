@@ -33,6 +33,16 @@ def confirm_username_and_password(username, password):
     
     if user is not None and user.username == username and user.password == password:
         return True 
+
+
+def is_rest_in_db(latitude, longitude, name):
+    """Check the database to see if the restaurant already exists."""
+
+    restaurant = Restaurant.query.filter((Restaurant.name == name) & (Restaurant.latitude == latitude) & 
+        (Restaurant.longitude == longitude)).first() 
+
+    if restaurant is not None:
+        return True 
     
 
 def create_trail(latitude, longitude, name, length=None, location=None):
