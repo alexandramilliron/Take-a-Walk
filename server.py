@@ -100,6 +100,23 @@ def get_restaurants():
     return yelp_data_api(latitude, longitude)
 
 
+@app.route('/add-restaurants', methods=['POST'])
+def add_restaurants():
+
+    post_request = request.get_json()
+
+    restaurants = post_request['restaurants']
+    latitude = post_request['latitude']
+    longitude = post_request['longitude']
+
+    for name in restaurants:
+        new_rest = crud.create_restaurant(latitude, longitude, name)
+    
+    return {'Success': 'Added to database.'} 
+    
+    
+
+
 
 
 
