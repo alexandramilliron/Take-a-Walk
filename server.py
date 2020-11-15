@@ -110,7 +110,10 @@ def add_restaurants():
     longitude = post_request['longitude']
 
     for name in restaurants:
-        new_rest = crud.create_restaurant(latitude, longitude, name)
+        if crud.is_rest_in_db(latitude, longitude, name) == True:
+            continue
+        else:
+            new_rest = crud.create_restaurant(latitude, longitude, name)
     
     return {'Success': 'Added to database.'} 
     
