@@ -91,6 +91,15 @@ def get_weather():
     return weather_data_api(latitude, longitude)
 
 
+@app.route('/api/restaurants')
+def get_restaurants():
+
+    latitude = request.args.get('latitude')
+    longitude = request.args.get('longitude')
+    
+    return yelp_data_api(latitude, longitude)
+
+
 
 
 
