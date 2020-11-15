@@ -22,7 +22,8 @@ def yelp_data_api(latitude, longitude):
     payload = {'latitude': latitude, 'longitude': longitude}
     response = requests.get(url, params=payload, headers=headers)
     data = response.json()
-    return data['businesses']
+    # return data['businesses']
+    return data
 
 
 def weather_data_api(latitude, longitude):
