@@ -3,22 +3,9 @@
 
 
 
-function NewWalk() {
+function NewWalk(props) {
 
-  let latitude = ''
-  let longitude = '' 
-
-  function getLocation() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        latitude = position.coords.latitude; 
-        longitude = position.coords.longitude;
-        alert('location is working')
-      });
-    } else {
-      alert('Sorry, geolocation is not available.')
-    };
-  };
+  
   
 
 
@@ -27,7 +14,7 @@ function NewWalk() {
 
     
   function fetchWeather() {
-    fetch(`/api/weather?latitude=${latitude}&longitude=${longitude}`)
+    fetch(`/api/weather?latitude=${props.latitude}&longitude=${props.longitude}`)
     .then(response => {
       return response.json();
     })
@@ -38,7 +25,6 @@ function NewWalk() {
     return (
       <div>
         <button onClick={fetchWeather}>get the temperature</button>
-        <button onClick={getLocation}>Location Test</button>
       </div>
     );
 }
