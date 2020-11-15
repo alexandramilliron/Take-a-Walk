@@ -12,22 +12,22 @@ function Restaurants(props) {
             return response.json();
         })
         .then(data => {
-            const rest_objects = data['businesses']
-            const user_rests = []
+            const rest_objects = data['businesses'] // an array of 'restaurant' objects based on user's lat/long
 
-        for (const rest of rest_objects) {
-            user_rests.push(
+            const display_rests = rest_objects.map((rest) => { // rest is a single object
+                return (
                 <div key={rest.name}>
                 <input type="checkbox" value={rest.name}/>
-                    <ul>
+                <ul>
                     <li>{rest.name}</li>
+                    <li>{rest.price}</li>
                     <li>{rest.display_phone}</li>
-                    <li>{rest['location'].display_address}</li>
-                    </ul>
-                </div>
-            );
-        }
-        setRestList(user_rests);
+                    <li>{`${rest['location'].address1}, ${rest['location'].city}, ${rest['location'].state } ${rest['location'].zip_code}`}</li>
+                </ul>
+                </div>);
+            });
+
+        setRestList(display_rests);
         });
     }
 
@@ -55,25 +55,17 @@ function Restaurants(props) {
           fetch('/add-restaurants', requestOptions)
               .then(response => response.json())
               .then(data => {
-                if (data['Error']) {
-                  alert('Invalid username or password.')
-                } else {
-                  props.setUser(data); 
-                  localStorage.setItem('user', (data));
-                  history.push('/new-walk');
-                };
+                console.log(data);
               });
     }
+
 
     return (
         <div className="">
             <h1>Choose your restaurants:</h1>
             <form onSubmit={sendRestaurants}>
-
                 {restList}
-
-            <button type="submit">Add Restaurants</button>
-            
+            <button type="submit">Add Restaurants</button>        
             </form>
         </div>
     );
