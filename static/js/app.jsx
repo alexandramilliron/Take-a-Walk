@@ -3,25 +3,30 @@
 
 function App() {
 
+
   function getUser() {
     return localStorage.getItem('user');
   }
 
   const [user, setUser] = useState(getUser);
-  console.log(user);
+
   
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
 
-  // function doStuff() {
-  //   if (true) {
-  //     return (
-  //       <div>Hello</div>
-  //     )
-  //   } else {
-  //     return ...
-  //   }
-  // }
+  function getLocation() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setLatitude(position.coords.latitude); 
+        setLongitude(position.coords.longitude);
+      });
+    } else {
+      alert('Sorry, geolocation is not supported by your browser.')
+    };
+  };
 
-
+  getLocation(); 
+  
 
 
   return (
@@ -32,14 +37,14 @@ function App() {
         <hr/>
         <Switch>
           <Route exact path="/" component={Home}/>
-          <Route exact path="/new-walk" component={NewWalk}/>
+          <Route exact path="/new-walk">
+            <NewWalk latitude={latitude} longitude={longitude}/>
+          </Route>
           <Route exact path="/login">
             <Login setUser = {setUser}/>
           </Route>
           <Route exact path="/register">
             <Register setUser={setUser}/> 
-      
-            {/* {doStuff()} */}
           </Route>
         </Switch>
       </div>
