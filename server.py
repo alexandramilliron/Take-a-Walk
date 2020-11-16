@@ -72,14 +72,18 @@ def load_user_ratings(username):
     return jsonify(user_ratings)
 
 
-@app.route('/new-walk/<username>')
-def create_walk(username):
+@app.route('/new-walk', methods=['POST'])
+def create_walk():
+
+    post_request = request.get_json()
+
+    username = post_request['username']
 
     user = crud.get_user_from_username(username)
 
     new_walk = crud.create_walk(user)
 
-    return jsonify(new_walk)
+    return {'walk_id': new_walk.walk_id, 'user_id': new_walk.user_id}
 
 
 @app.route('/api/weather')
@@ -98,6 +102,15 @@ def get_restaurants():
     longitude = request.args.get('longitude')
     
     return yelp_data_api(latitude, longitude)
+    
+
+@app.route('/api/trails')
+def get_trails():
+
+    latitude = request.args.get('latitude')
+    longitude = request.args.get('longitude')
+
+    return hiking_data_api(latitude, longitude)
 
 
 @app.route('/add-restaurants', methods=['POST'])
@@ -116,7 +129,24 @@ def add_restaurants():
             new_rest = crud.create_restaurant(latitude, longitude, name)
     
     return {'Success': 'Added to database.'} 
+
+
+@app.route('/add-trails', methods=['POST'])
+def add_trails():
+
+    post_request = request.get_json() 
+
+    trails = post_request['trails']
+    latitude = post_request['latitude']
+    longitude = post_request['longitude']
+
+    for name in trails:
+        if crud.is_trail_in_db(latitude, longitude, name) == True:
+            continue
+        else:
+            new_trail = crud.create_trail(latitude, longitude, name)
     
+    return {'Success': 'Added to database.'}
     
 
 
