@@ -5,7 +5,7 @@ function App() {
 
 
   function getUser() {
-    return localStorage.getItem('user');
+    return JSON.parse(localStorage.getItem('user')); //opposite of JSON.stringify - turning back into JavaScript object 
   }
 
   const [user, setUser] = useState(getUser);
@@ -32,16 +32,18 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <h2>Welcome to Take a Walk!</h2>
+        <h2>Take a Walk</h2>
           <Nav user={user} setUser={setUser}/>
         <hr/>
         <Switch>
-          <Route exact path="/" component={Home}/>
+          <Route exact path="/">
+            <Home user={user}/>
+          </Route>
           <Route exact path="/new-walk">
-            <NewWalk latitude={latitude} longitude={longitude}/>
+            <NewWalk latitude={latitude} longitude={longitude} user={user}/>
           </Route>
           <Route exact path="/login">
-            <Login setUser = {setUser}/>
+            <Login setUser={setUser}/>
           </Route>
           <Route exact path="/register">
             <Register setUser={setUser}/> 
