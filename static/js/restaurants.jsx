@@ -49,7 +49,7 @@ function Restaurants(props) {
         const requestOptions = {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({restaurants: rest_names, latitude: props.latitude, longitude: props.longitude})
+          body: JSON.stringify({restaurants: rest_names, latitude: props.latitude, longitude: props.longitude, walk: props.walk.walk_id})
           };
   
           fetch('/add-restaurants', requestOptions)
