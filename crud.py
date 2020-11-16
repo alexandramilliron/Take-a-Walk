@@ -51,7 +51,7 @@ def is_trail_in_db(latitude, longitude, name):
     trail = Trail.query.filter((Trail.name == name) & (Trail.latitude == latitude) & (Trail.longitude == longitude)).first()
 
     if trail is not None:
-        return True
+        return trail
         
 
 def is_walk_in_db(walk_id):
