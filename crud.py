@@ -45,6 +45,15 @@ def is_rest_in_db(latitude, longitude, name):
         return True 
     
 
+def is_trail_in_db(latitude, longitude, name):
+    """Check the database to see if the trail already exists."""
+
+    trail = Trail.query.filter((Trail.name == name) & (Trail.latitude == latitude) & (Trail.longitude == longitude)).first()
+
+    if trail is not None:
+        return True
+        
+
 def create_trail(latitude, longitude, name, length=None, location=None):
     """Create and return a new trail."""
 
