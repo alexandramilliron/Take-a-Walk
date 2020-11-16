@@ -144,10 +144,11 @@ def add_trails():
     walk_id = post_request['walk']
 
     for name in trails:
-        if crud.is_trail_in_db(latitude, longitude, name) == True:
-            continue
+        if crud.is_trail_in_db(latitude, longitude, name):
+            crud.create_walk_trail((crud.is_trail_in_db(latitude, longitude, name)), crud.is_walk_in_db(walk_id))
         else:
             new_trail = crud.create_trail(latitude, longitude, name)
+            crud.create_walk_trail(new_trail, crud.is_walk_in_db(walk_id))
     
     return {'Success': 'Added to database.'}
     
