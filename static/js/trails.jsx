@@ -48,7 +48,7 @@ function Trails(props) {
         const requestOptions = {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({trails: trail_names, latitude: props.latitude, longitude: props.longitude})
+          body: JSON.stringify({trails: trail_names, latitude: props.latitude, longitude: props.longitude, walk: props.walk.walk_id})
           };
   
           fetch('/add-trails', requestOptions)
