@@ -24,7 +24,7 @@ function Login(props) {
                 alert('Invalid username or password.')
               } else {
                 props.setUser(data); 
-                localStorage.setItem('user', (data));
+                localStorage.setItem('user', JSON.stringify(data));
                 history.push('/');
               };
             });
