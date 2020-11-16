@@ -56,13 +56,14 @@ function Restaurants(props) {
               .then(response => response.json())
               .then(data => {
                 console.log(data);
+                props.setComp(false); 
               });
     }
 
 
     return (
         <div className="">
-            <h1>Choose your restaurants:</h1>
+            <h2>Choose your restaurants:</h2>
             <form onSubmit={sendRestaurants}>
                 {restList}
             <button type="submit">Add Restaurants</button>        
