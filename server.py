@@ -141,6 +141,7 @@ def add_trails():
     trails = post_request['trails']
     latitude = post_request['latitude']
     longitude = post_request['longitude']
+    walk_id = post_request['walk']
 
     for name in trails:
         if crud.is_trail_in_db(latitude, longitude, name) == True:
