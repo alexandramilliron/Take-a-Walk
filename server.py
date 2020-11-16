@@ -83,7 +83,7 @@ def create_walk():
 
     new_walk = crud.create_walk(user)
 
-    return {'walk_id': new_walk.walk_id, 'user_id': new_walk.user_id}
+    return {'walk_id': new_walk.walk_id}
 
 
 @app.route('/api/weather')
@@ -121,12 +121,14 @@ def add_restaurants():
     restaurants = post_request['restaurants']
     latitude = post_request['latitude']
     longitude = post_request['longitude']
+    walk_id = post_request['walk']
 
     for name in restaurants:
-        if crud.is_rest_in_db(latitude, longitude, name) == True:
-            continue
+        if crud.is_rest_in_db(latitude, longitude, name):
+            crud.create_walk_restaurant((crud.is_rest_in_db(latitude, longitude, name)), crud.is_walk_in_db(walk_id))
         else:
             new_rest = crud.create_restaurant(latitude, longitude, name)
+            crud.create_walk_restaurant(new_rest, crud.is_walk_in_db(walk_id))
     
     return {'Success': 'Added to database.'} 
 
