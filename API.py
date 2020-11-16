@@ -13,7 +13,7 @@ def hiking_data_api(latitude, longitude):
     payload = {'key': HIKING_KEY, 'lat': latitude, 'lon': longitude}
     response = requests.get(url, params=payload)
     data = response.json() 
-    return data['trails']
+    return data
 
 
 def yelp_data_api(latitude, longitude):
@@ -22,7 +22,6 @@ def yelp_data_api(latitude, longitude):
     payload = {'latitude': latitude, 'longitude': longitude}
     response = requests.get(url, params=payload, headers=headers)
     data = response.json()
-    # return data['businesses']
     return data
 
 
