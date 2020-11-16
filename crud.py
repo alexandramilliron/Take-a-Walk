@@ -42,7 +42,7 @@ def is_rest_in_db(latitude, longitude, name):
         (Restaurant.longitude == longitude)).first() 
 
     if restaurant is not None:
-        return True 
+        return restaurant
     
 
 def is_trail_in_db(latitude, longitude, name):
@@ -53,6 +53,15 @@ def is_trail_in_db(latitude, longitude, name):
     if trail is not None:
         return True
         
+
+def is_walk_in_db(walk_id):
+    """Check if a walk already exists."""
+
+    walk = Walk.query.filter(Walk.walk_id == walk_id).first()
+
+    if walk is not None:
+        return walk
+
 
 def create_trail(latitude, longitude, name, length=None, location=None):
     """Create and return a new trail."""
@@ -137,6 +146,9 @@ def create_walk_restaurant(restaurant, walk):
     db.session.commit()
 
     return walk_rest
+
+
+
 
 
 def get_user_walks(username):
