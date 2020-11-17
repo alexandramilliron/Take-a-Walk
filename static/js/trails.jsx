@@ -5,6 +5,12 @@ function Trails(props) {
 
     const [trailList, setTrailList] = useState([]);
 
+
+    useEffect(() => {
+        fetchTrails();
+    }, []);
+
+    
     function fetchTrails() {
 
         fetch(`/api/trails?latitude=${props.latitude}&longitude=${props.longitude}`)
@@ -29,11 +35,6 @@ function Trails(props) {
         setTrailList(display_trails);
         });
     }
-
-
-    useEffect(() => {
-        fetchTrails();
-    }, []);
 
 
     function sendTrails(event) {
