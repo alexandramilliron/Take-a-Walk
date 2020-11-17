@@ -10,24 +10,6 @@ function App() {
 
   const [user, setUser] = useState(getUser);
 
-  
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
-
-  function getLocation() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        setLatitude(position.coords.latitude); 
-        setLongitude(position.coords.longitude);
-      });
-    } else {
-      alert('Sorry, geolocation is not supported by your browser.')
-    };
-  };
-
-  getLocation(); 
-  
-
 
   return (
     <BrowserRouter>
@@ -40,7 +22,7 @@ function App() {
             <Home user={user}/>
           </Route>
           <Route exact path="/new-walk">
-            <NewWalk latitude={latitude} longitude={longitude} user={user}/>
+            <NewWalk user={user}/>
           </Route>
           <Route exact path="/login">
             <Login setUser={setUser}/>
