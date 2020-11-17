@@ -1,5 +1,6 @@
 function Nav(props) {
 
+    const history = useHistory(); 
 
     // const links = [
     //     (<li><Link key={1} to={"/"} className="nav-link">Home</Link></li>),
@@ -14,6 +15,7 @@ function Nav(props) {
     function handleLogout() {
           props.setUser(null);
           localStorage.clear();
+          history.push('/');
     };
     
     return (
