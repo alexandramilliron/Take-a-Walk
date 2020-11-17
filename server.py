@@ -4,6 +4,7 @@ from flask import (Flask, render_template, request, flash, session, redirect, js
 from model import connect_to_db
 from API import hiking_data_api, yelp_data_api, weather_data_api
 import crud 
+import pgeocode 
 
 app = Flask(__name__)
 app.secret_key = 'dev'
@@ -15,6 +16,19 @@ def homepage():
     """Render the application's homepage."""
 
     return render_template('index.html')
+
+
+@app.route('/api/get-location')
+def get_location():
+
+    zipcode = request.args.get('zipcode')
+
+    nomi = pgeocode.Nominatim('us')
+
+    location_info = nomi.query_postal_code(zipcode)
+
+    return {'latitude': location_info.latitude, 'longitude': location_info.longitude, 'city': location_info.place_name,
+            'state': location_info.state_name}
 
 
 @app.route('/login', methods=['POST'])
@@ -123,12 +137,11 @@ def add_restaurants():
     longitude = post_request['longitude']
     walk_id = post_request['walk']
 
+    walk = crud.get_walk_from_walk_id(walk_id)
+
     for name in restaurants:
-        if crud.is_rest_in_db(latitude, longitude, name):
-            crud.create_walk_restaurant((crud.is_rest_in_db(latitude, longitude, name)), crud.is_walk_in_db(walk_id))
-        else:
-            new_rest = crud.create_restaurant(latitude, longitude, name)
-            crud.create_walk_restaurant(new_rest, crud.is_walk_in_db(walk_id))
+        restaurant = crud.create_restaurant(latitude, longitude, name)
+        crud.create_walk_restaurant(restaurant, walk)
     
     return {'Success': 'Added to database.'} 
 
@@ -143,12 +156,11 @@ def add_trails():
     longitude = post_request['longitude']
     walk_id = post_request['walk']
 
+    walk = crud.get_walk_from_walk_id(walk_id)
+    
     for name in trails:
-        if crud.is_trail_in_db(latitude, longitude, name):
-            crud.create_walk_trail((crud.is_trail_in_db(latitude, longitude, name)), crud.is_walk_in_db(walk_id))
-        else:
-            new_trail = crud.create_trail(latitude, longitude, name)
-            crud.create_walk_trail(new_trail, crud.is_walk_in_db(walk_id))
+        trail = crud.create_trail(latitude, longitude, name)
+        crud.create_walk_trail(trail, walk)
     
     return {'Success': 'Added to database.'}
     
@@ -169,4 +181,4 @@ def add_trails():
 
 if __name__ == '__main__':
     connect_to_db(app)
-    app.run(host='0.0.0.0', debug=True, ssl_context='adhoc')
+    app.run(host='0.0.0.0', debug=True)
