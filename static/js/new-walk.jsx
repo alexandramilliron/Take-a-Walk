@@ -3,15 +3,21 @@
 
 function NewWalk(props) {
     
-  
-    const [comp, setComp] = useState(true);
-
+    const [latitude, setLatitude] = useState('');
+    const [longitude, setLongitude] = useState('');
+    const [compRest, setCompRest] = useState(false);
+    const [zipcode, setZipcode] = useState('');
+    const [compTrail, setCompTrail] = useState(false);
     const [walk, setWalk] = useState(null);
 
+    //adding a form to ask for user's location
+    //something in that form on submit switches the setCompRest to true 
+
+    useEffect(() => {
+      newWalk();
+    }, []); 
 
     function newWalk() {
-
-        console.log(props.user);
 
         const requestOptions = {
             method: 'POST',
@@ -26,28 +32,40 @@ function NewWalk(props) {
             });
     }
 
+  
+    function getLocation(event) {
+      event.preventDefault();
 
-    useEffect(() => {
-      newWalk();
-    }, []); 
-
-
-    function fetchWeather() {
-        fetch(`/api/weather?latitude=${props.latitude}&longitude=${props.longitude}`)
-        .then(response => {
-        return response.json();
-        })
+      fetch(`/api/get-location?zipcode=${zipcode}`)
+        .then(response => response.json())
         .then(data => {
-          alert(`Temperature: ${data.temp}. Feels like: ${data.feels_like}. Description: ${data['weather'][0].description}.`);
+          if (data['Error']) {
+            alert('Invalid username or password.')
+          } else {
+            setLatitude(data['latitude']);
+            setLongitude(data['longitude']); 
+            setCompRest(true);
+          };
         });
     }
     
     
     return (
       <div>
-        <button onClick={fetchWeather}>get the temperature</button>
-        {(comp == true) ? <Restaurants latitude={props.latitude} longitude={props.longitude} setComp={setComp} walk={walk}/> : 
-        <Trails latitude={props.latitude} longitude={props.longitude} walk={walk}/>}
+        <h2>Where would you like to take a walk?</h2>
+          <form onSubmit={getLocation}>
+            <label>Please enter your zipcode:</label>
+            <input type="text" placeholder="zipcode"
+                onChange={(event) => {setZipcode(event.target.value)}}/>
+            <input type="submit" value="Submit"/>
+          </form>
+
+
+        
+        {(compRest == true) ? <Restaurants latitude={latitude} longitude={longitude} setCompTrail={setCompTrail} 
+                                setCompRest={setCompRest} walk={walk}/> : ''}
+        {(compTrail == true) ? <Trails latitude={latitude} longitude={longitude} walk={walk}/> : ''}
+        <Weather latitude={latitude} longitude={longitude}/>
       </div>
     );
 }
