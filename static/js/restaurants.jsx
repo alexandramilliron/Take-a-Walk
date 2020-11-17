@@ -5,6 +5,12 @@ function Restaurants(props) {
     
     const [restList, setRestList] = useState([]);
 
+    
+    useEffect(() => {
+        fetchRestaurants();
+    }, [props.latitude, props.longitude]);
+
+
     function fetchRestaurants() {
 
         fetch(`/api/restaurants?latitude=${props.latitude}&longitude=${props.longitude}`)
@@ -32,11 +38,6 @@ function Restaurants(props) {
     }
 
 
-    useEffect(() => {
-        fetchRestaurants();
-    }, []);
-
-
     function sendRestaurants(event) {
         event.preventDefault();
 
@@ -56,7 +57,8 @@ function Restaurants(props) {
               .then(response => response.json())
               .then(data => {
                 console.log(data);
-                props.setComp(false); 
+                props.setCompTrail(true); 
+                props.setCompRest(false);
               });
     }
 
