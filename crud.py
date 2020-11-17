@@ -33,44 +33,19 @@ def confirm_username_and_password(username, password):
     
     if user is not None and user.username == username and user.password == password:
         return True 
-
-
-def is_rest_in_db(latitude, longitude, name):
-    """Check the database to see if the restaurant already exists."""
-
-    restaurant = Restaurant.query.filter((Restaurant.name == name) & (Restaurant.latitude == latitude) & 
-        (Restaurant.longitude == longitude)).first() 
-
-    if restaurant is not None:
-        return restaurant
     
 
-def is_trail_in_db(latitude, longitude, name):
-    """Check the database to see if the trail already exists."""
+def create_trail(latitude, longitude, name, length=None, location=None):
+    """Create and return a new trail."""
 
     trail = Trail.query.filter((Trail.name == name) & (Trail.latitude == latitude) & (Trail.longitude == longitude)).first()
 
     if trail is not None:
         return trail
-        
-
-def is_walk_in_db(walk_id):
-    """Check if a walk already exists."""
-
-    walk = Walk.query.filter(Walk.walk_id == walk_id).first()
-
-    if walk is not None:
-        return walk
-
-
-def create_trail(latitude, longitude, name, length=None, location=None):
-    """Create and return a new trail."""
-
-    trail = Trail(latitude=latitude, longitude=longitude, name=name, 
-            length=length, location=location)
-
-    db.session.add(trail)
-    db.session.commit()
+    else:
+        trail = Trail(latitude=latitude, longitude=longitude, name=name, length=length, location=location)
+        db.session.add(trail)
+        db.session.commit()
 
     return trail
 
@@ -78,11 +53,15 @@ def create_trail(latitude, longitude, name, length=None, location=None):
 def create_restaurant(latitude, longitude, name, price=None, location=None):
     """Create and return a new restaurant."""
 
-    restaurant = Restaurant(latitude=latitude, longitude=longitude, name=name,
-                price=price, location=location)
+    restaurant = Restaurant.query.filter((Restaurant.name == name) & (Restaurant.latitude == latitude) & 
+    (Restaurant.longitude == longitude)).first() 
 
-    db.session.add(restaurant)
-    db.session.commit()
+    if restaurant is not None:
+        return restaurant
+    else:
+        restaurant = Restaurant(latitude=latitude, longitude=longitude, name=name, price=price, location=location)
+        db.session.add(restaurant)
+        db.session.commit()
 
     return restaurant
 
@@ -119,11 +98,18 @@ def create_walk(user, walk_date=None):
     """Create a new walk.""" 
 
     walk = Walk(user=user, walk_date=walk_date)
-
     db.session.add(walk)
     db.session.commit()
 
     return walk
+
+
+def get_walk_from_walk_id(walk_id):
+    """Get a walk from its id."""
+
+    walk = Walk.query.filter(Walk.walk_id == walk_id).first()
+
+    return walk 
 
 
 def create_walk_trail(trail, walk):
@@ -146,9 +132,6 @@ def create_walk_restaurant(restaurant, walk):
     db.session.commit()
 
     return walk_rest
-
-
-
 
 
 def get_user_walks(username):
