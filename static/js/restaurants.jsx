@@ -8,7 +8,7 @@ function Restaurants(props) {
     
     useEffect(() => {
         fetchRestaurants();
-    }, [props.latitude, props.longitude]);
+    }, []);
 
 
     function fetchRestaurants() {
