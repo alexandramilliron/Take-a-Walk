@@ -33,6 +33,9 @@ function App() {
           <Route exact path="/saved-walks">
             <SavedWalks user={user}/> 
           </Route>
+          <Route exact path="/itinerary">
+            <Itinerary user={user}/>
+          </Route>
         </Switch>
       </div>
     </BrowserRouter>
