@@ -6,6 +6,7 @@ from API import hiking_data_api, yelp_data_api, weather_data_api
 import crud 
 import pgeocode 
 
+
 app = Flask(__name__)
 app.secret_key = 'dev'
 app.config['PRESERVE_CONTEXT_ON_EXCEPTION'] = True
@@ -67,12 +68,17 @@ def user_registration():
         return {'Error': 'This email or username already exists.'}
 
 
-@app.route('/saved-walks/<username>')
-def load_user_walks(username):
+@app.route('/saved-walks')
+def load_user_walks():
+
+    username = request.args.get('username')
 
     walks = crud.get_user_walks(username)
 
-    return jsonify(walks)
+    serialized_walks = []
+    for walk in walks:
+        serialized_walks.append(walk.serialize())
+    return jsonify(serialized_walks)
 
 
 @app.route('/ratings/<username>')
@@ -90,12 +96,12 @@ def load_user_ratings(username):
 def create_walk():
 
     post_request = request.get_json()
-
-    username = post_request['username']
+    username = post_request['user']['username']
+    walk_date = post_request['date'] 
 
     user = crud.get_user_from_username(username)
 
-    new_walk = crud.create_walk(user)
+    new_walk = crud.create_walk(user, walk_date)
 
     return {'walk_id': new_walk.walk_id}
 
