@@ -23,9 +23,8 @@ function Home(props) {
             <p>
                 It's been (read: continues to be) a tough year. Though it's important to do everything you can to stay safe,
                 you also have to find ways to stay sane. That's where Take a Walk comes in. With Take a Walk, you can 
-                generate an outing near you that includes local walking trails and restaurants so you can get outside. Here's 
-                the thing: the trails and restaurants are reviewed by people who've recently visited, based on how COVID-safe 
-                the trails and restaurants were to help you feel more confident before venturing outside. 
+                generate an outing near you that includes local walking trails and restaurants with the ADDED BONUS of reviews
+                based on how COVID-safe the trails and restaurants were. That way, you can get outside with a little more confidence.
             </p>
             <p>
                 Ready to get started? 
