@@ -9,14 +9,16 @@ function Weather(props) {
         return response.json();
         })
         .then(data => {
-          alert(`Temperature: ${data.temp}. Feels like: ${data.feels_like}. Description: ${data['weather'][0].description}.`);
+          const temperature = data.temp;
+          const feels_like =  data.feels_like;
+          const description = data['weather'][0].description; 
         });
     }
 
         
     return (
         <div>
-          <button onClick={fetchWeather}>get the temperature</button>
+          
         </div>
     );
 }
