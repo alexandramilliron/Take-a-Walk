@@ -33,7 +33,7 @@ function App() {
           <Route exact path="/saved-walks">
             <SavedWalks user={user}/> 
           </Route>
-          <Route exact path="/itinerary">
+          <Route exact path="/itinerary/:walk_id">
             <Itinerary user={user}/>
           </Route>
         </Switch>
