@@ -4,6 +4,7 @@
 function Trails(props) {
 
     const [trailList, setTrailList] = useState([]);
+    const history = useHistory();
 
 
     useEffect(() => {
@@ -56,6 +57,7 @@ function Trails(props) {
               .then(response => response.json())
               .then(data => {
                 console.log(data);
+                history.push('/saved-walks'); 
               });
     }
 
@@ -68,6 +70,5 @@ function Trails(props) {
             <button type="submit">Add Trails</button>
             </form>
         </div>
-
     );
 }
