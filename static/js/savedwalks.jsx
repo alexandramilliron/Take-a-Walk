@@ -3,8 +3,8 @@
 
 function SavedWalks(props) {
 
-    // 'walk_id': walk_id is what's returned from the new-walk route in the server 
-    //     walks = crud.get_user_walks(username)
+    const [walks, setWalks] = useState([]); 
+
 
     function fetchWalks() {
         fetch(`/saved-walks?username=${props.user.username}`)
@@ -12,18 +12,30 @@ function SavedWalks(props) {
         return response.json();
         })
         .then(data => {
-            console.log(data);
-        });
-    }
+            const user_walks = data // a list of walk objects 
 
+            const display_walks = user_walks.map((walk) => { // walk is a single walk object in the list 
+                return (
+                <div key={walk.walk_id}>
+                <ul>
+                    <li>{walk.walk_id}</li>
+                    <li>{walk.walk_date}</li>
+                </ul>
+                </div>);
+            });
+            setWalks(display_walks);
+        }); 
+    };
+            
 
     useEffect(() => {
         fetchWalks();
     }, []);
 
     return (
+        <div>
         <h2>Here are your walks!</h2>
-
-
+        {walks}
+        </div>
     );
 }
