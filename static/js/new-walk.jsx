@@ -7,22 +7,17 @@ function NewWalk(props) {
     const [longitude, setLongitude] = useState('');
     const [compRest, setCompRest] = useState(false);
     const [zipcode, setZipcode] = useState('');
+    const [date, setDate] = useState('');
     const [compTrail, setCompTrail] = useState(false);
-    const [walk, setWalk] = useState(null);
+    const [walk, setWalk] = useState(null); 
 
-    //adding a form to ask for user's location
-    //something in that form on submit switches the setCompRest to true 
-
-    useEffect(() => {
-      newWalk();
-    }, []); 
 
     function newWalk() {
 
         const requestOptions = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(props.user)
+            body: JSON.stringify({user: props.user, date: date})
             };
 
         fetch('/new-walk', requestOptions)
@@ -45,6 +40,7 @@ function NewWalk(props) {
             setLatitude(data['latitude']);
             setLongitude(data['longitude']); 
             setCompRest(true);
+            newWalk();
           };
         });
     }
@@ -52,11 +48,15 @@ function NewWalk(props) {
     
     return (
       <div>
-        <h2>Where would you like to take a walk?</h2>
+        <h2>Make a New Walk</h2>
           <form onSubmit={getLocation}>
-            <label>Please enter your zipcode:</label>
+            <label>Where would you like to walk?</label>
             <input type="text" placeholder="zipcode"
                 onChange={(event) => {setZipcode(event.target.value)}}/>
+                <br/>
+            <label>When would you like to go?</label>  
+            <input type="date" 
+                onChange={(event) => {setDate(event.target.value)}}/>
             <input type="submit" value="Submit"/>
           </form>
 
@@ -64,8 +64,8 @@ function NewWalk(props) {
         
         {(compRest == true) ? <Restaurants latitude={latitude} longitude={longitude} setCompTrail={setCompTrail} 
                                 setCompRest={setCompRest} walk={walk}/> : ''}
-        {(compTrail == true) ? <Trails latitude={latitude} longitude={longitude} walk={walk}/> : ''}
-        <Weather latitude={latitude} longitude={longitude}/>
+        {(compTrail == true) ? <Trails latitude={latitude} longitude={longitude} walk={walk} date={date} setCompTrail={setCompTrail}/> : ''}
+        {/* <Weather latitude={latitude} longitude={longitude}/> */}
       </div>
     );
 }
