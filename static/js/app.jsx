@@ -30,6 +30,9 @@ function App() {
           <Route exact path="/register">
             <Register setUser={setUser}/> 
           </Route>
+          <Route exact path="/saved-walks">
+            <SavedWalks user={user}/> 
+          </Route>
         </Switch>
       </div>
     </BrowserRouter>
