@@ -5,10 +5,15 @@ function SavedWalks(props) {
 
     const [walks, setWalks] = useState([]); 
 
-    //useParams 
+    const history = useHistory(); 
 
 
     function fetchWalks() {
+
+        function handleClick(walk_id) {
+            history.push(`/itinerary/${walk_id}`)
+        }
+
         fetch(`/saved-walks?username=${props.user.username}`)
         .then(response => {
         return response.json();
@@ -20,20 +25,15 @@ function SavedWalks(props) {
                 return (
                 <div key={walk.walk_id}>
                 <ul>
-                    <li>{walk.walk_id}</li>
-                    <li>{walk.walk_date}</li> 
+                    <li><a href='#' onClick={() => handleClick(walk.walk_id)}>{walk.walk_id}</a></li>
+                    <li onClick={() => handleClick(walk.walk_id)}>{walk.walk_date}</li> 
                 </ul>
                 </div>);
             });
             setWalks(display_walks);
         }); 
     };
-       
-    
 
-    // path could be /itinerary:/${walk_id}
-    // itinerary would be new component rendered on click in the savedwalks component 
-    // 
 
     useEffect(() => {
         fetchWalks();
