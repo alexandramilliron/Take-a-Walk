@@ -120,6 +120,13 @@ class Walk(db.Model):
     walk_date = db.Column(db.DateTime)
 
     user = db.relationship('User')
+
+    def serialize(self):
+        return {
+            'walk_id': self.walk_id,
+            'user_id': self.user_id,
+            'walk_date': self.walk_date,
+        }
     
     def __repr__(self):
         return f'<Walk walk_id={self.walk_id} user_id={self.user_id} walk_date={self.walk_date}>'
