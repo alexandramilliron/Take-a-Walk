@@ -25,6 +25,7 @@ function Nav(props) {
         <li><Link to={"/new-walk"} className="nav-link">New Walk</Link></li>
         {props.user ? <li><a href="#" onClick={handleLogout}>Logout</a></li> : <li><Link to={"/login"} className="nav-link">Login</Link></li>}
         {props.user ? "" : <li><Link to={"/register"} className="nav-link">Register</Link></li>}
+        {props.user ? <li><Link to={"/saved-walks"} className="nav-link">Saved Walks</Link></li> : ""}
     </ul>
     </nav>
     );
