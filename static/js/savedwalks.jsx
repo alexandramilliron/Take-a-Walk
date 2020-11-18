@@ -5,6 +5,8 @@ function SavedWalks(props) {
 
     const [walks, setWalks] = useState([]); 
 
+    //useParams 
+
 
     function fetchWalks() {
         fetch(`/saved-walks?username=${props.user.username}`)
@@ -19,14 +21,19 @@ function SavedWalks(props) {
                 <div key={walk.walk_id}>
                 <ul>
                     <li>{walk.walk_id}</li>
-                    <li>{walk.walk_date}</li>
+                    <li>{walk.walk_date}</li> 
                 </ul>
                 </div>);
             });
             setWalks(display_walks);
         }); 
     };
-            
+       
+    
+
+    // path could be /itinerary:/${walk_id}
+    // itinerary would be new component rendered on click in the savedwalks component 
+    // 
 
     useEffect(() => {
         fetchWalks();
