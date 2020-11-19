@@ -68,6 +68,16 @@ def user_registration():
         return {'Error': 'This email or username already exists.'}
 
 
+@app.route('/walk-details')
+def load_user_walk_details():
+
+    username = request.args.get('username')
+
+    walks = crud.get_user_walk_details(username)
+
+    return jsonify(walks)
+
+
 @app.route('/saved-walks')
 def load_user_walks():
 
@@ -75,14 +85,11 @@ def load_user_walks():
 
     walks = crud.get_user_walks(username)
 
-    #previously returning walk objects with walk_id and date 
-
     serialized_walks = []
     for walk in walks:
         serialized_walks.append(walk.serialize())
+    
     return jsonify(serialized_walks)
-
-    #return dictionary object with {'walks': [{walk_id: 1, rests: [], trails: []}, {walk_id: 2, }]}
 
 
 @app.route('/ratings/<username>')
