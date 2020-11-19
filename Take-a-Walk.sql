@@ -79,3 +79,14 @@ ALTER TABLE "ItineraryTrail" ADD FOREIGN KEY ("trail_id") REFERENCES "Trail" ("t
 ALTER TABLE "ItineraryRest" ADD FOREIGN KEY ("itin_id") REFERENCES "Itinerary" ("itin_id");
 
 ALTER TABLE "ItineraryRest" ADD FOREIGN KEY ("rest_id") REFERENCES "Restaurant" ("rest_id");
+
+
+
+select * from walks
+left join walk_trails 
+on walk_trails.walk_id = walks.walk_id
+left join walk_restaurants 
+on walk_restaurants.walk_id = walks.walk_id
+left join restaurants 
+on restaurants.rest_id = walk_restaurants.rest_id 
+left join trails; 
