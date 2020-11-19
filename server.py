@@ -75,10 +75,14 @@ def load_user_walks():
 
     walks = crud.get_user_walks(username)
 
+    #previously returning walk objects with walk_id and date 
+
     serialized_walks = []
     for walk in walks:
         serialized_walks.append(walk.serialize())
     return jsonify(serialized_walks)
+
+    #return dictionary object with {'walks': [{walk_id: 1, rests: [], trails: []}, {walk_id: 2, }]}
 
 
 @app.route('/ratings/<username>')
