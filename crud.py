@@ -135,11 +135,21 @@ def create_walk_restaurant(restaurant, walk):
 
 
 def get_user_walks(username):
-    """Return the walks associated with a particular user."""
-    
-    user = get_user_from_username(username)
+    """Return the walks associated with a particular user.""" 
 
-    return user.walks 
+
+
+    db.session.query(User.username, Restaurant.name, Walk.walk_id).filter(User.username == username).join(Walk).join(WalkRest).join(Restaurant).all()
+    # [('hello', 'Mission BBQ', 1), ('hello', 'Little Polish Diner', 1)]
+
+    db.session.query(User.username, Trail.name, Walk.walk_id).filter(User.username == username).join(Walk).join(WalkTrail).join(Trail).all()
+    #[('hello', 'Ledges to Pine Grove Loop', 1), ('hello', 'Blue Hen Falls Trail', 1)]
+
+
+
+    return user.walks
+
+
 
 
 def get_user_trail_ratings(username):
