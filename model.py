@@ -23,6 +23,10 @@ class User(db.Model):
 
     # TODO: add method for validating passwords? 
 
+    #sort by user and walk_id / all restaurants and trails for particular walk_id 
+
+
+
     def __repr__(self):
         return f'<User user_id={self.user_id} email={self.email} username={self.username}>'
 
@@ -41,6 +45,14 @@ class Trail(db.Model):
     length = db.Column(db.Float)
     location = db.Column(db.String) 
 
+    def serialize(self):
+        return {
+            'trail_id': self.trail_id,
+            'name': self.name
+        }
+
+    # TODO: complete serialize to include relevant data 
+
     def __repr__(self):
         return f'<Trail trail_id={self.trail_id} name={self.name}>'
 
@@ -58,6 +70,16 @@ class Restaurant(db.Model):
     name = db.Column(db.String, nullable=False)
     price = db.Column(db.String)
     location = db.Column(db.String)
+
+    # add relationship to rating 
+
+    def serialize(self):
+        return {
+            'rest_id': self.rest_id,
+            'name': self.name,
+        }
+
+        # TODO : complete this 
 
     def __repr__(self):
         return f'<Restaurant rest_id={self.rest_id} name={self.name}>'
@@ -104,6 +126,8 @@ class RestRating(db.Model):
     restaurant = db.relationship('Restaurant')
     user = db.relationship('User')
 
+
+
     def __repr__(self):
         return f'<Restaurant Rating rest_rating_id={self.rest_rating_id} rest_id={self.rest_id} user_id={self.user_id}>'
 
@@ -116,10 +140,15 @@ class Walk(db.Model):
     walk_id = db.Column(db.Integer,
                         autoincrement=True,
                         primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
     walk_date = db.Column(db.DateTime)
 
     user = db.relationship('User')
+
+    trails = db.relationship('Trail', secondary='walk_trails')
+    restaurants = db.relationship('Restaurant', secondary='walk_restaurants')
+
+    #filter by user and walk_id / all restaurants and trails for particular walk_id 
 
     def serialize(self):
         return {
@@ -127,6 +156,16 @@ class Walk(db.Model):
             'user_id': self.user_id,
             'walk_date': self.walk_date,
         }
+
+    def get_walk_details(self):
+        """Return dict of trails and restaurants associated with this walk."""
+        return {
+            'walk_id': self.walk_id,
+            'walk_date': self.walk_date,
+            'trails': [t.serialize() for t in self.trails],
+            'restaurants': [r.serialize() for r in self.restaurants]
+        }
+
     
     def __repr__(self):
         return f'<Walk walk_id={self.walk_id} user_id={self.user_id} walk_date={self.walk_date}>'
