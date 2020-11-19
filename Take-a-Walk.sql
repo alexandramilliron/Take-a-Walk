@@ -89,4 +89,5 @@ left join walk_restaurants
 on walk_restaurants.walk_id = walks.walk_id
 left join restaurants 
 on restaurants.rest_id = walk_restaurants.rest_id 
-left join trails; 
+left join trails
+where users.user_id = 1
