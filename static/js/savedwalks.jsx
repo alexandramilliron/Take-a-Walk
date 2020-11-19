@@ -11,17 +11,19 @@ function SavedWalks(props) {
     function fetchWalks() {
 
         function handleClick(walk_id) {
-            history.push(`/itinerary/${walk_id}`)
-        }
+            history.push({
+                pathname: `/itinerary/${walk_id}`,
+            })
+        };
 
         fetch(`/saved-walks?username=${props.user.username}`)
         .then(response => {
         return response.json();
         })
         .then(data => {
-            const user_walks = data // a list of walk objects 
+            const user_walks = data 
 
-            const display_walks = user_walks.map((walk) => { // walk is a single walk object in the list 
+            const display_walks = user_walks.map((walk) => { 
                 return (
                 <div key={walk.walk_id}>
                 <ul>
@@ -39,6 +41,7 @@ function SavedWalks(props) {
         fetchWalks();
     }, []);
 
+    
     return (
         <div>
         <h2>Here are your walks!</h2>
