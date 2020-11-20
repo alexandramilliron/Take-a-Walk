@@ -3,9 +3,10 @@
 
 function Itinerary(props) {
 
-    const params = useParams();
-
     const [walkDetails, setWalkDetails] = useState([]);
+
+    
+    // through useParams, taking out the walk_id, and now the fetch request is based on walk_id 
 
     function fetchWalkDetails() {
 
@@ -20,9 +21,17 @@ function Itinerary(props) {
                 return (
                 <div key={walk.walk_id}>
                 <ul>
-                    <li>{walk.walk_id}</li>
                     <li>{walk.walk_date}</li>
-                    <li>{walk.restaurants[0].name}</li> 
+                    {walk.restaurants.map(rest => {
+                        return (
+                            <li key={rest.rest_id}>{rest.name}</li>
+                        );
+                    })}
+                    {walk.trails.map(trail => {
+                        return (
+                            <li key={trail.trail_id}>{trail.name}</li>
+                        );
+                    })}
                 </ul>
                 </div>);
             });
