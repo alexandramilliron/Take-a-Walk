@@ -14,17 +14,17 @@ function SavedWalks(props) {
         })
         .then(data => {
             const user_walks = data 
-            const display_walks = []
 
-            for (const [index, walk] of user_walks.entries()) {
-                display_walks.push(
+            const display_walks = user_walks.map((walk, index) => {
+                return (
                     <div key={index}>
                         <ul>
                             <li><Link to={`/itinerary/${walk.walk_id}`}>{`Walk #${index + 1}`}</Link></li>
                             <li>{`Walk Date: ${walk.walk_date}`}</li>
                         </ul>
-                    </div>);
-            }
+                    </div>
+                );
+            });
             setWalks(display_walks);
         }); 
     };
