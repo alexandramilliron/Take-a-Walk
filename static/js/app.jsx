@@ -12,7 +12,7 @@ function App() {
 
 
   return (
-    <BrowserRouter>
+
       <div>
         <h2>Take a Walk</h2>
           <Nav user={user} setUser={setUser}/>
@@ -33,11 +33,11 @@ function App() {
           <Route exact path="/saved-walks">
             <SavedWalks user={user}/> 
           </Route>
-          <Route exact path="/itinerary/:walk_id">
+          <Route exact path="/itinerary/:walk_id"> 
             <Itinerary user={user}/>
           </Route>
         </Switch>
       </div>
-    </BrowserRouter>
+
   );
 }
