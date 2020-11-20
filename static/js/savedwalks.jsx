@@ -4,34 +4,27 @@
 function SavedWalks(props) {
 
     const [walks, setWalks] = useState([]); 
-
-    const history = useHistory(); 
-
+    
 
     function fetchWalks() {
 
-        function handleClick(walk_id) {
-            history.push({
-                pathname: `/itinerary/${walk_id}`,
-            })
-        };
-
-        fetch(`/saved-walks?username=${props.user.username}`)
+        fetch(`/saved-walks?username=${props.user.username}`) 
         .then(response => {
         return response.json();
         })
         .then(data => {
             const user_walks = data 
+            const display_walks = []
 
-            const display_walks = user_walks.map((walk) => { 
-                return (
-                <div key={walk.walk_id}>
-                <ul>
-                    <li><a href='#' onClick={() => handleClick(walk.walk_id)}>{walk.walk_id}</a></li>
-                    <li onClick={() => handleClick(walk.walk_id)}>{walk.walk_date}</li> 
-                </ul>
-                </div>);
-            });
+            for (const [index, walk] of user_walks.entries()) {
+                display_walks.push(
+                    <div key={index}>
+                        <ul>
+                            <li><Link to={`/itinerary/${walk.walk_id}`}>{`Walk #${index + 1}`}</Link></li>
+                            <li>{`Walk Date: ${walk.walk_date}`}</li>
+                        </ul>
+                    </div>);
+            }
             setWalks(display_walks);
         }); 
     };
@@ -49,3 +42,7 @@ function SavedWalks(props) {
         </div>
     );
 }
+
+// this can stay the same along with its endpoint in the server 
+// useParams need to be reimplemented here and on Itinerary 
+// useHistory as well 
