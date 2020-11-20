@@ -1,4 +1,6 @@
 ReactDOM.render(
-    <App/>,
+    <BrowserRouter>
+        <App/>
+    </BrowserRouter>,
     document.getElementById("app")
 );
