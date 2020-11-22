@@ -53,7 +53,7 @@ function Trails(props) {
           body: JSON.stringify({trails: trail_names, latitude: props.latitude, longitude: props.longitude, walk: props.walk.walk_id})
           };
   
-          fetch('/add-trails', requestOptions)
+          fetch('/api/add-trails', requestOptions)
               .then(response => response.json())
               .then(data => {
                 console.log(data);
