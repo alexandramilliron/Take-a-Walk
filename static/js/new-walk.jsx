@@ -20,7 +20,7 @@ function NewWalk(props) {
             body: JSON.stringify({user: props.user, date: date})
             };
 
-        fetch('/new-walk', requestOptions)
+        fetch('/api/new-walk', requestOptions)
             .then(response => response.json())
             .then(data => {
               setWalk(data); 
@@ -62,9 +62,9 @@ function NewWalk(props) {
 
 
         
-        {(compRest == true) ? <Restaurants latitude={latitude} longitude={longitude} setCompTrail={setCompTrail} 
+        {compRest ? <Restaurants latitude={latitude} longitude={longitude} setCompTrail={setCompTrail} 
                                 setCompRest={setCompRest} walk={walk}/> : ''}
-        {(compTrail == true) ? <Trails latitude={latitude} longitude={longitude} walk={walk} date={date} setCompTrail={setCompTrail}/> : ''}
+        {compTrail ? <Trails latitude={latitude} longitude={longitude} walk={walk} date={date} setCompTrail={setCompTrail}/> : ''}
         {/* <Weather latitude={latitude} longitude={longitude}/> */}
       </div>
     );
