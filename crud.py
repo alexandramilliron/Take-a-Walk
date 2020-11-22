@@ -134,14 +134,16 @@ def create_walk_restaurant(restaurant, walk):
     return walk_rest
 
 
-def get_user_walk_details(username):
+def get_user_walk_details(walk_id):
     """Return the walks associated with a particular user.""" 
 
-    user = get_user_from_username(username)
+    walk = Walk.query.filter(Walk.walk_id == walk_id).first() 
 
-    user_walks = [walk.get_walk_details() for walk in user.walks]
+    walk_details = walk.get_walk_details() 
 
-    return user_walks
+    # TODO: for a particular walk_id 
+
+    return walk_details
 
 
 def get_user_walks(username):
