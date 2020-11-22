@@ -12,13 +12,6 @@ app.secret_key = 'dev'
 app.config['PRESERVE_CONTEXT_ON_EXCEPTION'] = True
 
 
-@app.route('/')
-def homepage():
-    """Render the application's homepage."""
-
-    return render_template('index.html')
-
-
 @app.route('/api/get-location')
 def get_location():
 
@@ -32,7 +25,7 @@ def get_location():
             'state': location_info.state_name}
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/api/login', methods=['POST'])
 def user_login():
     """Login an existing user."""
     
@@ -49,7 +42,7 @@ def user_login():
         return {'Error': 'Invalid username or password.'}
 
 
-@app.route('/register', methods=['POST'])
+@app.route('/api/register', methods=['POST'])
 def user_registration():
     """Register a new user."""
     
@@ -68,17 +61,17 @@ def user_registration():
         return {'Error': 'This email or username already exists.'}
 
 
-@app.route('/walk-details')
-def load_user_walk_details():
+@app.route('/api/walk-details/<walk_id>')
+def load_user_walk_details(walk_id):
 
-    username = request.args.get('username')
+    #walk_id = request.args.get(walk_id) # ?
 
-    walks = crud.get_user_walk_details(username)
+    walk = crud.get_user_walk_details(walk_id)
 
-    return jsonify(walks)
+    return jsonify(walk)
 
 
-@app.route('/saved-walks')
+@app.route('/api/saved-walks')
 def load_user_walks():
 
     username = request.args.get('username')
@@ -103,7 +96,7 @@ def load_user_ratings(username):
     return jsonify(user_ratings)
 
 
-@app.route('/new-walk', methods=['POST'])
+@app.route('/api/new-walk', methods=['POST'])
 def create_walk():
 
     post_request = request.get_json()
@@ -144,7 +137,7 @@ def get_trails():
     return hiking_data_api(latitude, longitude)
 
 
-@app.route('/add-restaurants', methods=['POST'])
+@app.route('/api/add-restaurants', methods=['POST'])
 def add_restaurants():
 
     post_request = request.get_json()
@@ -163,7 +156,7 @@ def add_restaurants():
     return {'Success': 'Added to database.'} 
 
 
-@app.route('/add-trails', methods=['POST'])
+@app.route('/api/add-trails', methods=['POST'])
 def add_trails():
 
     post_request = request.get_json() 
@@ -182,16 +175,12 @@ def add_trails():
     return {'Success': 'Added to database.'}
     
 
+@app.route('/', defaults={'input_path': ''}) # if this matches the URL 
+@app.route('/<path:input_path>') # OR if this matches the URL 
+def homepage(input_path): # call this function 
+    """Render the application's homepage."""
 
-
-
-
-
-
-
-
-
-
+    return render_template('index.html')
 
 
 
