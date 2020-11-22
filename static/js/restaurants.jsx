@@ -53,7 +53,7 @@ function Restaurants(props) {
           body: JSON.stringify({restaurants: rest_names, latitude: props.latitude, longitude: props.longitude, walk: props.walk.walk_id})
           };
   
-          fetch('/add-restaurants', requestOptions)
+          fetch('/api/add-restaurants', requestOptions)
               .then(response => response.json())
               .then(data => {
                 console.log(data);
