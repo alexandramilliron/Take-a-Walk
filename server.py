@@ -64,8 +64,6 @@ def user_registration():
 @app.route('/api/walk-details/<walk_id>')
 def load_user_walk_details(walk_id):
 
-    #walk_id = request.args.get(walk_id) # ?
-
     walk = crud.get_user_walk_details(walk_id)
 
     return jsonify(walk)
