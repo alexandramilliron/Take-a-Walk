@@ -17,7 +17,7 @@ function Login(props) {
         body: JSON.stringify({username: username, password: password})
         };
 
-        fetch('/login', requestOptions)
+        fetch('/api/login', requestOptions)
             .then(response => response.json())
             .then(data => {
               if (data['Error']) {
