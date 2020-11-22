@@ -5,20 +5,19 @@ function Itinerary(props) {
 
     const [walkDetails, setWalkDetails] = useState([]);
 
+    const { walk_id } = useParams();
     
-    // through useParams, taking out the walk_id, and now the fetch request is based on walk_id 
-
     function fetchWalkDetails() {
 
-        fetch(`/walk-details?username=${props.user.username}`)
+        fetch(`/api/walk-details/${walk_id}`) // TODO: make sure this is the correct syntax 
         .then(response => {
         return response.json();
         })
         .then(data => {
-            const user_walks = data 
+            const walk = data 
 
-            const display_walks = user_walks.map((walk) => { 
-                return (
+            const display_walk = 
+                (
                 <div key={walk.walk_id}>
                 <ul>
                     <li>{walk.walk_date}</li>
@@ -34,8 +33,7 @@ function Itinerary(props) {
                     })}
                 </ul>
                 </div>);
-            });
-            setWalkDetails(display_walks);
+            setWalkDetails(display_walk);
         }); 
     };
 
