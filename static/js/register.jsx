@@ -18,7 +18,7 @@ function Register(props) {
           body: JSON.stringify({username: usernameReg, password: passwordReg, email: emailReg})
           };
   
-          fetch('/register', requestOptions)
+          fetch('/api/register', requestOptions)
               .then(response => response.json())
               .then(data => {
                 // TODO: refactor code to include login function  
