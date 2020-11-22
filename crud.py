@@ -141,8 +141,6 @@ def get_user_walk_details(walk_id):
 
     walk_details = walk.get_walk_details() 
 
-    # TODO: for a particular walk_id 
-
     return walk_details
 
 
