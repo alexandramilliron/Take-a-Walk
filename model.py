@@ -57,7 +57,9 @@ class Trail(db.Model):
     def serialize(self):
         return {
             'trail_id': self.trail_id,
-            'name': self.name
+            'name': self.name,
+            'latitude': self.latitude,
+            'longitude': self.longitude
         }
 
 
@@ -87,6 +89,8 @@ class Restaurant(db.Model):
         return {
             'rest_id': self.rest_id,
             'name': self.name,
+            'latitude': self.latitude,
+            'longitude': self.longitude
         }
 
 
