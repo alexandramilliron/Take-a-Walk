@@ -13,7 +13,7 @@ function ChooseRestaurants(props) {
 
     function fetchRestaurants() {
 
-        fetch(`/api/restaurants?latitude=${props.latitude}&longitude=${props.longitude}`)
+        fetch(`/api/choose-restaurants?latitude=${props.latitude}&longitude=${props.longitude}`)
         .then(response => {
             return response.json();
         })
