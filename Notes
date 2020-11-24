@@ -24,6 +24,15 @@ Potential Features:
 // 5. << options for which part(s) to review >>
 
 
+// fetches for smaller pieces of data / getting info exactly when you need it 
+// props for anything it can't get from the parent but otherwise use the data 
+
+// in general, you want components to be as self-contained as possible to support modularity
+// state-level management 
+// lower level components don't need app-level state 
+// if it's page-level, get data from server
+// if it's smaller components within a page - pass props 
+
 
 
  
