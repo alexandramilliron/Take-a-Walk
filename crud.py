@@ -134,7 +134,7 @@ def create_walk_restaurant(restaurant, walk):
     return walk_rest
 
 
-def get_user_walk_details(walk_id):
+def get_walk_details(walk_id):
     """Return the walks associated with a particular user.""" 
 
     walk = Walk.query.filter(Walk.walk_id == walk_id).first() 
