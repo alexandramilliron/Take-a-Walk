@@ -14,7 +14,7 @@ function ChooseTrails(props) {
     
     function fetchTrails() {
 
-        fetch(`/api/trails?latitude=${props.latitude}&longitude=${props.longitude}`)
+        fetch(`/api/choose-trails?latitude=${props.latitude}&longitude=${props.longitude}`)
         .then(response => {
             return response.json();
         })
