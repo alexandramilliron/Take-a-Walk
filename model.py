@@ -23,10 +23,15 @@ class User(db.Model):
 
     # TODO: add method for validating passwords? 
 
-    #sort by user and walk_id / all restaurants and trails for particular walk_id 
 
+    def serialize(self):
+        return {
+            'user_id': self.user_id,
+            'username': self.username,
+            'email': self.email
+        }
 
-
+    
     def __repr__(self):
         return f'<User user_id={self.user_id} email={self.email} username={self.username}>'
 
@@ -45,13 +50,16 @@ class Trail(db.Model):
     length = db.Column(db.Float)
     location = db.Column(db.String) 
 
+    ratings = db.relationship('TrailRating')
+    walks = db.relationship('Walk', secondary='walk_trails')
+
+
     def serialize(self):
         return {
             'trail_id': self.trail_id,
             'name': self.name
         }
 
-    # TODO: complete serialize to include relevant data 
 
     def __repr__(self):
         return f'<Trail trail_id={self.trail_id} name={self.name}>'
@@ -71,7 +79,9 @@ class Restaurant(db.Model):
     price = db.Column(db.String)
     location = db.Column(db.String)
 
-    # add relationship to rating 
+    ratings = db.relationship('RestRating')
+    walks = db.relationship('Walk', secondary='walk_restaurants')
+
 
     def serialize(self):
         return {
@@ -79,7 +89,6 @@ class Restaurant(db.Model):
             'name': self.name,
         }
 
-        # TODO : complete this 
 
     def __repr__(self):
         return f'<Restaurant rest_id={self.rest_id} name={self.name}>'
@@ -102,6 +111,15 @@ class TrailRating(db.Model):
 
     trail = db.relationship('Trail')
     user = db.relationship('User')
+
+
+    def serialize(self):
+        return {
+            'trail_rating_id': self.trail_rating_id,
+            'user_id': self.user_id,
+            'trail_id': self.trail_id
+        }
+
 
     def __repr__(self):
         return f'<Trail Rating trail_rating_id={self.trail_rating_id} trail_id={self.trail_id} user_id={self.user_id}>'
@@ -127,6 +145,13 @@ class RestRating(db.Model):
     user = db.relationship('User')
 
 
+    def serialize(self):
+        return {
+            'rest_rating_id': self.rest_rating_id,
+            'user_id': self.user_id,
+            'rest_id': self.rest_id
+        }
+
 
     def __repr__(self):
         return f'<Restaurant Rating rest_rating_id={self.rest_rating_id} rest_id={self.rest_id} user_id={self.user_id}>'
@@ -148,14 +173,13 @@ class Walk(db.Model):
     trails = db.relationship('Trail', secondary='walk_trails')
     restaurants = db.relationship('Restaurant', secondary='walk_restaurants')
 
-    #filter by user and walk_id / all restaurants and trails for particular walk_id 
 
     def serialize(self):
         return {
             'walk_id': self.walk_id,
-            'user_id': self.user_id,
             'walk_date': self.walk_date,
         }
+
 
     def get_walk_details(self):
         """Return dict of trails and restaurants associated with this walk."""
@@ -166,7 +190,7 @@ class Walk(db.Model):
             'restaurants': [r.serialize() for r in self.restaurants]
         }
 
-    
+
     def __repr__(self):
         return f'<Walk walk_id={self.walk_id} user_id={self.user_id} walk_date={self.walk_date}>'
 
@@ -184,6 +208,15 @@ class WalkTrail(db.Model):
 
     trail = db.relationship('Trail')
     walk = db.relationship('Walk')
+
+
+    def serialize(self):
+        return {
+            'wail_trail_id': self.walk_trail_id,
+            'walk_id': self.walk_id,
+            'trail_id': self.trail_id
+        }
+
 
     def __repr__(self):
         return f'<WalkTrail walk_trail_id={self.walk_trail_id} walk_id={self.walk_id} trail_id={self.trail_id}>'
@@ -203,8 +236,25 @@ class WalkRest(db.Model):
     restaurant = db.relationship('Restaurant')
     walk = db.relationship('Walk')
 
+
+    def serialize(self):
+        return {
+            'wail_rest_id': self.walk_rest_id,
+            'walk_id': self.walk_id,
+            'rest_id': self.rest_id
+        }
+
+
     def __repr__(self):
         return f'<WalkRestaurant walk_rest_id={self.walk_rest_id} walk_id={self.walk_id} rest_id={self.rest_id}>'
+
+
+
+
+# TODO: re-examine the serialize methods to see if the information they return is useful 11/23/2020
+# TODO: potentially simplify the methods in the Walk class since there's overlap 
+
+
 
 
 def connect_to_db(flask_app, db_uri='postgresql:///takeawalk', echo=False):
