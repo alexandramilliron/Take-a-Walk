@@ -62,9 +62,9 @@ def user_registration():
 
 
 @app.route('/api/walk-details/<walk_id>')
-def load_user_walk_details(walk_id):
+def load_walk_details(walk_id):
 
-    walk = crud.get_user_walk_details(walk_id)
+    walk = crud.get_walk_details(walk_id)
 
     return jsonify(walk)
 
@@ -76,9 +76,7 @@ def load_user_walks():
 
     walks = crud.get_user_walks(username)
 
-    serialized_walks = []
-    for walk in walks:
-        serialized_walks.append(walk.serialize())
+    serialized_walks = [walk.serialize() for walk in walks]
     
     return jsonify(serialized_walks)
 
