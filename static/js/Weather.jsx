@@ -3,7 +3,9 @@
 
 function Weather(props) {
 
-    let temperature = '' // figure out variable scoping here 
+    const [temperature, setTemperature] = useState(''); 
+
+    // props.walk_date 
 
     function fetchWeather() {
         fetch(`/api/weather?latitude=${props.latitude}&longitude=${props.longitude}`)
@@ -11,7 +13,7 @@ function Weather(props) {
         return response.json();
         })
         .then(data => {
-          const temperature = data['current'].temp;
+          setTemperature(data['current'].temp); 
           const feels_like =  data['current'].feels_like;
           const description = data['current']['weather'][0].description; 
         });
