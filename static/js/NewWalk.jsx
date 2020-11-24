@@ -35,7 +35,7 @@ function NewWalk(props) {
         .then(response => response.json())
         .then(data => {
           if (data['Error']) {
-            alert('Invalid username or password.')
+            alert('Unable to get user location.') // TODO: change the error here! 
           } else {
             setLatitude(data['latitude']);
             setLongitude(data['longitude']); 
@@ -65,7 +65,7 @@ function NewWalk(props) {
         {compRest ? <ChooseRestaurants latitude={latitude} longitude={longitude} setCompTrail={setCompTrail} 
                                 setCompRest={setCompRest} walk={walk}/> : ''}
         {compTrail ? <ChooseTrails latitude={latitude} longitude={longitude} walk={walk} date={date} setCompTrail={setCompTrail}/> : ''}
-        {/* <Weather latitude={latitude} longitude={longitude}/> */}
+
       </div>
     );
 }
