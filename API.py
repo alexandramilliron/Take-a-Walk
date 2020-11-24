@@ -30,7 +30,7 @@ def weather_data_api(latitude, longitude):
     payload = {'appid': WEATHER_KEY, 'lat': latitude, 'lon': longitude, 'exclude': 'minutely', 'units': 'imperial'}
     response = requests.get(url, params=payload)
     data = response.json() 
-    return data['current']
+    return data
 
 # timestamp = int("dtnumber")
 # datetime.utcfromtimestamp(timestamp).strftime(%Y-%m-%d %H:%M:%S)
