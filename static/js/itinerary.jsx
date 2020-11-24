@@ -1,7 +1,7 @@
 "use strict";
 
 
-function Itinerary(props) {
+function Itinerary() {
 
     const [walkDetails, setWalkDetails] = useState([]);
 
@@ -9,7 +9,7 @@ function Itinerary(props) {
     
     function fetchWalkDetails() {
 
-        fetch(`/api/walk-details/${walk_id}`) // TODO: make sure this is the correct syntax 
+        fetch(`/api/walk-details/${walk_id}`) 
         .then(response => {
         return response.json();
         })
