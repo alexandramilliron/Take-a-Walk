@@ -4,6 +4,9 @@
 function Itinerary() {
 
     const [walkDetails, setWalkDetails] = useState([]);
+    const [latitude, setLatitude] = useState('');
+    const [longitude, setLongitude] = useState(''); 
+    const [walkDate, setWalkDate] = useState(''); 
 
     const { walk_id } = useParams();
     
@@ -17,12 +20,14 @@ function Itinerary() {
             const walk = data
 
             if (walk.trails.length !== 0) {
-                const latitude = walk.trails[0].latitude // TODO: get latitude and longitude to pass to Weather component
-                const longitude = walk.trails[0].longitude
+                setLatitude(walk.trails[0].latitude);
+                setLongitude(walk.trails[0].longitude);
             } else {
-                const latitude = walk.restaurants[0].latitude
-                const longitude = walk.restaurants[0].longitude
+                setLatitude(walk.restaurants[0].latitude);
+                setLongitude(walk.restaurants[0].longitude);
             }
+
+            setWalkDate(walk.walk_date.slice(0, 16)); 
 
             const display_walk = 
                 (
@@ -54,7 +59,7 @@ function Itinerary() {
     return (
         <div>
             {walkDetails}
-            <Weather latitude={latitude} longitude={longitude}/>
+            <Weather latitude={latitude} longitude={longitude} walk_date = {walkDate}/>
         </div>
     )
 }
