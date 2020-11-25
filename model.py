@@ -25,6 +25,7 @@ class User(db.Model):
 
 
     def serialize(self):
+        """Return dict with this user's id, username, and email."""
         return {
             'user_id': self.user_id,
             'username': self.username,
@@ -55,6 +56,7 @@ class Trail(db.Model):
 
 
     def serialize(self):
+        """Return dict with this trail's id, name, lat, and long."""
         return {
             'trail_id': self.trail_id,
             'name': self.name,
@@ -86,6 +88,7 @@ class Restaurant(db.Model):
 
 
     def serialize(self):
+        """Return dict of this restaurant's id, name, lat, and long."""
         return {
             'rest_id': self.rest_id,
             'name': self.name,
@@ -118,6 +121,7 @@ class TrailRating(db.Model):
 
 
     def serialize(self):
+        """Return dict of this rating's id, the id of the associated user, and the id of the reviewed trail."""
         return {
             'trail_rating_id': self.trail_rating_id,
             'user_id': self.user_id,
@@ -150,6 +154,7 @@ class RestRating(db.Model):
 
 
     def serialize(self):
+        """Return dict of this rating's id, the id of the associated user, and the id of the reviewed restaurant."""
         return {
             'rest_rating_id': self.rest_rating_id,
             'user_id': self.user_id,
@@ -179,6 +184,7 @@ class Walk(db.Model):
 
 
     def serialize(self):
+        """Return dict with the id and date for this walk.""" 
         return {
             'walk_id': self.walk_id,
             'walk_date': self.walk_date,
@@ -214,14 +220,6 @@ class WalkTrail(db.Model):
     walk = db.relationship('Walk')
 
 
-    def serialize(self):
-        return {
-            'wail_trail_id': self.walk_trail_id,
-            'walk_id': self.walk_id,
-            'trail_id': self.trail_id
-        }
-
-
     def __repr__(self):
         return f'<WalkTrail walk_trail_id={self.walk_trail_id} walk_id={self.walk_id} trail_id={self.trail_id}>'
 
@@ -239,14 +237,6 @@ class WalkRest(db.Model):
 
     restaurant = db.relationship('Restaurant')
     walk = db.relationship('Walk')
-
-
-    def serialize(self):
-        return {
-            'wail_rest_id': self.walk_rest_id,
-            'walk_id': self.walk_id,
-            'rest_id': self.rest_id
-        }
 
 
     def __repr__(self):
