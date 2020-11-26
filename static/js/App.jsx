@@ -36,6 +36,9 @@ function App() {
           <Route exact path="/itinerary/:walk_id"> 
             <Itinerary user={user}/>
           </Route>
+          <Route exact path="/ratings/:username">
+            <UserRatings user={user}/>
+          </Route>
         </Switch>
       </div>
 
