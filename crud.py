@@ -104,12 +104,26 @@ def create_walk(user, walk_date=None):
     return walk
 
 
-def get_walk_from_walk_id(walk_id):
+def get_walk_from_id(walk_id):
     """Get a walk from its id."""
 
     walk = Walk.query.filter(Walk.walk_id == walk_id).first()
 
     return walk 
+
+
+def get_rest_from_id(rest_id):
+
+    rest = Restaurant.query.filter(Restaurant.rest_id == rest_id).first()
+
+    return rest 
+
+
+def get_trail_from_id(trail_id):
+
+    trail = Trail.query.filter(Trail.trail_id == trail_id).first() 
+
+    return trail
 
 
 def create_walk_trail(trail, walk):
