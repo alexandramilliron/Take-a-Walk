@@ -1,4 +1,5 @@
 import requests 
+from datetime import datetime
 import json 
 import os 
 
@@ -25,13 +26,19 @@ def yelp_data_api(latitude, longitude):
     return data
 
 
-def weather_data_api(latitude, longitude):
+def weather_data_api(latitude, longitude, date):
     url = 'https://api.openweathermap.org/data/2.5/onecall'
     payload = {'appid': WEATHER_KEY, 'lat': latitude, 'lon': longitude, 'exclude': 'minutely', 'units': 'imperial'}
     response = requests.get(url, params=payload)
     data = response.json() 
-    return data
+    
+    for daily_weather_object in data['daily']: 
+        timestamp = daily_weather_object['dt']
+        ts_to_dt = datetime.utcfromtimestamp(timestamp).strftime('%a, %d %b %Y 00:00:00 GMT')
+        if ts_to_dt == date:
+            return daily_weather_object
 
-# timestamp = int("dtnumber")
-# datetime.utcfromtimestamp(timestamp).strftime(%Y-%m-%d %H:%M:%S)
+    return {'Error': 'Date out of range.'}
+
+
 
