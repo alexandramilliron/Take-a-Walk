@@ -3,27 +3,30 @@
 
 function Weather(props) {
 
-    const [temperature, setTemperature] = useState(''); 
 
-    // props.walk_date 
+    useEffect(() => {
+      fetchWeather();
+    }, []);
+
+
+    const [weather, setWeather] = useState('');
+
 
     function fetchWeather() {
-        fetch(`/api/weather?latitude=${props.latitude}&longitude=${props.longitude}`)
+        fetch(`/api/weather?latitude=${props.latitude}&longitude=${props.longitude}&walk_date=${props.walk_date}`) 
         .then(response => {
         return response.json();
         })
         .then(data => {
-          setTemperature(data['current'].temp); 
-          const feels_like =  data['current'].feels_like;
-          const description = data['current']['weather'][0].description; 
+          setWeather(`The temperature will be ${data['temp']['day']} but will feel like ${data['feels_like']['day']}.
+                      The weather description is "${data['weather'][0]['description']}."`)
         });
     }
 
-        
+    
     return (
         <div>
-          <button onClick={fetchWeather}>Click to get the weather for this walk!</button>
-            <span>The temperature is {temperature}</span>
+          {weather}
         </div>
     );
 }
