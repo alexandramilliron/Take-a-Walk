@@ -7,6 +7,11 @@ function Itinerary() {
     const [latitude, setLatitude] = useState('');
     const [longitude, setLongitude] = useState(''); 
     const [walkDate, setWalkDate] = useState(''); 
+    const [showWeather, setShowWeather] = useState(false); 
+
+    function onButtonClick() {
+        setShowWeather(true);
+    } 
 
     const { walk_id } = useParams();
     
@@ -14,7 +19,7 @@ function Itinerary() {
 
         fetch(`/api/walk-details/${walk_id}`) 
         .then(response => {
-        return response.json();
+            return response.json();
         })
         .then(data => {
             const walk = data
@@ -27,7 +32,7 @@ function Itinerary() {
                 setLongitude(walk.restaurants[0].longitude);
             }
 
-            setWalkDate(walk.walk_date.slice(0, 16)); 
+            setWalkDate(walk.walk_date); 
 
             const display_walk = 
                 (
@@ -59,7 +64,10 @@ function Itinerary() {
     return (
         <div>
             {walkDetails}
-            <Weather latitude={latitude} longitude={longitude} walk_date = {walkDate}/>
+            <p>Get the weather for this walk:
+            <button onClick={onButtonClick}>Weather</button>
+            {showWeather ? <Weather latitude={latitude} longitude={longitude} walk_date = {walkDate}/> : ''}
+            </p>
         </div>
     )
 }
