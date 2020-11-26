@@ -194,6 +194,7 @@ class Walk(db.Model):
     def get_walk_details(self):
         """Return dict of trails and restaurants associated with this walk."""
         return {
+            'user_id': self.user_id, 
             'walk_id': self.walk_id,
             'walk_date': self.walk_date,
             'trails': [t.serialize() for t in self.trails],
