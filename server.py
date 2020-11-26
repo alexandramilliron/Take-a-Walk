@@ -81,7 +81,7 @@ def load_user_walks():
     return jsonify(serialized_walks)
 
 
-@app.route('/ratings/<username>')
+@app.route('/api/ratings/<username>')
 def load_user_ratings(username):
 
     user_ratings = {}
@@ -111,8 +111,9 @@ def get_weather():
 
     latitude = request.args.get('latitude')
     longitude = request.args.get('longitude')
+    date = request.args.get('walk_date')
     
-    return weather_data_api(latitude, longitude)
+    return weather_data_api(latitude, longitude, date)
 
 
 @app.route('/api/choose-restaurants')
