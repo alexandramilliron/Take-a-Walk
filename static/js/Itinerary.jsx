@@ -1,5 +1,7 @@
 "use strict";
 
+const { useState } = require("react");
+
 
 function Itinerary() {
 
@@ -8,6 +10,7 @@ function Itinerary() {
     const [longitude, setLongitude] = useState(''); 
     const [walkDate, setWalkDate] = useState(''); 
     const [showWeather, setShowWeather] = useState(false); 
+    const [userID, setUserID] = useState(''); 
 
     function onButtonClick() {
         setShowWeather(true);
@@ -33,6 +36,7 @@ function Itinerary() {
             }
 
             setWalkDate(walk.walk_date); 
+            setUserID(walk.user_id); 
 
             const display_walk = 
                 (
