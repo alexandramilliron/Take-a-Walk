@@ -39,8 +39,18 @@ function App() {
           <Route exact path="/ratings/:username">
             <UserRatings user={user}/>
           </Route>
+          <Route exact path="/rest-rating/:rest_id">
+            <RestRating user={user}/>
+          </Route>
+          <Route exact path="/trail-rating/:trail_id">
+            <TrailRating user={user}/>
+          </Route>
         </Switch>
       </div>
 
   );
 }
+
+// on backend, handle not found if it's an API 
+
+// Route path="*" component={PageNotFound}
