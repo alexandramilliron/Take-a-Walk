@@ -92,6 +92,20 @@ def load_user_ratings(username):
     return jsonify(user_ratings)
 
 
+@app.route('api/add-rest-rating')
+def add_rest_rating():
+
+    post_request = request.get_json()
+
+    rest_id = post_request['rest_id']
+    user_id = post_request['user_id']
+    rest_comment = post_request['comment']
+
+    crud.create_rest_rating(rest_id, user_id, rest_comment)
+
+    # rest_star, masks_worn, socially_distanced, outdoor_seating 
+
+
 @app.route('/api/new-walk', methods=['POST'])
 def create_walk():
 
