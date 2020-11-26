@@ -92,18 +92,25 @@ def load_user_ratings(username):
     return jsonify(user_ratings)
 
 
-@app.route('api/add-rest-rating')
+@app.route('/api/add-rest-rating', methods=['POST'])
 def add_rest_rating():
 
     post_request = request.get_json()
 
+    username = post_request['username']
     rest_id = post_request['rest_id']
-    user_id = post_request['user_id']
-    rest_comment = post_request['comment']
+    rest_comment = post_request['rest_comment']
+    rest_star = post_request['rest_star']
+    # masks_worn = post_request['masks_worn']
+    # socially_distanced = post_request['socially_distanced']
+    # outdoor_seating = post_request['outdoor_seating']
 
-    crud.create_rest_rating(rest_id, user_id, rest_comment)
+    user = crud.get_user_from_username(username)
+    restaurant = crud.get_rest_from_id(rest_id)
 
-    # rest_star, masks_worn, socially_distanced, outdoor_seating 
+    crud.create_rest_rating(restaurant, user, rest_comment, rest_star)
+
+    return {'Success': 'Added to database.'}
 
 
 @app.route('/api/new-walk', methods=['POST'])
@@ -158,7 +165,7 @@ def add_restaurants():
     longitude = post_request['longitude']
     walk_id = post_request['walk']
 
-    walk = crud.get_walk_from_walk_id(walk_id)
+    walk = crud.get_walk_from_id(walk_id)
 
     for name in restaurants:
         restaurant = crud.create_restaurant(latitude, longitude, name)
@@ -177,7 +184,7 @@ def add_trails():
     longitude = post_request['longitude']
     walk_id = post_request['walk']
 
-    walk = crud.get_walk_from_walk_id(walk_id)
+    walk = crud.get_walk_from_id(walk_id)
     
     for name in trails:
         trail = crud.create_trail(latitude, longitude, name)
