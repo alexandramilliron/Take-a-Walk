@@ -113,6 +113,27 @@ def add_rest_rating():
     return {'Success': 'Added to database.'}
 
 
+@app.route('/api/add-trail-rating', methods=['POST'])
+def add_trail_rating():
+
+    post_request = request.get_json()
+
+    username = post_request['username']
+    trail_id = post_request['trail_id']
+    trail_comment = post_request['trail_comment']
+    trail_star = post_request['trail_star']
+
+    difficulty_level = post_request['difficulty']
+    #crowded = post_request['crowded']
+
+    user = crud.get_user_from_username(username)
+    trail = crud.get_trail_from_id(trail_id)
+
+    crud.create_trail_rating(trail, user, trail_comment, trail_star, difficulty_level)
+
+    return {'Success': 'Added to database.'}
+
+
 @app.route('/api/new-walk', methods=['POST'])
 def create_walk():
 
