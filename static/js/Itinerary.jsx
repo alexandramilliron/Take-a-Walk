@@ -36,7 +36,6 @@ function Itinerary() {
             }
 
             setWalkDate(walk.walk_date); 
-            setUserID(walk.user_id); 
 
             const display_walk = 
                 (
