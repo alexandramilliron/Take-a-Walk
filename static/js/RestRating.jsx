@@ -13,39 +13,21 @@ function RestRating(props) {
 
     const Star = ({starID, marked}) => {
       return (
-        <span star_id={starID}>{marked ? '\u2605' : '\u2606'}</span>
+        <span star-id={starID}>{marked ? '\u2605' : '\u2606'}</span>
       );
     };
 
-    const StarRating = () => {
+    function StarRating() {
       return (
-        <div onClick={event => setStarRating(event.target.getAttribute('star_id'))}>
-            <Star
-              starID={1}
-              key={'star_1'}
-              marked={starRating >= 1}
-            />
-            <Star
-              starID={2}
-              key={'star_2'}
-              marked={starRating >= 2}
-            />
-            <Star
-              starID={3}
-              key={'star_3'}
-              marked={starRating >= 3}
-            />
-            <Star
-              starID={4}
-              key={'star_4'}
-              marked={starRating >= 4}
-            />
-            <Star
-              starID={5}
-              key={'star_5'}
-              marked={starRating >= 5}
-            />
-        </div>
+          <div onClick={event => setStarRating(event.target.getAttribute('star-id'))}>
+              {Array.from({length: 5}, (value, index) => 
+                  <Star
+                      key={index + 1}
+                      starID={index + 1}
+                      marked={starRating >= (index + 1)}
+                  />        
+              )}
+          </div>
       );
     };
 
