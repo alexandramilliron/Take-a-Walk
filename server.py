@@ -122,14 +122,13 @@ def add_trail_rating():
     trail_id = post_request['trail_id']
     trail_comment = post_request['trail_comment']
     trail_star = post_request['trail_star']
-
     difficulty_level = post_request['difficulty']
-    #crowded = post_request['crowded']
+    crowded = post_request['crowded']
 
     user = crud.get_user_from_username(username)
     trail = crud.get_trail_from_id(trail_id)
 
-    crud.create_trail_rating(trail, user, trail_comment, trail_star, difficulty_level)
+    crud.create_trail_rating(trail, user, trail_comment, trail_star, difficulty_level, crowded)
 
     return {'Success': 'Added to database.'}
 
