@@ -8,22 +8,31 @@ function TrailRating(props) {
     const [comment, setComment] = useState('');
     const [starRating, setStarRating] = useState(0);
     const [difficulty, setDifficulty] = useState(''); 
+    const [crowded, setCrowded] = useState(null); 
     
     const {trail_id} = useParams();
 
+
+    function TextArea() {
+        return (
+        <Form.Group controlId="">
+            <Form.Label>What did you think about this trail?</Form.Label>
+            <Form.Control as="textarea" rows={3} onChange={(event) => {setComment(event.target.value)}}/>
+        </Form.Group>
+        );
+    }
+
+
     function Star({starID, marked}) {
         return (
-            <span star-id={starID}>{marked ? '\u2605' : '\u2606'}</span>
+            <i star-id={starID} className={`fa fa-star ${marked ? 'checked' : ''}`} onClick={event => setStarRating(event.target.getAttribute('star-id'))}></i>
         );
     };
 
-    // function updateStarRating(event) {
-    //     setStarRating(event.target.getAttribute('span-ID'));
-    // }
 
     function StarRating() {
         return (
-            <div onClick={event => setStarRating(event.target.getAttribute('star-id'))}>
+            <div>
                 {Array.from({length: 5}, (value, index) => 
                     <Star
                         key={index + 1}
@@ -40,17 +49,29 @@ function TrailRating(props) {
         return (
             <div>
             <Form.Group controlId="">
-                <Form.Label>On a scale of 1-5, how difficult was the trail? 1 = Easy, 5 = Hard</Form.Label>
+                <Form.Label>How difficult was the trail?</Form.Label>
                 <Form.Control as="select" onChange={(event) => setDifficulty(event.target.value)}>
-                    <option value={1}>1</option>
+                    <option>select a difficulty level</option>
+                    <option value={1}>1 - Easy</option>
                     <option value={2}>2</option>
-                    <option value={3}>3</option>
+                    <option value={3}>3 - Moderate</option>
                     <option value={4}>4</option>
-                    <option value={5}>5</option>
+                    <option value={5}>5 - Hard</option>
                 </Form.Control>
           </Form.Group>
           </div>
     )};
+
+
+    function IsCrowded() {
+        return (
+            <Form.Group>
+                <Form.Label>How busy was it?</Form.Label>
+                    <Form.Check name="crowded" label="crowded" type="radio" onClick={() => setCrowded(true)}/>
+                    <Form.Check name="crowded" label="uncrowded" type="radio" onClick={() => setCrowded(false)}/>
+            </Form.Group>
+        ); 
+    }
 
 
     function addRating(event) {
@@ -60,7 +81,7 @@ function TrailRating(props) {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({username: props.user.username, trail_id: trail_id, trail_comment: comment, 
-                                  trail_star: starRating, difficulty: difficulty})
+                                  trail_star: starRating, difficulty: difficulty, crowded: crowded})
             };
     
             
@@ -78,11 +99,10 @@ function TrailRating(props) {
 
     return (
         <div>
-            <form onSubmit={addRating}>
+            <Form onSubmit={addRating}>
 
                 {/* comment box */}
-                <input type="textarea" placeholder="What were your thoughts about this trail?"
-                onChange={(event) => {setComment(event.target.value)}}/>
+                {TextArea()}
 
                 {/* star rating */}
                 {StarRating()}
@@ -90,11 +110,12 @@ function TrailRating(props) {
                 {/* difficulty rating */}
                 {DifficultyRating()}
 
-
+                {/* crowded */}
+                {IsCrowded()}
 
                 <button type="submit">Submit Review</button>
 
-            </form>
+            </Form>
         </div>
     );
 }
