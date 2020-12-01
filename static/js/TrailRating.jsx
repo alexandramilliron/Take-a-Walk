@@ -7,7 +7,7 @@ function TrailRating(props) {
 
     const [comment, setComment] = useState('');
     const [starRating, setStarRating] = useState(0);
-    const [difficulty, setDifficulty] = useState(''); 
+    const [difficulty, setDifficulty] = useState(null); 
     const [crowded, setCrowded] = useState(null); 
     
     const {trail_id} = useParams();
@@ -46,7 +46,8 @@ function TrailRating(props) {
 
 
     function DifficultyRating() {
-        return ( // TODO: is there a way to set a default value on this? 
+
+        return ( 
             <div>
             <Form.Group controlId="">
                 <Form.Label>How difficult was the trail?</Form.Label>
