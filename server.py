@@ -84,12 +84,11 @@ def load_user_walks():
 @app.route('/api/ratings/<username>')
 def load_user_ratings(username):
 
-    user_ratings = {}
+    user = crud.get_user_from_username(username)
 
-    user_ratings['rest_ratings'] = crud.get_user_rest_ratings(username)
-    user_ratings['trail_ratings'] = crud.get_user_trail_ratings(username)
+    user_ratings = user.get_ratings() 
 
-    return jsonify(user_ratings)
+    return user_ratings
 
 
 @app.route('/api/add-rest-rating', methods=['POST'])
