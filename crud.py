@@ -166,20 +166,6 @@ def get_user_walks(username):
     return user.walks
 
 
-def get_user_trail_ratings(username):
-    """Return the trail ratings associated with a particular user."""
-
-    user = get_user_from_username(username)
-
-    return user.trail_ratings 
-
-
-def get_user_rest_ratings(username):
-    """Return the trail ratings associated with a particular user."""
-
-    user = get_user_from_username(username)
-
-    return user.restaurant_ratings 
     
 
 
