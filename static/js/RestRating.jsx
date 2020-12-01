@@ -11,15 +11,26 @@ function RestRating(props) {
     const {rest_id} = useParams();
 
 
-    const Star = ({starID, marked}) => {
+    function TextArea() {
       return (
-        <span star-id={starID}>{marked ? '\u2605' : '\u2606'}</span>
+      <Form.Group controlId="">
+          <Form.Label>What did you think about this restaurant?</Form.Label>
+          <Form.Control as="textarea" rows={3} onChange={(event) => {setComment(event.target.value)}}/>
+      </Form.Group>
+      );
+    }
+
+
+    function Star({starID, marked}) {
+      return (
+          <i star-id={starID} className={`fa fa-star ${marked ? 'checked' : ''}`} onClick={event => setStarRating(event.target.getAttribute('star-id'))}></i>
       );
     };
 
+
     function StarRating() {
       return (
-          <div onClick={event => setStarRating(event.target.getAttribute('star-id'))}>
+          <div>
               {Array.from({length: 5}, (value, index) => 
                   <Star
                       key={index + 1}
@@ -59,8 +70,7 @@ function RestRating(props) {
             <form onSubmit={addRating}>
 
                 {/* comment box */}
-                <input type="textarea" placeholder="What were your thoughts about this restaurant?"
-                onChange={(event) => {setComment(event.target.value)}}/>
+                {TextArea()}
 
                 {/* star rating */}
                 {StarRating()}
