@@ -32,6 +32,14 @@ class User(db.Model):
             'email': self.email
         }
 
+
+    def get_ratings(self):
+        """Return dict with this user's restaurant and trail ratings."""
+        return {
+            'trail_ratings': [t.serialize() for t in self.trail_ratings],
+            'restaurant_ratings': [r.serialize() for r in self.restaurant_ratings],
+        }
+
     
     def __repr__(self):
         return f'<User user_id={self.user_id} email={self.email} username={self.username}>'
@@ -121,11 +129,16 @@ class TrailRating(db.Model):
 
 
     def serialize(self):
-        """Return dict of this rating's id, the id of the associated user, and the id of the reviewed trail."""
+        """Return dict of this rating's id, user, trail, and rating details."""
         return {
             'trail_rating_id': self.trail_rating_id,
             'user_id': self.user_id,
-            'trail_id': self.trail_id
+            'trail_id': self.trail_id,
+            'trail_comment': self.trail_comment,
+            'trail_star': self.trail_star,
+            'difficulty_level': self.difficulty_level,
+            'crowded': self.crowded,
+            'trail_name': self.trail.name,
         }
 
 
@@ -154,11 +167,16 @@ class RestRating(db.Model):
 
 
     def serialize(self):
-        """Return dict of this rating's id, the id of the associated user, and the id of the reviewed restaurant."""
+        """Return dict of this rating's id, user, restaurant, and rating details."""
         return {
             'rest_rating_id': self.rest_rating_id,
             'user_id': self.user_id,
-            'rest_id': self.rest_id
+            'rest_id': self.rest_id,
+            'rest_comment': self.rest_comment,
+            'rest_star': self.rest_star,
+            'masks_worn': self.masks_worn,
+            'socially_distanced': self.socially_distanced,
+            'outdoor_seating': self.outdoor_seating
         }
 
 
