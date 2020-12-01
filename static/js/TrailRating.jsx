@@ -46,11 +46,11 @@ function TrailRating(props) {
 
 
     function DifficultyRating() {
-        return (
+        return ( // TODO: is there a way to set a default value on this? 
             <div>
             <Form.Group controlId="">
                 <Form.Label>How difficult was the trail?</Form.Label>
-                <Form.Control as="select" onChange={(event) => setDifficulty(event.target.value)}>
+                <Form.Control as="select" onChange={(event) => setDifficulty(event.target.value)}> 
                     <option>select a difficulty level</option>
                     <option value={1}>1 - Easy</option>
                     <option value={2}>2</option>
