@@ -1,4 +1,4 @@
-def test_home_page(client, init_database): # testing with fixture 
+def test_home_page(client, init_database): # testing with fixtures 
     """
     GIVEN a Flask application configured for testing
     WHEN the '/' page is requested (GET)
