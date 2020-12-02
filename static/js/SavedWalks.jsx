@@ -19,7 +19,7 @@ function SavedWalks(props) {
                     <div key={index}>
                         <ul>
                             <li><Link to={`/itinerary/${walk.walk_id}`}>{`Walk #${index + 1}`}</Link></li>  
-                            <li>{`Walk Date: ${walk.walk_date.slice(0, 16)}`}</li>
+                            <li>{`Walk Date: ${walk.walk_date}`}</li>
                         </ul>
                     </div>
                 );
