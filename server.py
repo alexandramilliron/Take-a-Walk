@@ -100,14 +100,15 @@ def add_rest_rating():
     rest_id = post_request['rest_id']
     rest_comment = post_request['rest_comment']
     rest_star = post_request['rest_star']
-    # masks_worn = post_request['masks_worn']
-    # socially_distanced = post_request['socially_distanced']
-    # outdoor_seating = post_request['outdoor_seating']
+    masks_worn = post_request['masks_worn']
+    socially_distanced = post_request['socially_distanced']
+    outdoor_seating = post_request['outdoor_seating']
 
     user = crud.get_user_from_username(username)
     restaurant = crud.get_rest_from_id(rest_id)
 
-    crud.create_rest_rating(restaurant, user, rest_comment, rest_star)
+    crud.create_rest_rating(restaurant, user, rest_comment, rest_star, 
+                            masks_worn, socially_distanced, outdoor_seating)
 
     return {'Success': 'Added to database.'}
 
