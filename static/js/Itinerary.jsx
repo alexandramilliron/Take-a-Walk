@@ -41,7 +41,7 @@ function Itinerary() {
                 (
                 <div key={walk.walk_id}>
                 <ul>
-                    <li>{walk.walk_date.slice(0, 16)}</li>
+                    <li>{walk.walk_date}</li>
                     {walk.restaurants.map(rest => {
                         return (
                             <li key={rest.rest_id} title='review this restaurant'><Link to={`/rest-rating/${rest.rest_id}`}>{rest.name}</Link></li>
