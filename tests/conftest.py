@@ -21,13 +21,7 @@ def init_database(client):
     # Create the database and the database table
     db.create_all()
 
-    # # Insert user data
-    user1 = User(username='user1', email='user1@gmail.com', password='user1password')
-    user2 = User(username='user2', email='user2@gmail.com', password='user2password')
-    db.session.add(user1)
-    db.session.add(user2)
-
-    # Commit the changes for the users
+    # Commit the changes 
     db.session.commit()
 
     yield  # This is where the testing happens!
