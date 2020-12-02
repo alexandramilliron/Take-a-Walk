@@ -28,7 +28,7 @@ function UserRatings(props) {
                         <Card>
                             <Card.Header>
                                 <Accordion.Toggle as={Button} eventKey="0">
-                                    {rating.trail_name}
+                                    {rating.trail_name}, {rating.rated_at}
                                 </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="0">
@@ -49,7 +49,7 @@ function UserRatings(props) {
     };
 
     return (
-        <div>You're on the ratings page.
+        <div>
             {ratingCard}
         </div>
     );
