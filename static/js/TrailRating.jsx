@@ -5,7 +5,7 @@ function TrailRating(props) {
     
     const history = useHistory();
 
-    const [comment, setComment] = useState('');
+    const [comment, setComment] = useState(null);
     const [starRating, setStarRating] = useState(0);
     const [difficulty, setDifficulty] = useState(null); 
     const [crowded, setCrowded] = useState(null); 
@@ -46,7 +46,6 @@ function TrailRating(props) {
 
 
     function DifficultyRating() {
-
         return ( 
             <div>
             <Form.Group controlId="">
@@ -111,10 +110,10 @@ function TrailRating(props) {
                 {/* difficulty rating */}
                 {DifficultyRating()}
 
-                {/* crowded */}
+                {/* crowded rating */}
                 {IsCrowded()}
 
-                <button type="submit">Submit Review</button>
+                <Button type="submit">Submit Review</Button>
 
             </Form>
         </div>
