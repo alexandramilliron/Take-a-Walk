@@ -45,6 +45,9 @@ function App() {
           <Route exact path="/trail-rating/:trail_id">
             <TrailRating user={user}/>
           </Route>
+          <Route path="*">
+            <PageNotFound user={user}/>
+          </Route>
         </Switch>
       </div>
 
@@ -53,4 +56,4 @@ function App() {
 
 // on backend, handle not found if it's an API 
 
-// Route path="*" component={PageNotFound}
+
