@@ -43,6 +43,8 @@ def test_get_user_ratings(client, user):
         'restaurant_ratings'
     }
 
+#TODO: check the values of these arrays 
+
 
 def test_repr_user(client, user):
     """
