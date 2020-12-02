@@ -1,6 +1,7 @@
 """Models for Take a Walk app."""
 
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime 
 
 db = SQLAlchemy()
 
@@ -123,6 +124,7 @@ class TrailRating(db.Model):
     trail_star = db.Column(db.Integer)
     difficulty_level = db.Column(db.Integer)
     crowded = db.Column(db.Boolean)
+    rated_at = db.Column(db.DateTime, default=datetime.now())
 
     trail = db.relationship('Trail')
     user = db.relationship('User')
@@ -139,6 +141,7 @@ class TrailRating(db.Model):
             'difficulty_level': self.difficulty_level,
             'crowded': self.crowded,
             'trail_name': self.trail.name,
+            'rated_at': self.rated_at.strftime('%a, %b %d, %Y')
         }
 
 
@@ -161,6 +164,7 @@ class RestRating(db.Model):
     masks_worn = db.Column(db.Boolean)
     socially_distanced = db.Column(db.Boolean)
     outdoor_seating = db.Column(db.Boolean)
+    rated_at = db.Column(db.DateTime, default=datetime.now())
 
     restaurant = db.relationship('Restaurant')
     user = db.relationship('User')
@@ -176,7 +180,8 @@ class RestRating(db.Model):
             'rest_star': self.rest_star,
             'masks_worn': self.masks_worn,
             'socially_distanced': self.socially_distanced,
-            'outdoor_seating': self.outdoor_seating
+            'outdoor_seating': self.outdoor_seating,
+            'rated_at': self.rated_at.strftime('%a, %b %d, %Y')
         }
 
 
@@ -205,7 +210,7 @@ class Walk(db.Model):
         """Return dict with the id and date for this walk.""" 
         return {
             'walk_id': self.walk_id,
-            'walk_date': self.walk_date,
+            'walk_date': self.walk_date.strftime('%a, %b %d, %Y')
         }
 
 
@@ -214,7 +219,7 @@ class Walk(db.Model):
         return {
             'user_id': self.user_id, 
             'walk_id': self.walk_id,
-            'walk_date': self.walk_date,
+            'walk_date': self.walk_date.strftime('%a, %b %d, %Y'),
             'trails': [t.serialize() for t in self.trails],
             'restaurants': [r.serialize() for r in self.restaurants]
         }
