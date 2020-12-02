@@ -5,8 +5,11 @@ function RestRating(props) {
 
     const history = useHistory();
 
-    const [comment, setComment] = useState('');
+    const [comment, setComment] = useState(null);
     const [starRating, setStarRating] = useState(0);
+    const [masksWorn, setMasksWorn] = useState(null); 
+    const [socialDist, setSocialDist] = useState(null); 
+    const [outdoorSeating, setOutdoorSeating] = useState(null); 
     
     const {rest_id} = useParams();
 
@@ -43,6 +46,39 @@ function RestRating(props) {
     };
 
 
+    function MasksWorn() {
+      return (
+          <Form.Group>
+              <Form.Label>Were employees and customers wearing masks?</Form.Label>
+                  <Form.Check name="masks_worn" label="Yes" type="radio" onClick={() => setMasksWorn(true)}/>
+                  <Form.Check name="masks_worn" label="No" type="radio" onClick={() => setMasksWorn(false)}/>
+          </Form.Group>
+      ); 
+    }
+
+
+    function SociallyDistanced() {
+      return (
+          <Form.Group>
+              <Form.Label>Were you able to socially distance (i.e., stay at least 6 feet away from other customers)?</Form.Label>
+                  <Form.Check name="socially_distanced" label="Yes" type="radio" onClick={() => setSocialDist(true)}/>
+                  <Form.Check name="socially_distanced" label="No" type="radio" onClick={() => setSocialDist(false)}/>
+          </Form.Group>
+      ); 
+    }
+
+
+    function OutdoorSeating() {
+      return (
+          <Form.Group>
+              <Form.Label>Was outdoor seating available?</Form.Label>
+                  <Form.Check name="outdoor_seating" label="Yes" type="radio" onClick={() => setOutdoorSeating(true)}/>
+                  <Form.Check name="outdoor_seating" label="No" type="radio" onClick={() => setOutdoorSeating(false)}/>
+          </Form.Group>
+      ); 
+    }
+
+
     function addRating(event) {
         event.preventDefault();
 
@@ -50,7 +86,8 @@ function RestRating(props) {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({username: props.user.username, rest_id: rest_id, rest_comment: comment, 
-                                  rest_star: starRating})
+                                  rest_star: starRating, masks_worn: masksWorn, socially_distanced: socialDist,
+                                  outdoor_seating: outdoorSeating})
             };
     
             
@@ -67,7 +104,7 @@ function RestRating(props) {
 
     return (
         <div>
-            <form onSubmit={addRating}>
+            <Form onSubmit={addRating}>
 
                 {/* comment box */}
                 {TextArea()}
@@ -75,11 +112,18 @@ function RestRating(props) {
                 {/* star rating */}
                 {StarRating()}
 
+                {/* masks worn */}
+                {MasksWorn()}
 
+                {/* socially distanced */}
+                {SociallyDistanced()}
 
-                <button type="submit">Submit Review</button>
+                {/* outdoor seating */}
+                {OutdoorSeating()}
 
-            </form>
+                <Button type="submit">Submit Review</Button>
+
+            </Form>
         </div>
     );
 }
