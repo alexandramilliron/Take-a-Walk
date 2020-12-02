@@ -2,6 +2,7 @@
 
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime 
+from sqlalchemy.sql import func
 
 db = SQLAlchemy()
 
@@ -124,7 +125,7 @@ class TrailRating(db.Model):
     trail_star = db.Column(db.Integer)
     difficulty_level = db.Column(db.Integer)
     crowded = db.Column(db.Boolean)
-    rated_at = db.Column(db.DateTime, default=datetime.now())
+    rated_at = db.Column(db.DateTime, default=func.now())
 
     trail = db.relationship('Trail')
     user = db.relationship('User')
@@ -164,7 +165,7 @@ class RestRating(db.Model):
     masks_worn = db.Column(db.Boolean)
     socially_distanced = db.Column(db.Boolean)
     outdoor_seating = db.Column(db.Boolean)
-    rated_at = db.Column(db.DateTime, default=datetime.now())
+    rated_at = db.Column(db.DateTime, default=func.now())
 
     restaurant = db.relationship('Restaurant')
     user = db.relationship('User')
