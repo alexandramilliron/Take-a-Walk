@@ -2,16 +2,6 @@ import pytest
 from model import db, User
 
 
-@pytest.fixture
-def user():
-    user = User(
-        username='newusername', 
-        email='newuseremail@gmail.com', 
-        password='newuserpassword') 
-
-    return user
-
-
 def test_create_user(client, user):
     """
     GIVEN an instance of a User model
@@ -25,7 +15,7 @@ def test_create_user(client, user):
     assert type(user) == User
 
 
-def test_serialize(client, user):
+def test_serialize_user(client, user):
     """
     GIVEN an instance of the User model
     WHEN the serialize method is called
@@ -40,7 +30,21 @@ def test_serialize(client, user):
     }
 
 
-def test_repr(client, user):
+def test_get_user_ratings(client, user):
+    """
+    GIVEN an instance of the User model
+    WHEN the get_ratings method is called
+    THEN check that the output is accurate 
+    """ 
+
+    user_ratings = user.get_ratings()
+    assert set(user_ratings.keys()) == {
+        'trail_ratings',
+        'restaurant_ratings'
+    }
+
+
+def test_repr_user(client, user):
     """
     GIVEN an instance of the User model
     WHEN the __repr__ method is called
@@ -51,4 +55,4 @@ def test_repr(client, user):
     assert 'email=newuseremail@gmail.com' in user_repr
     assert 'username=newusername' in user_repr
 
-    # TODO: determine if this is the best way to test the output of repr 
+ 
