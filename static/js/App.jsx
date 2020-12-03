@@ -48,8 +48,11 @@ function App() {
           <Route exact path="/trails">
             <Trails user={user}/>
           </Route>
-          <Route exact path="/trails/:trail_id">
+          {/* <Route exact path="/trails/:trail_id">
             <Trails user={user}/>
+          </Route> */}
+          <Route exact path="/restaurants">
+            <Restaurants user={user}/>
           </Route>
           <Route path="*">
             <PageNotFound user={user}/>
