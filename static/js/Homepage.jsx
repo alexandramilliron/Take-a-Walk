@@ -30,7 +30,7 @@ function Home(props) {
                 Ready to get started? 
                 Let's take a walk! 
             </p>
-            <button onClick={newWalk}>Start a New Walk</button>
+            <Button onClick={newWalk}>Start a New Walk</Button>
         </div>
     );
 }
