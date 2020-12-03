@@ -11,12 +11,33 @@ function Trails() {
 
 
     function fetchTrails() {
-        fetch(`/api/trails`) 
+        fetch("/api/trails") 
         .then(response => {
             return response.json(); 
         })
         .then(data => {
             console.log(data);
+
+            const trails = data;
+
+            const trailCards = 
+            (
+                <div>
+                    {trails.map((trail, index) => {
+                        return (
+                            <Card key={index} style={{ width: '25rem' }}>
+                                <Card.Header>{trail.name}</Card.Header>
+                                <Card.Body>
+                                    {trail.location}, {trail.length} miles
+                                </Card.Body>
+                            </Card> 
+                        );
+                    })
+                    }
+                </div>
+            );
+            
+            setTrails(trailCards); 
         });
     };
 
