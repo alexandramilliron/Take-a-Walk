@@ -26,15 +26,19 @@ function UserRatings(props) {
                     return (
                         <Card key={index} style={{ width: '25rem' }}>
                             <Card.Header>
-                                {rating.trail_name}
+                                <Link to={`/trails/${rating.trail_id}`}>{rating.trail_name}</Link>
                                 <span className="float-right">
                                     {Array.from({length: rating.trail_star}, (value, index) =>
                                     <span key={index}><i className={'fa fa-star checked'}></i></span>)}
                                 </span>
                             </Card.Header>
                                 <Card.Body>
-                                    {rating.rated_at}
-                                    {rating.trail_comment}
+                                    
+                                    <Card.Text>
+                                        {rating.rated_at}
+                                        {rating.trail_comment}
+                                    </Card.Text>
+
                                 </Card.Body>
                         </Card>
                     );
