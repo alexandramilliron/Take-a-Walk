@@ -174,6 +174,13 @@ def get_trails():
     return trails
 
 
+def get_restaurants():
+    """Return the restaurants currently stored in the database."""
+
+    restaurants = Restaurant.query.all() 
+
+    return restaurants
+
 
 
 
