@@ -3,7 +3,6 @@
 
 function Itinerary() {
 
-    // add instructions for how to review 
 
     const [walkDetails, setWalkDetails] = useState([]);
     const [latitude, setLatitude] = useState('');
@@ -66,6 +65,7 @@ function Itinerary() {
 
     return (
         <div>
+            <span>Click on a restaurant or trail to leave a review.</span>
             {walkDetails}
             <span>Get the weather for this walk:</span>
             <button onClick={onButtonClick}>Weather</button>
