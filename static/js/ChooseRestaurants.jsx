@@ -11,6 +11,11 @@ function ChooseRestaurants(props) {
     }, []);
 
 
+    function prettyAddress(location) {
+        return `${location.address1}, ${location.city}, ${location.state } ${location.zip_code}`;
+    }
+
+
     function fetchRestaurants() {
 
         fetch(`/api/choose-restaurants?latitude=${props.latitude}&longitude=${props.longitude}`)
@@ -23,12 +28,12 @@ function ChooseRestaurants(props) {
             const display_rests = rest_objects.map((rest) => { 
                 return (
                 <div key={rest.name}>
-                <input type="checkbox" value={rest.name}/>
+                <input type="checkbox" value={`${rest.name}|${rest.price}|${rest.display_phone}|${prettyAddress(rest.location)}`}/>
                 <ul>
                     <li>{rest.name}</li>
                     <li>{rest.price}</li>
                     <li>{rest.display_phone}</li>
-                    <li>{`${rest['location'].address1}, ${rest['location'].city}, ${rest['location'].state } ${rest['location'].zip_code}`}</li>
+                    <li>{prettyAddress(rest.location)}</li>
                 </ul>
                 </div>);
             });
@@ -43,14 +48,20 @@ function ChooseRestaurants(props) {
 
         const chosen_rests = Array.from(document.querySelectorAll('input:checked')); 
 
-        let rest_names = chosen_rests.map((element) => {
-            return element.value;
+        let restaurants = chosen_rests.map((element) => {
+            const rest_info = element.value.split("|");
+            return {
+                'name': rest_info[0],
+                'price': rest_info[1],
+                'display_phone': rest_info[2],
+                'location': rest_info[3]
+            }
         });
   
         const requestOptions = {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({restaurants: rest_names, latitude: props.latitude, longitude: props.longitude, walk: props.walk.walk_id})
+          body: JSON.stringify({restaurants: restaurants, latitude: props.latitude, longitude: props.longitude, walk: props.walk.walk_id})
           };
   
           fetch('/api/add-restaurants', requestOptions)
