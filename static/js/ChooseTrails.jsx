@@ -24,7 +24,7 @@ function ChooseTrails(props) {
             const display_trails = trail_objects.map((trail) => { 
                 return (
                 <div key={trail.name}>
-                <input type="checkbox" value={trail.name}/>
+                <input type="checkbox" value={`${trail.name}|${trail.location}|${trail.length}`}/>
                 <ul>
                     <li>{trail.name}</li>
                     <li>{trail.location}</li>
@@ -43,14 +43,19 @@ function ChooseTrails(props) {
 
         const chosen_trails = Array.from(document.querySelectorAll('input:checked')); 
 
-        let trail_names = chosen_trails.map((element) => {
-            return element.value;
+        let trails = chosen_trails.map((element) => {
+            const trail_info = element.value.split("|");
+            return {
+                'name': trail_info[0],
+                'location': trail_info[1],
+                'length': trail_info[2]
+            };
         });
   
         const requestOptions = {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({trails: trail_names, latitude: props.latitude, longitude: props.longitude, walk: props.walk.walk_id})
+          body: JSON.stringify({trails: trails, latitude: props.latitude, longitude: props.longitude, walk: props.walk.walk_id})
           };
   
           fetch('/api/add-trails', requestOptions)
