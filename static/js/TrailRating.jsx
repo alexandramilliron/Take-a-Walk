@@ -9,6 +9,8 @@ function TrailRating(props) {
     const [starRating, setStarRating] = useState(0);
     const [difficulty, setDifficulty] = useState(null); 
     const [crowded, setCrowded] = useState(null); 
+    const [photo, setPhoto] = useState(null); 
+
     
     const {trail_id} = useParams();
 
@@ -74,6 +76,29 @@ function TrailRating(props) {
     }
 
 
+    function UploadPhotos() {
+ 
+        const myWidget = cloudinary.createUploadWidget({
+            cloudName: 'alexmilliron', 
+            uploadPreset: 'my_preset'}, (error, result) => { 
+                if (!error && result && result.event === "success") { 
+                console.log('Done! Here is the image info: ', result.info); 
+                }
+            }       
+        );
+
+        return (
+            <button 
+                id='upload_widget' 
+                className='cloudinary-button' 
+                onClick={() => myWidget.open()}  
+            >
+            Upload Photos
+            </button>
+        );
+    };
+
+
     function addRating(event) {
         event.preventDefault();
 
@@ -112,6 +137,11 @@ function TrailRating(props) {
 
                 {/* crowded rating */}
                 {IsCrowded()}
+
+                {/* upload photos */}
+                {UploadPhotos()}
+
+                <br/>
 
                 <Button type="submit">Submit Review</Button>
 
