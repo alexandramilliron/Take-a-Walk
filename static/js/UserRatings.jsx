@@ -22,24 +22,21 @@ function UserRatings(props) {
             const ratingCards = 
             (
             <div>
-                {ratings.trail_ratings.map(rating => {
+                {ratings.trail_ratings.map((rating, index) => {
                     return (
-                        <Accordion defaultActiveKey="0" key={rating.trail_rating_id}>
-                        <Card>
+                        <Card key={index} style={{ width: '25rem' }}>
                             <Card.Header>
-                                <Accordion.Toggle as={Button} eventKey="0">
-                                    {rating.trail_name}, {rating.rated_at}
-                                </Accordion.Toggle>
+                                {rating.trail_name}
+                                <span className="float-right">
+                                    {Array.from({length: rating.trail_star}, (value, index) =>
+                                    <span key={index}><i className={'fa fa-star checked'}></i></span>)}
+                                </span>
                             </Card.Header>
-                            <Accordion.Collapse eventKey="0">
                                 <Card.Body>
-                                    You had this to say about this trail: {rating.trail_comment}
-                                    You gave this trail a {rating.trail_star}-star rating.
-                                    You thought the trail was a difficulty level {rating.difficulty_level}.
+                                    {rating.rated_at}
+                                    {rating.trail_comment}
                                 </Card.Body>
-                            </Accordion.Collapse>
                         </Card>
-                        </Accordion>
                     );
                 })};
             </div>
@@ -50,6 +47,7 @@ function UserRatings(props) {
 
     return (
         <div>
+            {props.user.username}'s Ratings
             {ratingCard}
         </div>
     );
