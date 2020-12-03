@@ -187,6 +187,7 @@ class RestRating(db.Model):
             'masks_worn': self.masks_worn,
             'socially_distanced': self.socially_distanced,
             'outdoor_seating': self.outdoor_seating,
+            'rest_name': self.restaurant.name,
             'rated_at': self.rated_at.strftime('%a, %b %d, %Y')
         }
 
