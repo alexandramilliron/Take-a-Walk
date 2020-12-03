@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 function Login(props) {
 
@@ -33,19 +33,22 @@ function Login(props) {
   
 
     return (
-      <div className="login">
+      <div className='login'>
         <h1>Login</h1>
-            <form onSubmit={handleLogin}>
-            
-            <input type="text" placeholder="username"
-            onChange={(event) => {setUsername(event.target.value)}}/>
+            <Form onSubmit={handleLogin}>
 
-            <input type="text" placeholder="password" 
-            onChange={(event) => {setPassword(event.target.value)}}/>
+              <Form.Group controlId='username'>
+                <Form.Label>username</Form.Label>
+                  <Form.Control type='username' placeholder='username' onChange={(event) => {setUsername(event.target.value)}}/> 
+              </Form.Group>
+              <Form.Group controlId='password'>
+                <Form.Label>password</Form.Label>
+                  <Form.Control type='password' placeholder='password' onChange={(event) => {setPassword(event.target.value)}}/>
+              </Form.Group>
 
-            <button type="submit">Login</button>
+            <Button id='loginButton' type='submit'>Login</Button>
             
-            </form>
+            </Form>
       </div>
     );
 }
