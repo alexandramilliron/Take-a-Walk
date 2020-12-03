@@ -50,7 +50,7 @@ def create_trail(latitude, longitude, name, length=None, location=None):
     return trail
 
 
-def create_restaurant(latitude, longitude, name, price=None, location=None):
+def create_restaurant(latitude, longitude, name, price=None, location=None, phone=None):
     """Create and return a new restaurant."""
 
     restaurant = Restaurant.query.filter((Restaurant.name == name) & (Restaurant.latitude == latitude) & 
@@ -59,7 +59,7 @@ def create_restaurant(latitude, longitude, name, price=None, location=None):
     if restaurant is not None:
         return restaurant
     else:
-        restaurant = Restaurant(latitude=latitude, longitude=longitude, name=name, price=price, location=location)
+        restaurant = Restaurant(latitude=latitude, longitude=longitude, name=name, price=price, location=location, phone=phone)
         db.session.add(restaurant)
         db.session.commit()
 
@@ -166,11 +166,12 @@ def get_user_walks(username):
     return user.walks
 
 
-    
+def get_trails():
+    """Return the trails currently stored in the database."""
 
+    trails = Trail.query.all()
 
-
-
+    return trails
 
 
 
