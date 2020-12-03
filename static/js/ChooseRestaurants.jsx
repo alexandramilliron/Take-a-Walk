@@ -14,7 +14,7 @@ function ChooseRestaurants(props) {
     function prettyAddress(location) {
         return `${location.address1}, ${location.city}, ${location.state } ${location.zip_code}`;
     }
-
+      
 
     function fetchRestaurants() {
 
@@ -79,7 +79,10 @@ function ChooseRestaurants(props) {
             <h2>Choose your restaurants:</h2>
             <form onSubmit={sendRestaurants}>
                 {restList}
-            <button type="submit">Add Restaurants</button>        
+
+            <button type="submit">Add Restaurants</button>    
+
+               
             </form>
         </div>
     );
