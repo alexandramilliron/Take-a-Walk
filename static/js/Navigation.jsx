@@ -28,7 +28,7 @@ function Navigation(props) {
         {props.user ? "" : <Link to={"/register"} className="nav-link">Register</Link>}
         {props.user ? <Link to={"/saved-walks"} className="nav-link">Saved Walks</Link> : ""}
         {props.user ? <Link to={`/ratings/${props.user.username}`} className="nav-link">My Ratings</Link> : ""}
-        {props.user ? <a href="#" onClick={handleLogout}>Logout</a> : <Link to={"/login"} className="nav-link">Login</Link>}
+        {props.user ? <Link to="#" className="nav-link" onClick={handleLogout}>Logout</Link> : <Link to={"/login"} className="nav-link">Login</Link>}
     </Nav>
     </Navbar>
     );
