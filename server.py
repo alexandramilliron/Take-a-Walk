@@ -167,7 +167,7 @@ def get_restaurants():
     
 
 @app.route('/api/choose-trails')
-def get_trails():
+def get_api_trails():
 
     latitude = request.args.get('latitude')
     longitude = request.args.get('longitude')
@@ -187,8 +187,9 @@ def add_restaurants():
 
     walk = crud.get_walk_from_id(walk_id)
 
-    for name in restaurants:
-        restaurant = crud.create_restaurant(latitude, longitude, name)
+    for restaurant in restaurants:
+        restaurant = crud.create_restaurant(latitude, longitude, restaurant['name'], 
+                        restaurant['price'], restaurant['location'], restaurant['display_phone'])
         crud.create_walk_restaurant(restaurant, walk)
     
     return {'Success': 'Added to database.'} 
@@ -206,12 +207,22 @@ def add_trails():
 
     walk = crud.get_walk_from_id(walk_id)
     
-    for name in trails:
-        trail = crud.create_trail(latitude, longitude, name)
+    for trail in trails:
+        trail = crud.create_trail(latitude, longitude, trail['name'], trail['length'], trail['location'])
         crud.create_walk_trail(trail, walk)
     
     return {'Success': 'Added to database.'}
     
+
+@app.route('/api/trails')
+def get_trails():
+
+    trails = crud.get_trails()
+
+    serialized_trails = [t.serialize() for t in trails]
+
+    return jsonify(serialized_trails)
+
 
 @app.route('/', defaults={'input_path': ''}) # if this matches the URL 
 @app.route('/<path:input_path>') # OR if this matches the URL 
