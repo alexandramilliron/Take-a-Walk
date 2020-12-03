@@ -158,7 +158,7 @@ def get_weather():
 
 
 @app.route('/api/choose-restaurants')
-def get_restaurants():
+def get_api_restaurants():
 
     latitude = request.args.get('latitude')
     longitude = request.args.get('longitude')
@@ -224,9 +224,19 @@ def get_trails():
     return jsonify(serialized_trails)
 
 
-@app.route('/', defaults={'input_path': ''}) # if this matches the URL 
-@app.route('/<path:input_path>') # OR if this matches the URL 
-def homepage(input_path): # call this function 
+@app.route('/api/restaurants')
+def get_restaurants():
+
+    restaurants = crud.get_restaurants() 
+
+    serialized_restaurants = [r.serialize() for r in restaurants]
+
+    return jsonify(serialized_restaurants)
+
+
+@app.route('/', defaults={'input_path': ''}) 
+@app.route('/<path:input_path>') 
+def homepage(input_path): 
     """Render the application's homepage."""
 
     return render_template('index.html')
