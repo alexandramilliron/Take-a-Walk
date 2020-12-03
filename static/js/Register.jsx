@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 function Register(props) {
 
@@ -7,6 +7,11 @@ function Register(props) {
     const [emailReg, setEmailReg] = useState('');
     const [usernameReg, setUsernameReg] = useState('');
     const [passwordReg, setPasswordReg] = useState('');
+
+
+    function Login() {
+        history.push('/login')
+    }
 
 
     function handleRegistration(event) {
@@ -21,7 +26,6 @@ function Register(props) {
           fetch('/api/register', requestOptions)
               .then(response => response.json())
               .then(data => {
-                // TODO: refactor code to include login function  
                 if (data['Error']) {
                     alert('This email or username already exists.')
                   } else {
@@ -34,22 +38,32 @@ function Register(props) {
 
 
     return (
-        <div className="">
-            <div className="registration">
+        <div className='registration'>
+
             <h1>Register</h1>
-                <form onSubmit={handleRegistration}>
-                <label>Email</label>
-                    <input type="text" 
-                    onChange={(event) => {setEmailReg(event.target.value)}}/>
-                <label>Username</label>
-                    <input type="text" 
-                    onChange={(event) => {setUsernameReg(event.target.value)}}/>
-                <label>Password</label>
-                    <input type="text" 
-                    onChange={(event) => {setPasswordReg(event.target.value)}}/>
-                <button type="submit">Register</button>
-                </form>
-            </div>
+                <Form onSubmit={handleRegistration}>
+    
+                    <Form.Group controlId='email'>
+                        <Form.Label>email</Form.Label>
+                            <Form.Control placeholder='email' onChange={(event) => {setEmailReg(event.target.value)}}/>
+                    </Form.Group>
+                    <Form.Group controlId='username'>
+                        <Form.Label>username</Form.Label>
+                            <Form.Control placeholder='username' onChange={(event) => {setUsernameReg(event.target.value)}}/>
+                    </Form.Group>
+      
+                    <Form.Group controlId='password'>
+                        <Form.Label>password</Form.Label>
+                            <Form.Control type='password' placeholder='password' onChange={(event) => {setPasswordReg(event.target.value)}}/>
+                    </Form.Group>
+                
+                <ButtonGroup vertical>
+                    <Button id='registerButton' type='submit'>Register</Button>
+                    <br/>
+                    <Button onClick={() => Login()}>Have an account? Login</Button>
+                </ButtonGroup>
+                
+                </Form>
         </div>
     );
 }
