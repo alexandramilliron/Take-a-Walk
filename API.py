@@ -38,6 +38,3 @@ def weather_data_api(latitude, longitude, date):
             return daily_weather_object
 
     return {'Error': 'Date out of range.'}
-
-
-
