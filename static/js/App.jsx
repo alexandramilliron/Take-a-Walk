@@ -15,7 +15,7 @@ function App() {
 
       <div>
         <h2>Take a Walk</h2>
-          <Nav user={user} setUser={setUser}/>
+          <Navigation user={user} setUser={setUser}/>
         <hr/>
         <Switch>
           <Route exact path="/">
