@@ -1,9 +1,15 @@
 'use strict';
 
 function Restaurant() {
+
+    const { rest_id } = useParams();
+
+
+
     return (
         <div>
-            This is where a single restaurant will go 
+            Add a review to this restaurant: 
+            <Link to={`/rest-rating/${rest_id}`}>Review</Link>
         </div>
     );
 }
