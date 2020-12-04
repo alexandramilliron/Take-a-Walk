@@ -19,8 +19,18 @@ function Navigation(props) {
     };
     
     return (
-    <Navbar id="navbar">
-    <Nav className="mr-auto">
+    <Navbar id="navbar" bg="light" variant="light" sticky="top" >
+
+    <Navbar.Brand href="/">
+        <span 
+        style={{ width: 30 + 'em', height: 30 + 'em' }}
+        >
+        <i className='fa fa-tree'></i><i className='fa fa-cutlery'></i>
+        </span> {' '}
+      Take a Walk
+    </Navbar.Brand>
+
+    <Nav className='ml-auto'>
         <Link to={"/"} className="nav-link">Home</Link>
         <Link to={"/new-walk"} className="nav-link">New Walk</Link>
         <Link to={"/restaurants"} className="nav-link">Restaurants</Link>
