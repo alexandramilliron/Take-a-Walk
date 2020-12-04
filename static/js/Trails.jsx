@@ -26,7 +26,7 @@ function Trails() {
                     {trails.map((trail, index) => {
                         return (
                             <Card key={index} style={{ width: '25rem' }}>
-                                <Card.Header>{trail.name}</Card.Header>
+                                <Card.Header><Link to={`/trail/${trail.trail_id}`}>{trail.name}</Link></Card.Header>
                                 <Card.Body>
                                     {trail.location}, {trail.length} miles
                                 </Card.Body>
