@@ -28,7 +28,8 @@ function ChooseRestaurants(props) {
             const display_rests = rest_objects.map((rest) => { 
                 return (
                 <div key={rest.name}>
-                <input type="checkbox" value={`${rest.name}|${rest.price}|${rest.display_phone}|${prettyAddress(rest.location)}`}/>
+                <input type="checkbox" value={`${rest.name}|${rest.price}|${rest.display_phone}|${prettyAddress(rest.location)}
+                                                |${rest.image_url}`}/>
                 <ul>
                     <li>{rest.name}</li>
                     <li>{rest.price}</li>
@@ -54,7 +55,8 @@ function ChooseRestaurants(props) {
                 'name': rest_info[0],
                 'price': rest_info[1],
                 'display_phone': rest_info[2],
-                'location': rest_info[3]
+                'location': rest_info[3],
+                'image': rest_info[4]
             }
         });
   
