@@ -25,7 +25,7 @@ function Restaurants() {
                     {rests.map((rest, index) => {
                         return (
                             <Card key={index} style={{ width: '25rem' }}>
-                                <Card.Header>{rest.name}</Card.Header>
+                                <Card.Header><Link to={`/restaurant/${rest.rest_id}`}>{rest.name}</Link></Card.Header>
                                 <Card.Body>
                                     {rest.phone} <br/>
                                     {rest.location}
