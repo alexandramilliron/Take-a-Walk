@@ -71,10 +71,10 @@ function ChooseTrails(props) {
     return (
         <div className="">
             <h2>Choose your trails:</h2>
-            <form onSubmit={sendTrails}>
+            <Form onSubmit={sendTrails}>
                 {trailList}
-            <button type="submit">Add Trails</button>
-            </form>
+            <Button type="submit">Add Trails</Button>
+            </Form>
         </div>
     );
 }
