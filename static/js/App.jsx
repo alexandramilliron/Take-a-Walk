@@ -14,9 +14,7 @@ function App() {
   return (
 
       <div>
-        <h2>Take a Walk</h2>
-          <Navigation user={user} setUser={setUser}/>
-        <hr/>
+        <Navigation user={user} setUser={setUser}/>
         <Switch>
           <Route exact path="/">
             <Home user={user}/>
@@ -48,11 +46,14 @@ function App() {
           <Route exact path="/trails">
             <Trails user={user}/>
           </Route>
-          {/* <Route exact path="/trails/:trail_id">
-            <Trails user={user}/>
-          </Route> */}
+          <Route exact path="/trail/:trail_id">
+            <Trail user={user}/>
+          </Route>
           <Route exact path="/restaurants">
             <Restaurants user={user}/>
+          </Route>
+          <Route exact path="/restaurant/:restaurant_id">
+            <Restaurant user={user}/>
           </Route>
           <Route path="*">
             <PageNotFound user={user}/>
