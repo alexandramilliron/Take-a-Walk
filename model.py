@@ -60,6 +60,7 @@ class Trail(db.Model):
     name = db.Column(db.String, nullable=False)
     length = db.Column(db.Float)
     location = db.Column(db.String) 
+    image = db.Column(db.String)
 
     ratings = db.relationship('TrailRating')
     walks = db.relationship('Walk', secondary='walk_trails')
@@ -73,7 +74,8 @@ class Trail(db.Model):
             'latitude': self.latitude,
             'longitude': self.longitude,
             'length': self.length,
-            'location': self.location
+            'location': self.location,
+            'image': self.image 
         }
 
 
@@ -95,6 +97,7 @@ class Restaurant(db.Model):
     price = db.Column(db.String)
     location = db.Column(db.String)
     phone = db.Column(db.String)
+    image = db.Column(db.String)
 
     ratings = db.relationship('RestRating')
     walks = db.relationship('Walk', secondary='walk_restaurants')
@@ -108,7 +111,8 @@ class Restaurant(db.Model):
             'latitude': self.latitude,
             'longitude': self.longitude,
             'location': self.location,
-            'phone': self.phone
+            'phone': self.phone,
+            'image': self.image
         }
 
 
