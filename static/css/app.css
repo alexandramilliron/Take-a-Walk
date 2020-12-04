@@ -1,3 +1,7 @@
 .checked {
     color: orange;
 }
+
+.carousel-item {
+    height: 600px;
+}
