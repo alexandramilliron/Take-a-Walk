@@ -49,7 +49,8 @@ function NewWalk(props) {
     return (
       <div>
         <h2>Make a New Walk</h2>
-          <form onSubmit={getLocation}>
+          <Form onSubmit={getLocation}>
+
             <label>Where would you like to walk?</label>
             <input type="text" placeholder="zipcode"
                 onChange={(event) => {setZipcode(event.target.value)}}/>
@@ -58,7 +59,8 @@ function NewWalk(props) {
             <input type="date" 
                 onChange={(event) => {setDate(event.target.value)}}/>
             <input type="submit" value="Submit"/>
-          </form>
+            
+          </Form>
 
 
         
