@@ -5,3 +5,14 @@
 .carousel-item {
     height: 600px;
 }
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-display {
+    display: flex;
+    align-content: space-around;
+}
