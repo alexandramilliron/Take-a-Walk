@@ -27,7 +27,7 @@ function UserRatings(props) {
                     return (
                         <Card key={index} style={{ width: '25rem' }}>
                             <Card.Header>
-                                <Link to={`/trails/${rating.trail_id}`}>{rating.trail_name}</Link> <br/>
+                                <Link to={`/trail/${rating.trail_id}`}>{rating.trail_name}</Link> <br/>
                                 <span>
                                     {Array.from({length: rating.trail_star}, (value, index) =>
                                     <span key={index}><i className={'fa fa-star checked'}></i></span>)}
@@ -54,7 +54,7 @@ function UserRatings(props) {
                     return (
                         <Card key={index} style={{ width: '25rem' }}>
                             <Card.Header>
-                                <Link to={`/restaurants/${rating.rest_id}`}>{rating.rest_name}</Link> <br/>
+                                <Link to={`/restaurant/${rating.rest_id}`}>{rating.rest_name}</Link> <br/>
                                 <span>
                                     {Array.from({length: rating.rest_star}, (value, index) =>
                                     <span key={index}><i className={'fa fa-star checked'}></i></span>)}
