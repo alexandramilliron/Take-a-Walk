@@ -76,27 +76,27 @@ function TrailRating(props) {
     }
 
 
-    function UploadPhotos() {
+    // function UploadPhotos() {
  
-        const myWidget = cloudinary.createUploadWidget({
-            cloudName: 'alexmilliron', 
-            uploadPreset: 'my_preset'}, (error, result) => { 
-                if (!error && result && result.event === "success") { 
-                console.log('Done! Here is the image info: ', result.info); 
-                }
-            }       
-        );
+    //     const myWidget = cloudinary.createUploadWidget({
+    //         cloudName: 'alexmilliron', 
+    //         uploadPreset: 'my_preset'}, (error, result) => { 
+    //             if (!error && result && result.event === "success") { 
+    //             console.log('Done! Here is the image info: ', result.info); 
+    //             }
+    //         }       
+    //     );
 
-        return (
-            <button 
-                id='upload_widget' 
-                className='cloudinary-button' 
-                onClick={() => myWidget.open()}  
-            >
-            Upload Photos
-            </button>
-        );
-    };
+    //     return (
+    //         <button 
+    //             id='upload_widget' 
+    //             className='cloudinary-button' 
+    //             onClick={() => myWidget.open()}  
+    //         >
+    //         Upload Photos
+    //         </button>
+    //     );
+    // };
 
 
     function addRating(event) {
@@ -139,7 +139,7 @@ function TrailRating(props) {
                 {IsCrowded()}
 
                 {/* upload photos */}
-                {UploadPhotos()}
+                {/* {UploadPhotos()} */}
 
                 <br/>
 
