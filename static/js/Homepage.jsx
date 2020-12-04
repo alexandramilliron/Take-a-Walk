@@ -51,7 +51,6 @@ function Home(props) {
          
         <div>   
             <p>
-               <i className="fas fa-head-side-mask"></i>
                 It's been (read: continues to be) a tough year. Though it's important to do everything you can to stay safe,
                 you also have to find ways to stay sane. That's where Take a Walk comes in. With Take a Walk, you can 
                 generate an outing near you that includes local walking trails and restaurants with the ADDED BONUS of reviews
