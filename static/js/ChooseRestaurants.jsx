@@ -79,13 +79,13 @@ function ChooseRestaurants(props) {
     return (
         <div className="">
             <h2>Choose your restaurants:</h2>
-            <form onSubmit={sendRestaurants}>
+            <Form onSubmit={sendRestaurants}>
                 {restList}
 
-            <button type="submit">Add Restaurants</button>    
+            <Button type="submit">Add Restaurants</Button>    
 
                
-            </form>
+            </Form>
         </div>
     );
 }
