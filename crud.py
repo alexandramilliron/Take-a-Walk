@@ -35,7 +35,7 @@ def confirm_username_and_password(username, password):
         return True 
     
 
-def create_trail(latitude, longitude, name, length=None, location=None):
+def create_trail(latitude, longitude, name, length=None, location=None, image=None):
     """Create and return a new trail."""
 
     trail = Trail.query.filter((Trail.name == name) & (Trail.latitude == latitude) & (Trail.longitude == longitude)).first()
@@ -43,14 +43,14 @@ def create_trail(latitude, longitude, name, length=None, location=None):
     if trail is not None:
         return trail
     else:
-        trail = Trail(latitude=latitude, longitude=longitude, name=name, length=length, location=location)
+        trail = Trail(latitude=latitude, longitude=longitude, name=name, length=length, location=location, image=image)
         db.session.add(trail)
         db.session.commit()
 
     return trail
 
 
-def create_restaurant(latitude, longitude, name, price=None, location=None, phone=None):
+def create_restaurant(latitude, longitude, name, price=None, location=None, phone=None, image=None):
     """Create and return a new restaurant."""
 
     restaurant = Restaurant.query.filter((Restaurant.name == name) & (Restaurant.latitude == latitude) & 
@@ -59,7 +59,8 @@ def create_restaurant(latitude, longitude, name, price=None, location=None, phon
     if restaurant is not None:
         return restaurant
     else:
-        restaurant = Restaurant(latitude=latitude, longitude=longitude, name=name, price=price, location=location, phone=phone)
+        restaurant = Restaurant(latitude=latitude, longitude=longitude, name=name, price=price, location=location, phone=phone,
+                                image=image)
         db.session.add(restaurant)
         db.session.commit()
 
