@@ -25,12 +25,27 @@ function Trails() {
                 <div>
                     {trails.map((trail, index) => {
                         return (
-                            <Card key={index} style={{ width: '25rem' }}>
-                                <Card.Header><Link to={`/trail/${trail.trail_id}`}>{trail.name}</Link></Card.Header>
-                                <Card.Body>
-                                    {trail.location}, {trail.length} miles
-                                </Card.Body>
-                            </Card> 
+                            <div key={index}>
+                            <Media as='li'>
+                                <Image
+                                    width={64}
+                                    height={64}
+                                    className='mr-3'
+                                    src={trail.image}
+                                />
+                                <Media.Body>
+                                    <h5><Link to={`/trail/${trail.trail_id}`}>{trail.name}</Link>
+                                        {trail.avg_star ? Array.from({length: trail.avg_star}, (value, index) =>
+                                        <span key={index}><i className={'fa fa-star checked'}></i></span>) : ''} 
+                                    </h5>
+                                    <div>
+                                        <div>{trail.avg_crowd ? `${trail.avg_crowd * 100}% of users have described this trail as crowded.` : 'No reviews on crowdedness yet.'}</div>
+                                        <div>{trail.avg_diff ? `On average, users have given this trail a difficulty level of ${trail.avg_diff}.` : 'No reviews on difficulty yet.'}</div>
+                                    </div>
+                                </Media.Body>
+                            </Media>
+                            <br/>
+                            </div>
                         );
                     })
                     }
