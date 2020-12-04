@@ -52,7 +52,7 @@ function App() {
           <Route exact path="/restaurants">
             <Restaurants user={user}/>
           </Route>
-          <Route exact path="/restaurant/:restaurant_id">
+          <Route exact path="/restaurant/:rest_id">
             <Restaurant user={user}/>
           </Route>
           <Route path="*">
