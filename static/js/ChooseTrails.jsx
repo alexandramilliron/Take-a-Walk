@@ -24,7 +24,7 @@ function ChooseTrails(props) {
             const display_trails = trail_objects.map((trail) => { 
                 return (
                 <div key={trail.name}>
-                <input type="checkbox" value={`${trail.name}|${trail.location}|${trail.length}`}/>
+                <input type="checkbox" value={`${trail.name}|${trail.location}|${trail.length}|${trail.imgSqSmall}`}/>
                 <ul>
                     <li>{trail.name}</li>
                     <li>{trail.location}</li>
@@ -48,7 +48,8 @@ function ChooseTrails(props) {
             return {
                 'name': trail_info[0],
                 'location': trail_info[1],
-                'length': trail_info[2]
+                'length': trail_info[2],
+                'image': trail_info[3]
             };
         });
   
