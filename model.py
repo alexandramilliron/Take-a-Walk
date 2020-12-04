@@ -75,8 +75,51 @@ class Trail(db.Model):
             'longitude': self.longitude,
             'length': self.length,
             'location': self.location,
-            'image': self.image 
+            'image': self.image,
+            'avg_star': self.get_avg_star_rating(),
+            'avg_diff': self.get_avg_difficulty(),
+            'avg_crowd': self.get_avg_crowding()
         }
+
+
+    def get_ratings(self):
+        """Return dict of user ratings for this trail."""
+        return {
+            'ratings': [r.serialize() for r in self.ratings]
+        }
+
+    
+    def get_avg_star_rating(self):
+        """Return the average star rating for this trail."""
+
+        if len(self.ratings) == 0:
+            return 0
+
+        return sum([t.trail_star for t in self.ratings]) / len(self.ratings)
+
+
+    def get_avg_difficulty(self):
+        """Return the average difficulty level for this trail."""
+
+        if len(self.ratings) == 0:
+            return 0
+
+        return sum([t.difficulty_level for t in self.ratings]) / len(self.ratings)
+
+    
+    def get_avg_crowding(self):
+        """Return the average amount of crowding for this trail."""
+
+        if len(self.ratings) == 0:
+            return 0
+
+        crowded_total = 0 
+
+        for rating in self.ratings:
+            if rating.crowded:
+                crowded_total += 1 
+
+        return crowded_total / len(self.ratings)
 
 
     def __repr__(self):
@@ -112,9 +155,74 @@ class Restaurant(db.Model):
             'longitude': self.longitude,
             'location': self.location,
             'phone': self.phone,
-            'image': self.image
+            'image': self.image,
+            'avg_star': self.get_avg_star_rating(),
+            'avg_mask': self.get_avg_masks_worn(),
+            'avg_soc': self.get_avg_social_distance(),
+            'avg_out': self.get_avg_out_seating()
         }
 
+    
+    def get_ratings(self):
+        """Return dict of user ratings for this restaurant."""
+        return {
+            'ratings': [r.serialize() for r in self.ratings]
+        }
+    
+
+    def get_avg_star_rating(self):
+        """Return the average star rating for this restaurant."""
+
+        if len(self.ratings) == 0:
+            return 0
+
+        return sum([r.rest_star for r in self.ratings]) / len(self.ratings)
+
+
+    def get_avg_masks_worn(self):
+        """Return the average amount of masks worn for this restaurant."""
+
+        masks_worn_total = 0 
+
+        if len(self.ratings) == 0:
+            return 0
+
+        for rating in self.ratings:
+            if rating.masks_worn:
+                masks_worn_total += 1 
+
+        return masks_worn_total / len(self.ratings)
+
+    
+    def get_avg_social_distance(self):
+        """Return the average amount of social distancing for this restaurant."""
+
+        if len(self.ratings) == 0:
+            return 0
+
+        soc_dist_total = 0 
+
+        for rating in self.ratings:
+            if rating.socially_distanced:
+                soc_dist_total += 1 
+
+        return soc_dist_total / len(self.ratings)
+
+    
+    def get_avg_out_seating(self):
+        """Return the average amount of outdoor seating for this restaurant."""
+
+        if len(self.ratings) == 0:
+            return 0
+
+        out_seat_total = 0
+
+        for rating in self.ratings:
+            if rating.outdoor_seating: 
+                out_seat_total += 1
+        
+        return out_seat_total / len(self.ratings)
+        
 
     def __repr__(self):
         return f'<Restaurant rest_id={self.rest_id} name={self.name}>'
@@ -192,7 +300,9 @@ class RestRating(db.Model):
             'socially_distanced': self.socially_distanced,
             'outdoor_seating': self.outdoor_seating,
             'rest_name': self.restaurant.name,
-            'rated_at': self.rated_at.strftime('%a, %b %d, %Y')
+            'rated_at': self.rated_at.strftime('%a, %b %d, %Y'),
+            'image': self.restaurant.image
+            
         }
 
 
@@ -280,8 +390,7 @@ class WalkRest(db.Model):
 
 
 
-# TODO: re-examine the serialize methods to see if the information they return is useful 11/23/2020
-# TODO: potentially simplify the methods in the Walk class since there's overlap 
+
 
 
 
