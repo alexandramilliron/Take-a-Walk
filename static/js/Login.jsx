@@ -33,22 +33,41 @@ function Login(props) {
   
 
     return (
-      <div className='login'>
-        <h1>Login</h1>
+      <div>
+        <Container>
             <Form onSubmit={handleLogin}>
 
+            <Row>
+              <Col></Col>
+
+              <Col md='auto'>
+
+              <div className='center'>
+                <h1>Login</h1>
+              </div>
+
+              <br/>
               <Form.Group controlId='username'>
                 <Form.Label>username</Form.Label>
                   <Form.Control type='username' placeholder='username' onChange={(event) => {setUsername(event.target.value)}}/> 
               </Form.Group>
+
               <Form.Group controlId='password'>
                 <Form.Label>password</Form.Label>
                   <Form.Control type='password' placeholder='password' onChange={(event) => {setPassword(event.target.value)}}/>
               </Form.Group>
 
-            <Button id='loginButton' type='submit'>Login</Button>
+              <div className="center">
+               <Button type='submit'>Login</Button>
+              </div>
+
+              </Col>
+
+              <Col></Col>
+            </Row>
             
             </Form>
+        </Container>
       </div>
     );
 }
