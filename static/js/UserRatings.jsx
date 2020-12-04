@@ -25,20 +25,20 @@ function UserRatings(props) {
             <div>
                 {ratings.trail_ratings.map((rating, index) => {
                     return (
-                        <Card key={index} style={{ width: '25rem' }}>
+                        <Card key={index} className='card-display'>
                             <Card.Header>
-                                <Link to={`/trail/${rating.trail_id}`}>{rating.trail_name}</Link> <br/>
+                                <Link to={`/trail/${rating.trail_id}`}>{rating.trail_name}</Link><br/>
                                 <span>
                                     {Array.from({length: rating.trail_star}, (value, index) =>
                                     <span key={index}><i className={'fa fa-star checked'}></i></span>)}
                                 </span>
-                                <span className="text-muted">{rating.rated_at}</span>
+                                <span className="text-muted float-right">{rating.rated_at}</span>
                             </Card.Header>
                             <Card.Body>    
                                 <Card.Text> 
-                                    Difficulty: {rating.difficulty_level} <br/>
-                                    {rating.crowded ? 'This trail was crowded.' : 'This trail was uncrowded.'} <br/>
-                                    "{rating.trail_comment}"
+                                    <div>{rating.crowded ? 'This trail was crowded.' : 'This trail was uncrowded.'}</div>
+                                    <div>{rating.difficulty_level ? `Difficulty: ${rating.difficulty_level}` : ''}</div>
+                                    <div>{rating.trail_comment ? `Comment: ${rating.trail_comment}` : ''}</div>
                                 </Card.Text>
                             </Card.Body>
                         </Card>
@@ -52,21 +52,21 @@ function UserRatings(props) {
             <div>
                 {ratings.restaurant_ratings.map((rating, index) => {
                     return (
-                        <Card key={index} style={{ width: '25rem' }}>
+                        <Card key={index} className='card-display'>
                             <Card.Header>
                                 <Link to={`/restaurant/${rating.rest_id}`}>{rating.rest_name}</Link><br/>
                                 <span>
                                     {Array.from({length: rating.rest_star}, (value, index) =>
                                     <span key={index}><i className={'fa fa-star checked'}></i></span>)}
                                 </span>
-                                <span className="text-muted">{rating.rated_at}</span>
+                                <span className="text-muted float-right">{rating.rated_at}</span>
                             </Card.Header>
                             <Card.Body>    
                                 <Card.Text> 
-                                    {rating.masks_worn ? 'Masks were worn.' : 'Masks weren\'t worn.'} <br/>
-                                    {rating.socially_distanced ? 'Social distancing was enforced.' : 'Social distancing wasn\'t enforced.'} <br/>
-                                    {rating.outdoor_seating ? 'Outdoor seating was available.' : 'There wasn\'t outdoor seating.'} <br/>
-                                    "{rating.rest_comment}"
+                                    <div>{rating.masks_worn ? 'Masks were worn.' : 'Masks weren\'t worn.'}</div>
+                                    <div>{rating.socially_distanced ? 'Social distancing was enforced.' : 'Social distancing wasn\'t enforced.'}</div>
+                                    <div>{rating.outdoor_seating ? 'Outdoor seating was available.' : 'There wasn\'t outdoor seating.'}</div>
+                                    <div>{rating.rest_comment ? `Comment: ${rating.rest_comment}` : ''}</div>
                                 </Card.Text>
                             </Card.Body>
                         </Card>
