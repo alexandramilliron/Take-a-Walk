@@ -69,10 +69,9 @@ function Register(props) {
                             <ButtonGroup vertical>
                                 <Button id='registerButton' type='submit'>Register</Button>
                                 <br/>
-                                <Button variant="link" onClick={() => Login()}>Already have an account? Login</Button>
+                                <Button variant='link' onClick={() => Login()}>Already have an account? Login</Button>
                             </ButtonGroup>
                         </div>
-
                     </Col>
                     <Col></Col>
                 </Row>
