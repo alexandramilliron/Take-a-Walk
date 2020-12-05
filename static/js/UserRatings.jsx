@@ -25,7 +25,7 @@ function UserRatings(props) {
             <div>
                 {ratings.trail_ratings.map((rating, index) => {
                     return (
-                        <Card key={index} className='card-display'>
+                        <Card key={index} className='user-rating-card'>
                             <Card.Header>
                                 <Link to={`/trail/${rating.trail_id}`}>{rating.trail_name}</Link><br/>
                                 <span>
@@ -52,7 +52,7 @@ function UserRatings(props) {
             <div>
                 {ratings.restaurant_ratings.map((rating, index) => {
                     return (
-                        <Card key={index} className='card-display'>
+                        <Card key={index} className='user-rating-card'>
                             <Card.Header>
                                 <Link to={`/restaurant/${rating.rest_id}`}>{rating.rest_name}</Link><br/>
                                 <span>
