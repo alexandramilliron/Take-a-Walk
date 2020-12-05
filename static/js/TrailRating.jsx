@@ -10,13 +10,13 @@ function TrailRating(props) {
     const [difficulty, setDifficulty] = useState(null); 
     const [crowded, setCrowded] = useState(null); 
     
-    const {trail_id} = useParams();
+    const { trail_id, name } = useParams();
 
 
     function TextArea() {
         return (
         <Form.Group controlId=''>
-            <Form.Label>What did you think about this trail?</Form.Label>
+            <Form.Label>What did you think of {name}?</Form.Label>
             <Form.Control as='textarea' rows={3} onChange={(event) => {setComment(event.target.value)}}/>
         </Form.Group>
         );
@@ -112,9 +112,6 @@ function TrailRating(props) {
 
                 {/* crowded rating */}
                 {IsCrowded()}
-
-                {/* upload photos */}
-                {/* {UploadPhotos()} */}
 
                 <br/>
 
