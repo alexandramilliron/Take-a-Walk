@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 
 function Trails() {
@@ -11,7 +11,7 @@ function Trails() {
 
 
     function fetchTrails() {
-        fetch("/api/trails") 
+        fetch('/api/trails') 
         .then(response => {
             return response.json(); 
         })
@@ -50,8 +50,7 @@ function Trails() {
                     })
                     }
                 </div>
-            );
-            
+            );          
             setTrails(trailCards); 
         });
     };
@@ -59,7 +58,7 @@ function Trails() {
 
     return (
         <div>
-        {trails}
+            {trails}
         </div>
     );
 }
