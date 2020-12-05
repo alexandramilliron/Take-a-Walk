@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 
 function TrailRating(props) {
@@ -9,17 +9,15 @@ function TrailRating(props) {
     const [starRating, setStarRating] = useState(0);
     const [difficulty, setDifficulty] = useState(null); 
     const [crowded, setCrowded] = useState(null); 
-    const [photo, setPhoto] = useState(null); 
-
     
     const {trail_id} = useParams();
 
 
     function TextArea() {
         return (
-        <Form.Group controlId="">
+        <Form.Group controlId=''>
             <Form.Label>What did you think about this trail?</Form.Label>
-            <Form.Control as="textarea" rows={3} onChange={(event) => {setComment(event.target.value)}}/>
+            <Form.Control as='textarea' rows={3} onChange={(event) => {setComment(event.target.value)}}/>
         </Form.Group>
         );
     }
@@ -50,9 +48,9 @@ function TrailRating(props) {
     function DifficultyRating() {
         return ( 
             <div>
-            <Form.Group controlId="">
+            <Form.Group controlId=''>
                 <Form.Label>How difficult was the trail?</Form.Label>
-                <Form.Control as="select" onChange={(event) => setDifficulty(event.target.value)}> 
+                <Form.Control as='select' onChange={(event) => setDifficulty(event.target.value)}> 
                     <option>select a difficulty level</option>
                     <option value={1}>1 - Easy</option>
                     <option value={2}>2</option>
@@ -69,34 +67,11 @@ function TrailRating(props) {
         return (
             <Form.Group>
                 <Form.Label>How busy was it?</Form.Label>
-                    <Form.Check name="crowded" label="crowded" type="radio" onClick={() => setCrowded(true)}/>
-                    <Form.Check name="crowded" label="uncrowded" type="radio" onClick={() => setCrowded(false)}/>
+                    <Form.Check name='crowded' label='crowded' type='radio' onClick={() => setCrowded(true)}/>
+                    <Form.Check name='crowded' label='uncrowded' type='radio' onClick={() => setCrowded(false)}/>
             </Form.Group>
         ); 
     }
-
-
-    // function UploadPhotos() {
- 
-    //     const myWidget = cloudinary.createUploadWidget({
-    //         cloudName: 'alexmilliron', 
-    //         uploadPreset: 'my_preset'}, (error, result) => { 
-    //             if (!error && result && result.event === "success") { 
-    //             console.log('Done! Here is the image info: ', result.info); 
-    //             }
-    //         }       
-    //     );
-
-    //     return (
-    //         <button 
-    //             id='upload_widget' 
-    //             className='cloudinary-button' 
-    //             onClick={() => myWidget.open()}  
-    //         >
-    //         Upload Photos
-    //         </button>
-    //     );
-    // };
 
 
     function addRating(event) {
@@ -143,8 +118,7 @@ function TrailRating(props) {
 
                 <br/>
 
-                <Button type="submit">Submit Review</Button>
-
+                <Button type='submit'>Submit Review</Button>
             </Form>
         </div>
     );
