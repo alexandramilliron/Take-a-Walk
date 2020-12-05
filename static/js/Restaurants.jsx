@@ -32,7 +32,7 @@ function Restaurants() {
                                     src={rest.image}
                                 />
                                 <Media.Body>
-                                    <h5><Link to={`/restaurant/${rest.rest_id}`}>{rest.name}</Link>{'  '} 
+                                    <h5><Link to={`/restaurant/${rest.rest_id}/${rest.name}`}>{rest.name}</Link>{'  '} 
                                         {rest.avg_star ? Array.from({length: rest.avg_star}, (value, index) =>
                                         <span key={index}><i className={'fa fa-star checked'}></i></span>) : ''} 
                                     </h5>
