@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 
 function NewWalk(props) {
@@ -52,14 +52,14 @@ function NewWalk(props) {
           <Form onSubmit={getLocation}>
 
             <label>Where would you like to walk?</label>
-            <input type="text" placeholder="zipcode"
+            <input type='text' placeholder='zipcode'
                 onChange={(event) => {setZipcode(event.target.value)}}/>
                 <br/>
             <label>When would you like to go?</label>  
-            <input type="date" 
+            <input type='date' 
                 onChange={(event) => {setDate(event.target.value)}}/>
   
-            <Button type="submit">Submit</Button> 
+            <Button type='submit'>Submit</Button> 
             
           </Form>
 
