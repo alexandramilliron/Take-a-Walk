@@ -39,7 +39,7 @@ function Trails() {
                                         <span key={index}><i className={'fa fa-star checked'}></i></span>) : ''} 
                                     </h5>
                                     <div>
-                                        <div>{trail.avg_crowd ? `${trail.avg_crowd * 100}% of users have described this trail as crowded.` : 'No reviews on crowdedness yet.'}</div>
+                                        <div>{trail.avg_crowd ? `${trail.avg_crowd}% of users have described this trail as crowded.` : 'No reviews on crowdedness yet.'}</div>
                                         <div>{trail.avg_diff ? `On average, users have given this trail a difficulty level of ${trail.avg_diff}.` : 'No reviews on difficulty yet.'}</div>
                                     </div>
                                 </Media.Body>
