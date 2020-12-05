@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 function Restaurants() {
     
@@ -10,7 +10,7 @@ function Restaurants() {
 
 
     function fetchRestaurants() {
-        fetch("/api/restaurants") 
+        fetch('/api/restaurants') 
         .then(response => {
             return response.json(); 
         })
@@ -49,10 +49,8 @@ function Restaurants() {
                     })
                     }
                 </div>
-            );
-            
+            );            
             setRestaurants(restCards); 
-
         });
     };
 
