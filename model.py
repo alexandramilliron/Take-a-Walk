@@ -275,7 +275,8 @@ class TrailRating(db.Model):
             'difficulty_level': self.difficulty_level,
             'crowded': self.crowded,
             'trail_name': self.trail.name,
-            'rated_at': self.rated_at.strftime('%a, %b %d, %Y')
+            'rated_at': self.rated_at.strftime('%a, %b %d, %Y'),
+            'image': self.trail.image 
         }
 
 
