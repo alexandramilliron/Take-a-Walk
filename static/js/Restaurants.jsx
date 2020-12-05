@@ -37,9 +37,9 @@ function Restaurants() {
                                         <span key={index}><i className={'fa fa-star checked'}></i></span>) : ''} 
                                     </h5>
                                     <div>
-                                        <div>{rest.avg_mask ? `${rest.avg_mask * 100}% of users reported mask usage.` : 'No reviews on masks yet.'}</div>                                       
-                                        <div>{rest.avg_out ? `${rest.avg_out * 100}% of users reported outdoor seating was available.` : 'No reviews on outdoor seating yet.'}</div>                                       
-                                        <div>{rest.avg_soc ? `${rest.avg_soc * 100}% of users reported they were able to socially distance.` : 'No reviews on social distancing yet.'}</div>
+                                        <div>{(rest.avg_mask == null) ? 'No reviews on masks yet.' : `${rest.avg_mask}% of users reported mask usage.`}</div>                                       
+                                        <div>{(rest.avg_out == null) ? 'No reviews on outdoor seating yet.' : `${rest.avg_out}% of users reported outdoor seating was available.`}</div>                                       
+                                        <div>{(rest.avg_soc == null) ? 'No reviews on social distancing yet.' : `${rest.avg_soc}% of users reported they were able to socially distance.`}</div>
                                     </div>
                                 </Media.Body>
                             </Media>
