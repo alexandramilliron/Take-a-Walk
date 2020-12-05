@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 
 function SavedWalks(props) {
@@ -36,8 +36,8 @@ function SavedWalks(props) {
     
     return (
         <div>
-        <h2>{props.user.username}'s walks:</h2>
-        {walks}
+            <h2>{props.user.username}'s walks:</h2>
+                {walks}
         </div>
     );
 }
