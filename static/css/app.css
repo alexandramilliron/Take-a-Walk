@@ -2,6 +2,11 @@
     color: orange;
 }
 
+body {
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 20px;
+}
+
 .carousel-item {
     height: 600px;
 }
@@ -15,4 +20,25 @@
 .card-display {
     display: flex;
     width: 25rem;
+}
+
+.nav-link {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;    
+}
+
+
+.nav-link:hover {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;  
+}
+
+.nav-brand {
+    font-family: 'Cutive Mono', monospace;
+    font-size: 25px;
+}
+
+
+.home-p {
+    text-align: center;
 }
