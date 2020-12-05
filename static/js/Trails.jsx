@@ -34,7 +34,7 @@ function Trails() {
                                     src={trail.image}
                                 />
                                 <Media.Body>
-                                    <h5><Link to={`/trail/${trail.trail_id}`}>{trail.name}</Link>{'  '}
+                                    <h5><Link to={`/trail/${trail.trail_id}/${trail.name}`}>{trail.name}</Link>{'  '}
                                         {trail.avg_star ? Array.from({length: trail.avg_star}, (value, index) =>
                                         <span key={index}><i className={'fa fa-star checked'}></i></span>) : ''} 
                                     </h5>
