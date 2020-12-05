@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 
 function UserRatings(props) {
@@ -32,7 +32,7 @@ function UserRatings(props) {
                                     {Array.from({length: rating.trail_star}, (value, index) =>
                                     <span key={index}><i className={'fa fa-star checked'}></i></span>)}
                                 </span>
-                                <span className="text-muted float-right">{rating.rated_at}</span>
+                                <span className='text-muted float-right'>{rating.rated_at}</span>
                             </Card.Header>
                             <Card.Body>    
                                 <Card.Text> 
@@ -59,7 +59,7 @@ function UserRatings(props) {
                                     {Array.from({length: rating.rest_star}, (value, index) =>
                                     <span key={index}><i className={'fa fa-star checked'}></i></span>)}
                                 </span>
-                                <span className="text-muted float-right">{rating.rated_at}</span>
+                                <span className='text-muted float-right'>{rating.rated_at}</span>
                             </Card.Header>
                             <Card.Body>    
                                 <Card.Text> 
@@ -82,11 +82,11 @@ function UserRatings(props) {
 
     return (
         <div>
-            <h2 className="float-left">{props.user.username}'s Ratings</h2>
+            <h2 className='float-left'>{props.user.username}'s Ratings</h2>
             <Container>
                 <Row>
-                    <Col md="auto">{trailCards}</Col>
-                    <Col md="auto">{restCards}</Col>
+                    <Col md='auto'>{trailCards}</Col>
+                    <Col md='auto'>{restCards}</Col>
                     <Col></Col>
                 </Row>
             </Container>
