@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 
 function ChooseTrails(props) {
@@ -24,7 +24,7 @@ function ChooseTrails(props) {
             const display_trails = trail_objects.map((trail) => { 
                 return (
                 <div key={trail.name}>
-                <input type="checkbox" value={`${trail.name}|${trail.location}|${trail.length}|${trail.imgSqSmall}`}/>
+                <input type='checkbox' value={`${trail.name}|${trail.location}|${trail.length}|${trail.imgSqSmall}`}/>
                 <ul>
                     <li>{trail.name}</li>
                     <li>{trail.location}</li>
@@ -44,7 +44,7 @@ function ChooseTrails(props) {
         const chosen_trails = Array.from(document.querySelectorAll('input:checked')); 
 
         let trails = chosen_trails.map((element) => {
-            const trail_info = element.value.split("|");
+            const trail_info = element.value.split('|');
             return {
                 'name': trail_info[0],
                 'location': trail_info[1],
@@ -69,11 +69,11 @@ function ChooseTrails(props) {
 
 
     return (
-        <div className="">
+        <div className=''>
             <h2>Choose your trails:</h2>
             <Form onSubmit={sendTrails}>
                 {trailList}
-            <Button type="submit">Add Trails</Button>
+            <Button type='submit'>Add Trails</Button>
             </Form>
         </div>
     );
