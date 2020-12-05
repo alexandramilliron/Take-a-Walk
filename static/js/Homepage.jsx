@@ -9,16 +9,15 @@ function Home(props) {
         history.push('/new-walk')
     }
 
-
     return (
         <div>
             <Carousel className>
             <Carousel.Item>
                 <Image
-                className="d-block w-100"
-                src="/static/img/background1.jpg"
-                alt="First slide"
-                width="400px"
+                className='d-block w-100'
+                src='/static/img/background1.jpg'
+                alt='first slide'
+                width='400px'
                 fluid
                 />
                 <Carousel.Caption>
@@ -27,9 +26,9 @@ function Home(props) {
             </Carousel.Item>
             <Carousel.Item>
                 <Image
-                className="d-block w-100"
-                src="/static/img/background2.jpg"
-                alt="Second slide"
+                className='d-block w-100'
+                src='/static/img/background2.jpg'
+                alt='second slide'
                 fluid
                 />
                 <Carousel.Caption>
@@ -38,9 +37,9 @@ function Home(props) {
             </Carousel.Item>
             <Carousel.Item>
                 <Image
-                className="d-block w-100"
-                src="/static/img/background3.jpg"
-                alt="Third slide"
+                className='d-block w-100'
+                src='/static/img/background3.jpg'
+                alt='third slide'
                 fluid
                 />
                 <Carousel.Caption>
@@ -53,26 +52,25 @@ function Home(props) {
             <Row>
                 <Col></Col>
                 <Col xs={10}>
-        <div>   
-            <p className='home-p'>
-                Welcome to Take a Walk, the site that encourages you to go outside and eat things - safely! With Take a Walk, you can 
-                generate an outing near you that includes restaurants and trails. Then, leave a rating based on their COVID safety.
-            </p>
-        </div>
-        <div>
-            <p className='center'>
-                Ready to get started? 
-                Let's take a walk! 
-            </p>
-            <div className='center'>
-                <Button variant='outline-secondary' onClick={newWalk}>Start a New Walk</Button>
-            </div>
-        </div>
-            </Col>
-            <Col></Col>
+                <div>   
+                    <p className='home-p'>
+                        Welcome to Take a Walk, the site that encourages you to go outside and eat things - safely! With Take a Walk, you can 
+                        generate an outing near you that includes restaurants and trails. Then, leave a rating based on their COVID safety.
+                    </p>
+                </div>
+                <div>
+                    <p className='center'>
+                    Ready to get started? 
+                    Let's take a walk! 
+                    </p>
+                <div className='center'>
+                    <Button variant='outline-secondary' onClick={newWalk}>Start a New Walk</Button>
+                </div>
+                </div>
+                </Col>
+                <Col></Col>
             </Row>
         </Container>  
-
         </div>
     );
 }
