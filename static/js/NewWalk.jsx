@@ -58,7 +58,7 @@ function NewWalk(props) {
             <label>When would you like to go?</label>  
             <input type="date" 
                 onChange={(event) => {setDate(event.target.value)}}/>
-            {/* <input type="submit" value="Submit"/> */}
+  
             <Button type="submit">Submit</Button> 
             
           </Form>
