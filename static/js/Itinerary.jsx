@@ -43,12 +43,12 @@ function Itinerary() {
                     <li>{walk.walk_date}</li>
                     {walk.restaurants.map(rest => {
                         return (
-                            <li key={rest.rest_id} title='review this restaurant'><Link to={`/rest-rating/${rest.rest_id}`}>{rest.name}</Link></li>
+                            <li key={rest.rest_id} title='review this restaurant'><Link to={`/rest-rating/${rest.rest_id}/${rest.name}`}>{rest.name}</Link></li>
                         );
                     })}
                     {walk.trails.map(trail => {
                         return (
-                            <li key={trail.trail_id} title='review this trail'><Link to={`/trail-rating/${trail.trail_id}`}>{trail.name}</Link></li>
+                            <li key={trail.trail_id} title='review this trail'><Link to={`/trail-rating/${trail.trail_id}/${trail.name}`}>{trail.name}</Link></li>
                         );
                     })}
                 </ul>
@@ -69,8 +69,7 @@ function Itinerary() {
             {walkDetails}
             <span>Get the weather for this walk:</span>
             <button onClick={onButtonClick}>Weather</button>
-            {showWeather ? <Weather latitude={latitude} longitude={longitude} walk_date = {walkDate}/> : ''}
-
+            {showWeather ? <Weather latitude={latitude} longitude={longitude} walk_date={walkDate}/> : ''}
         </div>
     )
 }
