@@ -4,7 +4,9 @@
 <head>
   <meta charset="utf-8">
 
-  <!-- Loading React dependencies. -->
+
+  <!-- React Dependencies -->
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
   <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
@@ -12,6 +14,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/5.2.0/react-router-dom.js" 
   integrity="sha512-LOOlcIrzggklo15g/pbJis06755L5SZYg2RZEUw7t8k/aALW/atg2qg6h8oSLIvk25ulbzhz/p4LH2PUYa+rLw==" 
   crossorigin="anonymous"></script>
+
+
+  <!-- Styling: Bootstrap, CSS, Font Awesome, Google Fonts -->
+
+  <link href="/static/css/app.css" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
   
@@ -26,29 +33,24 @@
   crossorigin="anonymous"
   /> 
 
-  <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
-
-  <!-- <script>cloudinary.setCloudName("alexmilliron")</script> -->
-
-  <script>
-  const { useEffect, useState, useRef } = React;
-  const { NavLink, useHistory, Route, useParams, Redirect, Switch, Prompt, Link, HashRouter, BrowserRouter } = ReactRouterDOM;
-  const { Accordion, Button, ButtonGroup, Card, Carousel, Container, Col, Form, Row, Nav, Navbar, Image, 
-          NavDropdown, Media } = ReactBootstrap;
-  // const {Image, Video, Transformation, CloudinaryContext} = cloudinary-react;
-  </script>
-
-  <!-- Link to CSS: -->
-  <link href="/static/css/app.css" rel="stylesheet">
-
-  <!-- Google Fonts: -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Didact+Gothic&family=Roboto:wght@100&display=swap" rel="stylesheet">
 
 
-  <title>Take a Walk</title>
-</head>
+  <!-- Destructuring from React / React Router / React Bootstrap -->
 
+  <script>
+    const { useEffect, useState } = React;
+    const { NavLink, useHistory, Route, useParams, Redirect, Switch, Prompt, Link, HashRouter, BrowserRouter } = ReactRouterDOM;
+    const { Accordion, Button, ButtonGroup, Card, Carousel, Container, Col, Form, Row, Nav, Navbar, Image, 
+            NavDropdown, Media } = ReactBootstrap;
+  </script>
+
+
+  <title>Take a Walk</title>
+
+
+</head>
 <body>
 
   <div id="app"></div>
