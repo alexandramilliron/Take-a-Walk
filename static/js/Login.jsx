@@ -57,7 +57,7 @@ function Login(props) {
                   <Form.Control type='password' placeholder='password' onChange={(event) => {setPassword(event.target.value)}}/>
               </Form.Group>
 
-              <div className="center">
+              <div className='center'>
                <Button type='submit'>Login</Button>
               </div>
 
