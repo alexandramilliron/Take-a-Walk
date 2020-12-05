@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 
 function RestRating(props) {
@@ -16,9 +16,9 @@ function RestRating(props) {
     
     function TextArea() {
       return (
-      <Form.Group controlId="">
+      <Form.Group controlId=''>
           <Form.Label>What did you think about this restaurant?</Form.Label>
-          <Form.Control as="textarea" rows={3} onChange={(event) => {setComment(event.target.value)}}/>
+          <Form.Control as='textarea' rows={3} onChange={(event) => {setComment(event.target.value)}}/>
       </Form.Group>
       );
     }
@@ -50,8 +50,8 @@ function RestRating(props) {
       return (
           <Form.Group>
               <Form.Label>Were employees and customers wearing masks?</Form.Label>
-                  <Form.Check name="masks_worn" label="Yes" type="radio" onClick={() => setMasksWorn(true)}/>
-                  <Form.Check name="masks_worn" label="No" type="radio" onClick={() => setMasksWorn(false)}/>
+                  <Form.Check name='masks_worn' label='Yes' type='radio' onClick={() => setMasksWorn(true)}/>
+                  <Form.Check name='masks_worn' label='No' type='radio' onClick={() => setMasksWorn(false)}/>
           </Form.Group>
       ); 
     }
@@ -61,8 +61,8 @@ function RestRating(props) {
       return (
           <Form.Group>
               <Form.Label>Were you able to socially distance (i.e., stay at least 6 feet away from other customers)?</Form.Label>
-                  <Form.Check name="socially_distanced" label="Yes" type="radio" onClick={() => setSocialDist(true)}/>
-                  <Form.Check name="socially_distanced" label="No" type="radio" onClick={() => setSocialDist(false)}/>
+                  <Form.Check name='socially_distanced' label='Yes' type='radio' onClick={() => setSocialDist(true)}/>
+                  <Form.Check name='socially_distanced' label='No' type='radio' onClick={() => setSocialDist(false)}/>
           </Form.Group>
       ); 
     }
@@ -72,8 +72,8 @@ function RestRating(props) {
       return (
           <Form.Group>
               <Form.Label>Was outdoor seating available?</Form.Label>
-                  <Form.Check name="outdoor_seating" label="Yes" type="radio" onClick={() => setOutdoorSeating(true)}/>
-                  <Form.Check name="outdoor_seating" label="No" type="radio" onClick={() => setOutdoorSeating(false)}/>
+                  <Form.Check name='outdoor_seating' label='Yes' type='radio' onClick={() => setOutdoorSeating(true)}/>
+                  <Form.Check name='outdoor_seating' label='No' type='radio' onClick={() => setOutdoorSeating(false)}/>
           </Form.Group>
       ); 
     }
@@ -121,7 +121,7 @@ function RestRating(props) {
                 {/* outdoor seating */}
                 {OutdoorSeating()}
 
-                <Button type="submit">Submit Review</Button>
+                <Button type='submit'>Submit Review</Button>
 
             </Form>
         </div>
