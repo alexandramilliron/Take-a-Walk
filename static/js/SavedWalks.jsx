@@ -36,7 +36,7 @@ function SavedWalks(props) {
     
     return (
         <div>
-        <h2>Here are your walks!</h2>
+        <h2>{props.user.username}'s walks:</h2>
         {walks}
         </div>
     );
