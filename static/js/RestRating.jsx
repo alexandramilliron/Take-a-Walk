@@ -11,13 +11,13 @@ function RestRating(props) {
     const [socialDist, setSocialDist] = useState(null); 
     const [outdoorSeating, setOutdoorSeating] = useState(null); 
     
-    const {rest_id} = useParams();
+    const {rest_id, name } = useParams();
 
     
     function TextArea() {
       return (
       <Form.Group controlId=''>
-          <Form.Label>What did you think about this restaurant?</Form.Label>
+          <Form.Label>What did you think of {name}?</Form.Label>
           <Form.Control as='textarea' rows={3} onChange={(event) => {setComment(event.target.value)}}/>
       </Form.Group>
       );
