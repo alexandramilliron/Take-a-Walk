@@ -6,7 +6,8 @@ body {
 }
 
 .checked {
-    color: orange;
+    color: #FFB83D;
+    text-shadow: 0 0 10px;
 }
 
 .center {
@@ -29,22 +30,65 @@ body {
 
 .nav-link {
     font-family: 'Roboto', sans-serif;
-    font-size: 12px;    
+    font-size: .8rem;    
 }
 
 .nav-link:hover {
     font-family: 'Roboto', sans-serif;
-    font-size: 15px;  
+    font-size: 1rem;  
 }
 
 .nav-brand {
     font-family: 'Cutive Mono', monospace;
-    font-size: 25px;
+    font-size: 2rem;
 }
 
 /* User Ratings Styling */
 
-.user-rating-card {
+.card {
     display: flex;
     width: 25rem;
+}
+
+.card-text {
+    font-size: 1rem;
+    padding: .3rem;
+    font-family: 'Roboto', 'sans-serif';
+    font-weight: bold;
+    letter-spacing: .03rem;
+}
+
+.card:hover {
+    box-shadow: 5px 10px 20px 1px rgba(0,0,0,0.253);
+}
+
+.card-date {
+    font-size: .9rem; 
+    padding: .7rem;
+}
+
+.card-img-top {
+    width: 25rem;
+    height: 10rem;
+    object-fit: cover;
+}
+
+.card-title {
+    padding: .5rem;
+    font-family: 'Cutive Mono', monospace;
+}
+
+.checked.rating-star {
+    color: #FFB83D;
+    text-shadow: 0 0 10px;
+    padding: .3rem; 
+}
+
+.rating-link {
+    color: black;
+}
+
+.rating-link:hover {
+    text-decoration: none;
+    color: #17a2b8;
 }
