@@ -93,7 +93,7 @@ class Trail(db.Model):
         """Return the average star rating for this trail."""
 
         if len(self.ratings) == 0:
-            return 0
+            return None
 
         return sum([t.trail_star for t in self.ratings]) / len(self.ratings)
 
@@ -102,7 +102,7 @@ class Trail(db.Model):
         """Return the average difficulty level for this trail."""
 
         if len(self.ratings) == 0:
-            return 0
+            return None
 
         return sum([t.difficulty_level for t in self.ratings]) / len(self.ratings)
 
@@ -111,15 +111,19 @@ class Trail(db.Model):
         """Return the average amount of crowding for this trail."""
 
         if len(self.ratings) == 0:
-            return 0
+            return None
 
         crowded_total = 0 
 
         for rating in self.ratings:
             if rating.crowded:
                 crowded_total += 1 
+        
+        percent = (crowded_total / len(self.ratings)) * 100
 
-        return crowded_total / len(self.ratings)
+        percent = int(percent)
+
+        return percent 
 
 
     def __repr__(self):
@@ -174,7 +178,7 @@ class Restaurant(db.Model):
         """Return the average star rating for this restaurant."""
 
         if len(self.ratings) == 0:
-            return 0
+            return None
 
         return sum([r.rest_star for r in self.ratings]) / len(self.ratings)
 
@@ -185,20 +189,24 @@ class Restaurant(db.Model):
         masks_worn_total = 0 
 
         if len(self.ratings) == 0:
-            return 0
+            return None
 
         for rating in self.ratings:
             if rating.masks_worn:
                 masks_worn_total += 1 
 
-        return masks_worn_total / len(self.ratings)
+        percent = (masks_worn_total / len(self.ratings)) * 100 
+
+        percent = int(percent)
+
+        return percent 
 
     
     def get_avg_social_distance(self):
         """Return the average amount of social distancing for this restaurant."""
 
         if len(self.ratings) == 0:
-            return 0
+            return None
 
         soc_dist_total = 0 
 
@@ -206,14 +214,18 @@ class Restaurant(db.Model):
             if rating.socially_distanced:
                 soc_dist_total += 1 
 
-        return soc_dist_total / len(self.ratings)
+        percent = (soc_dist_total / len(self.ratings)) * 100 
+
+        percent = int(percent)
+
+        return percent
 
     
     def get_avg_out_seating(self):
         """Return the average amount of outdoor seating for this restaurant."""
-
+        
         if len(self.ratings) == 0:
-            return 0
+            return None
 
         out_seat_total = 0
 
@@ -221,7 +233,11 @@ class Restaurant(db.Model):
             if rating.outdoor_seating: 
                 out_seat_total += 1
         
-        return out_seat_total / len(self.ratings)
+        percent = (out_seat_total / len(self.ratings)) * 100 
+
+        percent = int(percent)
+
+        return percent
         
 
     def __repr__(self):
