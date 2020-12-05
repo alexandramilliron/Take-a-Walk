@@ -1,4 +1,4 @@
-"use strict"; 
+'use strict'; 
 
   
 function ChooseRestaurants(props) {
@@ -28,7 +28,7 @@ function ChooseRestaurants(props) {
             const display_rests = rest_objects.map((rest) => { 
                 return (
                 <div key={rest.name}>
-                <input type="checkbox" value={`${rest.name}|${rest.price}|${rest.display_phone}|${prettyAddress(rest.location)}
+                <input type='checkbox' value={`${rest.name}|${rest.price}|${rest.display_phone}|${prettyAddress(rest.location)}
                                                 |${rest.image_url}`}/>
                 <ul>
                     {rest.name ? <li>{rest.name}</li> : ''}
@@ -50,7 +50,7 @@ function ChooseRestaurants(props) {
         const chosen_rests = Array.from(document.querySelectorAll('input:checked')); 
 
         let restaurants = chosen_rests.map((element) => {
-            const rest_info = element.value.split("|");
+            const rest_info = element.value.split('|');
             return {
                 'name': rest_info[0],
                 'price': rest_info[1],
@@ -77,12 +77,12 @@ function ChooseRestaurants(props) {
 
 
     return (
-        <div className="">
+        <div className=''>
             <h2>Choose your restaurants:</h2>
             <Form onSubmit={sendRestaurants}>
                 {restList}
 
-            <Button type="submit">Add Restaurants</Button>    
+            <Button type='submit'>Add Restaurants</Button>    
 
                
             </Form>
