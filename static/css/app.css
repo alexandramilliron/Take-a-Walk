@@ -1,14 +1,12 @@
-.checked {
-    color: orange;
-}
+/* App-Wide Styling */
 
 body {
     font-family: 'Didact Gothic', sans-serif;
     font-size: 20px;
 }
 
-.carousel-item {
-    height: 600px;
+.checked {
+    color: orange;
 }
 
 .center {
@@ -17,16 +15,22 @@ body {
     justify-content: center;
 }
 
-.card-display {
-    display: flex;
-    width: 25rem;
+/* Homepage Styling */
+
+.carousel-item {
+    height: 600px;
 }
+
+.home-p {
+    text-align: center;
+}
+
+/* Navigation Bar Styling */
 
 .nav-link {
     font-family: 'Roboto', sans-serif;
     font-size: 12px;    
 }
-
 
 .nav-link:hover {
     font-family: 'Roboto', sans-serif;
@@ -38,7 +42,9 @@ body {
     font-size: 25px;
 }
 
+/* User Ratings Styling */
 
-.home-p {
-    text-align: center;
+.user-rating-card {
+    display: flex;
+    width: 25rem;
 }
