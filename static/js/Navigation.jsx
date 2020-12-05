@@ -19,9 +19,9 @@ function Navigation(props) {
     };
     
     return (
-    <Navbar id="navbar" bg="light" variant="light" sticky="top" >
+    <Navbar id="navbar" bg="light" sticky="top" >
 
-    <Navbar.Brand href="/">
+    <Navbar.Brand href="/" className='nav-brand'>
         <span 
         style={{ width: 30 + 'em', height: 30 + 'em' }}
         >
@@ -31,14 +31,16 @@ function Navigation(props) {
     </Navbar.Brand>
 
     <Nav className='ml-auto'>
-        <Link to={"/"} className="nav-link">Home</Link>
-        <Link to={"/new-walk"} className="nav-link">New Walk</Link>
-        <Link to={"/restaurants"} className="nav-link">Restaurants</Link>
-        <Link to={"/trails"} className="nav-link">Trails</Link>
-        {props.user ? "" : <Link to={"/register"} className="nav-link">Register</Link>}
-        {props.user ? <Link to={"/saved-walks"} className="nav-link">Saved Walks</Link> : ""}
-        {props.user ? <Link to={`/ratings/${props.user.username}`} className="nav-link">My Ratings</Link> : ""}
-        {props.user ? <Link to="#" className="nav-link" onClick={handleLogout}>Logout</Link> : <Link to={"/login"} className="nav-link">Login</Link>}
+        <Link to={"/"} className="nav-link">HOME</Link>
+        <Link to={"/new-walk"} className="nav-link">NEW WALK</Link>
+        <Link to={"/restaurants"} className="nav-link">ALL RESTAURANTS</Link>
+        <Link to={"/trails"} className="nav-link">ALL TRAILS</Link>
+        {props.user ? "" : <Link to={"/register"} className="nav-link">REGISTER</Link>}
+        {props.user ? <Link to={"/saved-walks"} className="nav-link">MY WALKS</Link> : ""}
+        {props.user ? <Link to={`/ratings/${props.user.username}`} className="nav-link">MY RATINGS</Link> : ""}
+        {props.user ? <Link to="#" className="nav-link" onClick={handleLogout}>LOGOUT</Link> : <Link to={"/login"} className="nav-link">LOGIN</Link>}
+
+        
     </Nav>
     </Navbar>
     );
