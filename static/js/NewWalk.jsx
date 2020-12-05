@@ -48,6 +48,7 @@ function NewWalk(props) {
     
     return (
       <div>
+        
         <h2>Make a New Walk</h2>
           <Form onSubmit={getLocation}>
 
@@ -62,8 +63,6 @@ function NewWalk(props) {
             <Button type='submit'>Submit</Button> 
             
           </Form>
-
-
         
         {compRest ? <ChooseRestaurants latitude={latitude} longitude={longitude} setCompTrail={setCompTrail} 
                                 setCompRest={setCompRest} walk={walk}/> : ''}
