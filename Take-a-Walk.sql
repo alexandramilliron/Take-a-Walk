@@ -82,12 +82,3 @@ ALTER TABLE "ItineraryRest" ADD FOREIGN KEY ("rest_id") REFERENCES "Restaurant" 
 
 
 
-select * from walks
-left join walk_trails 
-on walk_trails.walk_id = walks.walk_id
-left join walk_restaurants 
-on walk_restaurants.walk_id = walks.walk_id
-left join restaurants 
-on restaurants.rest_id = walk_restaurants.rest_id 
-left join trails
-where users.user_id = 1
