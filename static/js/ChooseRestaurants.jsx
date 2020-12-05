@@ -31,10 +31,10 @@ function ChooseRestaurants(props) {
                 <input type="checkbox" value={`${rest.name}|${rest.price}|${rest.display_phone}|${prettyAddress(rest.location)}
                                                 |${rest.image_url}`}/>
                 <ul>
-                    <li>{rest.name}</li>
-                    <li>{rest.price}</li>
-                    <li>{rest.display_phone}</li>
-                    <li>{prettyAddress(rest.location)}</li>
+                    {rest.name ? <li>{rest.name}</li> : ''}
+                    {rest.price ? <li>{rest.price}</li> : ''}
+                    {rest.display_phone ? <li>{rest.display_phone}</li> : ''}
+                    {rest.location ? <li>{prettyAddress(rest.location)}</li> : ''}
                 </ul>
                 </div>);
             });
