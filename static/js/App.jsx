@@ -37,22 +37,22 @@ function App() {
           <Route exact path='/ratings/:username'>
             <UserRatings user={user}/>
           </Route>
-          <Route exact path='/rest-rating/:rest_id'>
+          <Route exact path='/rest-rating/:rest_id/:name'>
             <RestRating user={user}/>
           </Route>
-          <Route exact path='/trail-rating/:trail_id'>
+          <Route exact path='/trail-rating/:trail_id/:name'>
             <TrailRating user={user}/>
           </Route>
           <Route exact path='/trails'>
             <Trails user={user}/>
           </Route>
-          <Route exact path='/trail/:trail_id'>
+          <Route exact path='/trail/:trail_id/:name'>
             <Trail user={user}/>
           </Route>
           <Route exact path='/restaurants'>
             <Restaurants user={user}/>
           </Route>
-          <Route exact path='/restaurant/:rest_id'>
+          <Route exact path='/restaurant/:rest_id/:name'>
             <Restaurant user={user}/>
           </Route>
           <Route path='*'>
