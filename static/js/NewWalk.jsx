@@ -49,14 +49,15 @@ function NewWalk(props) {
     
     
     return (
-      <div className={compRest ? '' : compTrail ? '' : ''}>
+      <div>
         <Container fluid>
           <Collapse in={!open}>
           <Form onSubmit={getLocation}>
           <Row>
             <Col></Col>
 
-            <Col md='auto'>
+            <Col md='auto' className='border rounded-lg' 
+              style={{ padding: 12 + 'em', background: "transparent url('https://images.unsplash.com/photo-1510721878449-121b2b26021e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center /cover" }}>
 
               <div className='center'>
                 <h2>Start a New Walk</h2>
