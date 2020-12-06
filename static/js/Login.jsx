@@ -34,7 +34,7 @@ function Login(props) {
 
     return (
       <div>
-        <Container>
+        <Container fluid>
             <Form onSubmit={handleLogin}>
 
             <Row>
@@ -45,8 +45,8 @@ function Login(props) {
               <div className='center'>
                 <h1>Login</h1>
               </div>
-
               <br/>
+              
               <Form.Group controlId='username'>
                 <Form.Label>username</Form.Label>
                   <Form.Control type='username' placeholder='username' onChange={(event) => {setUsername(event.target.value)}}/> 
@@ -65,7 +65,7 @@ function Login(props) {
 
               <Col></Col>
             </Row>
-            
+          
             </Form>
         </Container>
       </div>
