@@ -1,9 +1,11 @@
-'use strict'; 
+'use strict';
 
   
 function ChooseRestaurants(props) {
     
     const [restList, setRestList] = useState([]);
+    const [open, setOpen] = useState(false);
+    const [chosenRests, setChosenRests] = useState([]); 
 
     
     useEffect(() => {
@@ -13,6 +15,22 @@ function ChooseRestaurants(props) {
 
     function prettyAddress(location) {
         return `${location.address1}, ${location.city}, ${location.state } ${location.zip_code}`;
+    }
+
+
+    function getDetails(rest) {
+        
+        const rest_obj = {
+            'name': rest.name,
+            'price': rest.price,
+            'display_phone': rest.display_phone,
+            'location': prettyAddress(rest.location),
+            'image': rest.image_url
+        };
+
+        let restArray = chosenRests.concat(rest_obj);
+        setChosenRests(restArray);
+
     }
       
 
@@ -27,18 +45,24 @@ function ChooseRestaurants(props) {
 
             const display_rests = rest_objects.map((rest) => { 
                 return (
-                <div key={rest.name}>
-                <input type='checkbox' value={`${rest.name}|${rest.price}|${rest.display_phone}|${prettyAddress(rest.location)}
-                                                |${rest.image_url}`}/>
-                <ul>
-                    {rest.name ? <li>{rest.name}</li> : ''}
-                    {rest.price ? <li>{rest.price}</li> : ''}
-                    {rest.display_phone ? <li>{rest.display_phone}</li> : ''}
-                    {rest.location ? <li>{prettyAddress(rest.location)}</li> : ''}
-                </ul>
-                </div>);
+                <div>
+                <Card key={rest.name} className='choose-card' onClick={() => getDetails(rest)}>
+                    <Card.Title style={{ margin: 10, padding: 0 }}>
+                        <div>{rest.name ? rest.name : ''}</div>
+                    </Card.Title>
+          
+                    <Card.Body style={{margin: 7, padding: 0}}>
+                        <div>{rest.price ? rest.price : ''}</div>
+                        <div>{rest.display_phone ? rest.display_phone : ''}</div>
+                        <div>{rest.location ? prettyAddress(rest.location) : ''}</div>
+                    </Card.Body>
+                </Card>
+                <br/>
+                <br/>
+                </div>
+                );
             });
-
+        setOpen(true); 
         setRestList(display_rests);
         });
     }
@@ -46,24 +70,11 @@ function ChooseRestaurants(props) {
 
     function sendRestaurants(event) {
         event.preventDefault();
-
-        const chosen_rests = Array.from(document.querySelectorAll('input:checked')); 
-
-        let restaurants = chosen_rests.map((element) => {
-            const rest_info = element.value.split('|');
-            return {
-                'name': rest_info[0],
-                'price': rest_info[1],
-                'display_phone': rest_info[2],
-                'location': rest_info[3],
-                'image': rest_info[4]
-            }
-        });
   
         const requestOptions = {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({restaurants: restaurants, latitude: props.latitude, longitude: props.longitude, walk: props.walk.walk_id})
+          body: JSON.stringify({restaurants: chosenRests, latitude: props.latitude, longitude: props.longitude, walk: props.walk.walk_id})
           };
   
           fetch('/api/add-restaurants', requestOptions)
@@ -77,15 +88,31 @@ function ChooseRestaurants(props) {
 
 
     return (
-        <div className=''>
-            <h2>Choose your restaurants:</h2>
-            <Form onSubmit={sendRestaurants}>
-                {restList}
+        <Collapse in={open}>
+        <div className='choose-rest-bg'>
+            <Container fluid>
+                <Row>
+                    <Col></Col>
 
-            <Button type='submit'>Add Restaurants</Button>    
+                    <Col md={8}>
+                        <Form onSubmit={sendRestaurants}>
 
-               
-            </Form>
+                            <h2 className='center choose-rest-h2'>Choose your restaurants:</h2>          
+                            
+                            {restList}
+
+                            <div className='center'>
+                                <Button type='submit' className='roboto-button' variant='outline-secondary'>Add Restaurants</Button>    
+                            </div>
+
+                        </Form>
+                    </Col>
+
+                    <Col></Col>
+                </Row>
+            </Container>
         </div>
+        </Collapse>
+
     );
 }
