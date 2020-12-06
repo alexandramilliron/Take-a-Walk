@@ -9,7 +9,7 @@ function Restaurant() {
 
     return (
         <div>
-            <Container>
+            <Container fluid>
                 <Row>
                     <Col>This is the page for {name}</Col>
                     <Col></Col>
