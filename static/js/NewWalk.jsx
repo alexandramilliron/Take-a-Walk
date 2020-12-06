@@ -10,6 +10,7 @@ function NewWalk(props) {
     const [date, setDate] = useState('');
     const [compTrail, setCompTrail] = useState(false);
     const [walk, setWalk] = useState(null); 
+    const [open, setOpen] = useState(false); 
 
 
     function newWalk() {
@@ -40,6 +41,7 @@ function NewWalk(props) {
             setLatitude(data['latitude']);
             setLongitude(data['longitude']); 
             setCompRest(true);
+            setOpen(true);
             newWalk();
           };
         });
@@ -47,27 +49,46 @@ function NewWalk(props) {
     
     
     return (
-      <div>
-        
-        <h2>Make a New Walk</h2>
+      <div className={compRest ? '' : compTrail ? '' : ''}>
+        <Container fluid>
+          <Collapse in={!open}>
           <Form onSubmit={getLocation}>
+          <Row>
+            <Col></Col>
 
-            <label>Where would you like to walk?</label>
-            <input type='text' placeholder='zipcode'
-                onChange={(event) => {setZipcode(event.target.value)}}/>
-                <br/>
-            <label>When would you like to go?</label>  
-            <input type='date' 
-                onChange={(event) => {setDate(event.target.value)}}/>
-  
-            <Button type='submit'>Submit</Button> 
-            
+            <Col md='auto'>
+
+              <div className='center'>
+                <h2>Start a New Walk</h2>
+              </div>
+              <br/>
+
+            <Form.Group controlId='zipcode'>
+              <Form.Label className='center'>Where would you like to walk?</Form.Label>
+                <Form.Control type='text' placeholder='zipcode' onChange={(event) => {setZipcode(event.target.value)}}/>
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label className='center'>When would you like to go?</Form.Label>  
+                <Form.Control type='date' onChange={(event) => {setDate(event.target.value)}}/>
+            </Form.Group>
+
+            <div className='center'>
+              <Button className='roboto-button' variant='outline-secondary' type='submit'>Submit</Button> 
+            </div>
+
+            </Col> 
+
+            <Col></Col>
+          </Row>  
           </Form>
+          </Collapse>
         
         {compRest ? <ChooseRestaurants latitude={latitude} longitude={longitude} setCompTrail={setCompTrail} 
                                 setCompRest={setCompRest} walk={walk}/> : ''}
         {compTrail ? <ChooseTrails latitude={latitude} longitude={longitude} walk={walk} date={date} setCompTrail={setCompTrail}/> : ''}
-
+        
+        </Container>
       </div>
     );
 }
