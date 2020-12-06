@@ -47,15 +47,15 @@ function Home(props) {
                 </Carousel.Caption>
             </Carousel.Item>
             </Carousel>
-
-        <Container>
+        <Container fluid>
             <Row>
                 <Col></Col>
                 <Col xs={10}>
                 <div>   
                     <p className='home-p'>
                         Welcome to Take a Walk, the site that encourages you to go outside and eat things - safely! With Take a Walk, you can 
-                        generate an outing near you that includes restaurants and trails. Then, leave a rating based on their COVID safety.
+                        generate an outing near you that includes restaurants and trails. Then, you leave a rating based on their COVID safety
+                        and read what others have had to say so you can venture out with confidence.
                     </p>
                 </div>
                 <div>
@@ -64,7 +64,7 @@ function Home(props) {
                     Let's take a walk! 
                     </p>
                 <div className='center'>
-                    <Button variant='outline-secondary' onClick={newWalk}>Start a New Walk</Button>
+                    <Button className='roboto-button' variant='outline-secondary' onClick={newWalk}>Start a New Walk</Button>
                 </div>
                 </div>
                 </Col>
