@@ -28,7 +28,8 @@ function UserRatings(props) {
             <div>
                 {ratings.trail_ratings.map((rating, index) => {
                     return (
-                        <Card key={index} border='info' onClick={() => history.push(`/trail/${rating.trail_id}/${rating.trail_name}`)}>
+                        <div className='user-card' key={index}>
+                        <Card border='dark' onClick={() => history.push(`/trail/${rating.trail_id}/${rating.trail_name}`)}>
                             <Card.Img variant='top' src={`/static/img/trailrating${(index % 5) + 1}.jpeg`}/>
                             <Card.Title style={{ margin: 10, padding: 0 }}>
                                 <i className='fa fa-tree'></i>{'   '}
@@ -41,12 +42,13 @@ function UserRatings(props) {
                             </Card.Title>
                             <Card.Body style={{margin: 7, padding: 0}}>    
                                 <Card.Text> 
-                                    <div>{rating.crowded ? 'This trail was crowded.' : 'This trail was uncrowded.'}</div>
-                                    <div>{rating.difficulty_level ? `Difficulty: ${rating.difficulty_level}` : ''}</div>
-                                    <div>{rating.trail_comment ? `Comment: ${rating.trail_comment}` : ''}</div>
+                                    {rating.crowded ? 'This trail was crowded.' : 'This trail was uncrowded.'}<br/>
+                                    {rating.difficulty_level ? `Difficulty: ${rating.difficulty_level}` : ''}<br/>
+                                    {rating.trail_comment ? `Comment: ${rating.trail_comment}` : ''}<br/>
                                 </Card.Text>
                             </Card.Body> 
-                        </Card>
+                        </Card>                   
+                        </div>
                     );
                 })}
             </div>
@@ -57,7 +59,8 @@ function UserRatings(props) {
             <div>
                 {ratings.restaurant_ratings.map((rating, index) => {
                     return (
-                        <Card key={index} className='user-card' border='info' onClick={() => history.push(`/restaurant/${rating.rest_id}/${rating.rest_name}`)}>
+                        <div className='user-card' key={index}>
+                        <Card border='dark' onClick={() => history.push(`/restaurant/${rating.rest_id}/${rating.rest_name}`)}>
                             <Card.Img variant='top' src={`/static/img/restrating${(index % 5) + 1}.jpeg`}/>
                             <Card.Title style={{ margin: 10, padding: 0 }}>
                                 <i className='fa fa-cutlery'></i>{'   '}
@@ -70,13 +73,14 @@ function UserRatings(props) {
                             </Card.Title>
                             <Card.Body style={{ margin: 7, padding: 0 }}>    
                                 <Card.Text> 
-                                    <div>{rating.masks_worn ? 'Masks were worn.' : 'Masks weren\'t worn.'}</div>
-                                    <div>{rating.socially_distanced ? 'Social distancing was enforced.' : 'Social distancing wasn\'t enforced.'}</div>
-                                    <div>{rating.outdoor_seating ? 'Outdoor seating was available.' : 'There wasn\'t outdoor seating.'}</div>
-                                    <div>{rating.rest_comment ? `Comment: ${rating.rest_comment}` : ''}</div>
+                                    {rating.masks_worn ? 'Masks were worn.' : 'Masks weren\'t worn.'}<br/>
+                                    {rating.socially_distanced ? 'Social distancing was enforced.' : 'Social distancing wasn\'t enforced.'}<br/>
+                                    {rating.outdoor_seating ? 'Outdoor seating was available.' : 'There wasn\'t outdoor seating.'}<br/>
+                                    {rating.rest_comment ? `Comment: ${rating.rest_comment}` : ''}<br/>
                                 </Card.Text>
                             </Card.Body>
                         </Card>
+                        </div>
                     );
                 })}
             </div>
