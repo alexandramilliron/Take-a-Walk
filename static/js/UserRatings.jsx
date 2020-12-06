@@ -89,7 +89,7 @@ function UserRatings(props) {
     return (
         <div>
             <h2 className='float-left'>{props.user.username}'s ratings</h2>
-            <Container>
+            <Container fluid>
                 <Row>
                     <Col md='auto'>{trailCards}</Col>
                     <Col md='auto'>{restCards}</Col>
