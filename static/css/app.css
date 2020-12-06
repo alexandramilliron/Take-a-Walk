@@ -31,7 +31,12 @@ body {
     font-weight: bold;
 }
 
-/* Choose Restaurant Styling */
+/* Choose Trail/Restaurant Styling */
+
+.chosen {
+    color: rgb(228, 226, 227);
+    background-color: rgb(126, 150, 126) !important;
+}
 
 .choose-rest-bg {
     background-image: url('/static/img/chooserestbg.jpg');
@@ -40,15 +45,18 @@ body {
     background-size: cover;
 }
 
-.choose-rest-h2 {
+.choose-h2 {
     color: white; 
+    text-shadow: 0 0 3px black;
 }
 
 .choose-card {
     min-width: 100;
 }
 
-/* Choose Trail Styling */
+.choose-card:hover {
+    box-shadow: 5px 10px 20px 1px rgba(0,0,0,0.253);
+}
 
 .choose-trail-bg {
     background-image: url('/static/img/choosetrailbg.jpg');
@@ -66,7 +74,7 @@ body {
 
 .nav-link:hover {
     font-family: 'Roboto', sans-serif;
-    font-size: 1rem;  
+    font-size: 1.2rem; 
 }
 
 .nav-brand {
@@ -89,7 +97,7 @@ body {
     letter-spacing: .03rem;
 }
 
-.card:hover {
+.user-card:hover {
     box-shadow: 5px 10px 20px 1px rgba(0,0,0,0.253);
 }
 
@@ -121,5 +129,20 @@ body {
 
 .rating-link:hover {
     text-decoration: none;
-    color: #17a2b8;
+    color: #51914c;
+}
+
+/* Saved Walks Styling */
+
+.walk-card {
+    box-shadow: 5px 10px 20px 1px rgba(0,0,0,0.253);
+    font-size: 1.7rem; 
+    font-family: 'Roboto', sans-serif;
+}
+
+.saved-walks-bg {
+    background-image: url('');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
