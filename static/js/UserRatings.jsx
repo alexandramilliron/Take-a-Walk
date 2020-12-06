@@ -57,7 +57,7 @@ function UserRatings(props) {
             <div>
                 {ratings.restaurant_ratings.map((rating, index) => {
                     return (
-                        <Card key={index} border='info' onClick={() => history.push(`/restaurant/${rating.rest_id}/${rating.rest_name}`)}>
+                        <Card key={index} className='user-card' border='info' onClick={() => history.push(`/restaurant/${rating.rest_id}/${rating.rest_name}`)}>
                             <Card.Img variant='top' src={`/static/img/restrating${(index % 5) + 1}.jpeg`}/>
                             <Card.Title style={{ margin: 10, padding: 0 }}>
                                 <i className='fa fa-cutlery'></i>{'   '}
