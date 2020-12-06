@@ -190,7 +190,7 @@ def add_restaurants():
     for restaurant in restaurants:
         restaurant = crud.create_restaurant(latitude, longitude, restaurant['name'], 
                         restaurant['price'], restaurant['location'], restaurant['display_phone'],
-                        restaurant['image'])
+                        restaurant['image'], restaurant['yelp_id'])
         crud.create_walk_restaurant(restaurant, walk)
     
     return {'Success': 'Added to database.'} 
@@ -209,7 +209,7 @@ def add_trails():
     walk = crud.get_walk_from_id(walk_id)
     
     for trail in trails:
-        trail = crud.create_trail(latitude, longitude, trail['name'], trail['length'], trail['location'], trail['image'])
+        trail = crud.create_trail(latitude, longitude, trail['name'], trail['length'], trail['location'], trail['image'], trail['hiking_id'])
         crud.create_walk_trail(trail, walk)
     
     return {'Success': 'Added to database.'}
