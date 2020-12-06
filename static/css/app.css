@@ -40,6 +40,14 @@ body {
     background-size: cover;
 }
 
+.choose-rest-h2 {
+    color: white; 
+}
+
+.choose-card {
+    min-width: 100;
+}
+
 /* Choose Trail Styling */
 
 .choose-trail-bg {
@@ -68,7 +76,7 @@ body {
 
 /* User Ratings Styling */
 
-.card {
+.user-card {
     display: flex;
     width: 25rem;
 }
