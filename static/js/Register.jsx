@@ -39,7 +39,7 @@ function Register(props) {
 
     return (
         <div>
-            <Container>
+            <Container fluid>
                 <Form onSubmit={handleRegistration}>    
                 <Row>
                     <Col></Col>
