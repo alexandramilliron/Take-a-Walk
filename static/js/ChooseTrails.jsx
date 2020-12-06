@@ -4,6 +4,7 @@
 function ChooseTrails(props) {
 
     const [trailList, setTrailList] = useState([]);
+    const [open, setOpen] = useState(false);
     const history = useHistory();
 
 
@@ -32,7 +33,7 @@ function ChooseTrails(props) {
                 </ul>
                 </div>);
             });
-
+        setOpen(true); 
         setTrailList(display_trails);
         });
     }
@@ -69,12 +70,16 @@ function ChooseTrails(props) {
 
 
     return (
-        <div className=''>
-            <h2>Choose your trails:</h2>
+        <Collapse in={open}>
+        <div className='choose-trail-bg'>
             <Form onSubmit={sendTrails}>
-                {trailList}
-            <Button type='submit'>Add Trails</Button>
+
+                <h2>Choose your trails:</h2>
+                    {trailList}
+                <Button type='submit' className='roboto-button' variant='outline-secondary'>Add Trails</Button>
+
             </Form>
         </div>
+        </Collapse>
     );
 }
