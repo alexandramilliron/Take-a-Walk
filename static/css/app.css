@@ -26,6 +26,29 @@ body {
     text-align: center;
 }
 
+.roboto-button {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+/* Choose Restaurant Styling */
+
+.choose-rest-bg {
+    background-image: url('/static/img/chooserestbg.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+/* Choose Trail Styling */
+
+.choose-trail-bg {
+    background-image: url('/static/img/choosetrailbg.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
 /* Navigation Bar Styling */
 
 .nav-link {
