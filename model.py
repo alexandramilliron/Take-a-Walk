@@ -61,6 +61,7 @@ class Trail(db.Model):
     length = db.Column(db.Float)
     location = db.Column(db.String) 
     image = db.Column(db.String)
+    hiking_id = db.Column(db.Integer)
 
     ratings = db.relationship('TrailRating')
     walks = db.relationship('Walk', secondary='walk_trails')
@@ -76,6 +77,7 @@ class Trail(db.Model):
             'length': self.length,
             'location': self.location,
             'image': self.image,
+            'hiking_id': self.hiking_id,
             'avg_star': self.get_avg_star_rating(),
             'avg_diff': self.get_avg_difficulty(),
             'avg_crowd': self.get_avg_crowding()
@@ -145,6 +147,7 @@ class Restaurant(db.Model):
     location = db.Column(db.String)
     phone = db.Column(db.String)
     image = db.Column(db.String)
+    yelp_id = db.Column(db.String)
 
     ratings = db.relationship('RestRating')
     walks = db.relationship('Walk', secondary='walk_restaurants')
@@ -160,6 +163,7 @@ class Restaurant(db.Model):
             'location': self.location,
             'phone': self.phone,
             'image': self.image,
+            'yelp_id': self.yelp_id,
             'avg_star': self.get_avg_star_rating(),
             'avg_mask': self.get_avg_masks_worn(),
             'avg_soc': self.get_avg_social_distance(),
