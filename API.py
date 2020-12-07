@@ -23,6 +23,16 @@ def yelp_data_api(latitude, longitude):
     return data
 
 
+def yelp_data_api_id(yelp_id):
+    YELP_KEY = os.environ['YELP_KEY']
+    url = 'https://api.yelp.com/v3/businesses/' + yelp_id
+    headers = headers = {'AUTHORIZATION': 'BEARER '+ YELP_KEY}
+    payload = {'yelp_id': yelp_id}
+    response = requests.get(url, params=payload, headers=headers)
+    data = response.json()
+    return data
+
+
 def weather_data_api(latitude, longitude, date):
     WEATHER_KEY = os.environ['OPEN_WEATHER_KEY']
     url = 'https://api.openweathermap.org/data/2.5/onecall'
