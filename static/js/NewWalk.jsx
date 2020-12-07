@@ -86,8 +86,9 @@ function NewWalk(props) {
           </Collapse>
         
         {compRest ? <ChooseRestaurants latitude={latitude} longitude={longitude} setCompTrail={setCompTrail} 
-                                setCompRest={setCompRest} walk={walk}/> : ''}
-        {compTrail ? <ChooseTrails latitude={latitude} longitude={longitude} walk={walk} date={date} setCompTrail={setCompTrail}/> : ''}
+                                        setCompRest={setCompRest} walk={walk} user={props.user}/> : ''}
+        {compTrail ? <ChooseTrails latitude={latitude} longitude={longitude} walk={walk} date={date} setCompTrail={setCompTrail}
+                                    user={props.user}/> : ''}
         
         </Container>
       </div>
