@@ -24,10 +24,10 @@ function ChooseRestaurants(props) {
 
         const rest_obj = {
             'name': rest.name,
-            'price': rest.price,
-            'display_phone': rest.display_phone,
+            'price': rest.price ? rest.price : null,
+            'display_phone': rest.display_phone ? rest.display_phone : null,
             'location': prettyAddress(rest.location),
-            'image': rest.image_url,
+            'image': rest.image_url ? rest.image_url : null,
             'yelp_id': rest.id
         };
 
