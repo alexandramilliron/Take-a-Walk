@@ -91,13 +91,18 @@ function UserRatings(props) {
     };
 
     return (
-        <div>
-            <h2 className='float-left'>{props.user.username}'s ratings</h2>
+        <div className='user-ratings-bg'>
             <Container fluid>
                 <Row>
+                    <Col md={3}>
+                        <h2 className='choose-h2'>{props.user.username}'s ratings</h2>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={2}></Col>
                     <Col md='auto'>{trailCards}</Col>
+                    <Col md={1}></Col>
                     <Col md='auto'>{restCards}</Col>
-                    <Col></Col>
                 </Row>
             </Container>
         </div>
