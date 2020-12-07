@@ -21,9 +21,9 @@ function ChooseTrails(props) {
 
         const trail_obj = {
             'name': trail.name,
-            'location': trail.location,
-            'length': trail.length,
-            'image': trail.imgSmallMed,
+            'location': trail.location ? trail.location : null,
+            'length': trail.length ? trail.length : null,
+            'image': trail.imgSmallMed ? trail.imgSmallMed : null,
             'hiking_id': trail.id
         };
 
@@ -89,7 +89,7 @@ function ChooseTrails(props) {
               .then(response => response.json())
               .then(data => {
                 console.log(data);
-                history.push('/saved-walks'); 
+                history.push(`/saved-walks/${props.user.username}`); 
               });
     }
 
