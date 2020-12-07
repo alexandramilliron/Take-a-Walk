@@ -2,7 +2,7 @@
 
 from flask import (Flask, render_template, request, flash, session, redirect, jsonify)
 from model import connect_to_db
-from API import hiking_data_api, yelp_data_api, weather_data_api
+from API import hiking_data_api, yelp_data_api, yelp_data_api_id, weather_data_api
 import crud 
 import pgeocode 
 
@@ -162,7 +162,17 @@ def get_api_restaurants():
     longitude = request.args.get('longitude')
     
     return yelp_data_api(latitude, longitude)
+
+
+@app.route('/api/restaurant-details')
+def get_api_restaurant_details():
+
+    rest_id = request.args.get('rest_id')
     
+    rest = crud.get_rest_from_id(rest_id)
+    
+    return yelp_data_api_id(rest.yelp_id)
+
 
 @app.route('/api/choose-trails')
 def get_api_trails():
