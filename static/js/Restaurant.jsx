@@ -1,18 +1,52 @@
 'use strict';
 
+
 function Restaurant() {
 
     const { rest_id, name } = useParams();
 
-    // fetch data based on business ID
-    //
+    const [d, setD] = useState(''); 
+
+
+    useEffect(() => {
+        fetchRestaurantDetails();
+    }, []);
+
+
+    function fetchRestaurantDetails() {
+
+        fetch(`/api/restaurant-details?rest_id=${rest_id}`)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+
+            const rest = data;
+
+            function display_rest() {
+
+                return (
+                <div>
+                    {rest.name}
+                </div>
+                )}
+        
+            setD(display_rest)
+        });
+    }
+
 
     return (
         <div>
             <Container fluid>
                 <Row>
-                    <Col>This is the page for {name}</Col>
                     <Col></Col>
+                    <Col md='auto'>{name}</Col>
+                    <Col></Col>
+                </Row>
+                <Row>
+                    <Col></Col>
+                    <Col>{d}</Col>
                     <Col></Col>
                 </Row>
             </Container>
