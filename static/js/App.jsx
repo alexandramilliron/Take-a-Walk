@@ -28,7 +28,7 @@ function App() {
           <Route exact path='/register'>
             <Register setUser={setUser}/> 
           </Route>
-          <Route exact path='/saved-walks'>
+          <Route exact path='/saved-walks/:username'>
             <SavedWalks user={user}/> 
           </Route>
           <Route exact path='/itinerary/:walk_id'> 
