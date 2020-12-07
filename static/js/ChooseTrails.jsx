@@ -59,10 +59,9 @@ function ChooseTrails(props) {
                     <Card.Title className='center' style={{ margin: 10, padding: 0 }}>
                         <div>{trail.name ? trail.name : ''}</div>
                     </Card.Title>
-                    <Card.Body style={{margin: 7, padding: 0}}>
-                        <div>{trail.name ? trail.name : ''}</div>
-                        <div>{trail.location ? trail.location : ''}</div>
-                        <div>{trail.length ? trail.length : ''} miles</div>
+                    <Card.Body style={{ margin: 7, padding: 25 }}>
+                        <div>{trail.location ? trail.location : ''}<span className='float-right'>{trail.length ? `${trail.length} miles` : ''}</span></div>
+                        <div>{trail.summary ? `Summary: "${trail.summary}"` : ''}</div>
                     </Card.Body>
                 </Card>
                 <br/>
