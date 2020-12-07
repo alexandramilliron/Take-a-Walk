@@ -16,6 +16,11 @@ body {
     justify-content: center;
 }
 
+.roboto-button {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
 /* Homepage Styling */
 
 .carousel-item {
@@ -24,11 +29,6 @@ body {
 
 .home-p {
     text-align: center;
-}
-
-.roboto-button {
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
 }
 
 /* Choose Trail/Restaurant Styling */
@@ -129,19 +129,71 @@ body {
 
 .rating-link:hover {
     text-decoration: none;
-    color: #51914c;
+    color: #2683c0;
+    font-size: 1.7rem;
+}
+
+.user-ratings-bg {
+    background-image: url('https://images.unsplash.com/photo-1518275491839-7039ff7be8fa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 /* Saved Walks Styling */
 
 .walk-card {
     box-shadow: 5px 10px 20px 1px rgba(0,0,0,0.253);
-    font-size: 1.7rem; 
-    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem; 
+    width: 33rem;
+    font-family: 'Lato', 'sans-serif'; 
 }
 
 .saved-walks-bg {
-    background-image: url('');
+    background-image: url('/static/img/savedwalksbg.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.walk-link {
+    color: black; 
+}
+
+.walk-link:hover {
+    text-decoration: none;
+    color: #c67ada;
+    font-size: 1.7rem;
+}
+
+/* Trail/Restaurant Pages Styling */
+
+.all-card {
+    border: black;
+    font-size: 1.1rem;
+    font-family: 'Lato', 'sans-serif'; 
+    width: 50rem;
+}
+
+.all-link {
+    color: black;
+}
+
+.all-link:hover {
+    text-decoration: none;
+    color: #51914c;
+    font-size: 1.7rem;
+}
+
+.trails-bg {
+    background-image: url('/static/img/trailsbg.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.restaurants-bg {
+    background-image: url('https://images.unsplash.com/photo-1584879790537-27635afef956?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTV8fHJlc3RhdXJhbnR8ZW58MHwxfDB8YmxhY2s%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
