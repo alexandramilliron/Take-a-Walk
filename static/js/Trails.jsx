@@ -26,24 +26,30 @@ function Trails() {
                     {trails.map((trail, index) => {
                         return (
                             <div key={index}>
-                            <Media as='li'>
-                                <Image
-                                    width={64}
-                                    height={64}
-                                    className='mr-3'
-                                    src={trail.image}
-                                />
-                                <Media.Body>
-                                    <h5><Link to={`/trail/${trail.trail_id}/${trail.name}`}>{trail.name}</Link>{'  '}
+                            <Card className='all-card'>
+                                <Card.Body>
+                                    <Image
+                                        width={200}
+                                        height={200}
+                                        className='mr-3 float-left'
+                                        src={trail.image}
+                                    />
+                                    <Card.Title>
+                                    <h5>
+                                        <Link className='all-link' to={`/trail/${trail.trail_id}/${trail.name}`}>{trail.name}</Link>{'  '}
+                                        <h6>{trail.location}</h6>
+                                        
                                         {trail.avg_star ? Array.from({length: trail.avg_star}, (value, index) =>
                                         <span key={index}><i className={'fa fa-star checked'}></i></span>) : ''} 
                                     </h5>
+                                    </Card.Title>
                                     <div>
                                         <div>{trail.avg_crowd ? `${trail.avg_crowd}% of users have described this trail as crowded.` : 'No reviews on crowdedness yet.'}</div>
                                         <div>{trail.avg_diff ? `On average, users have given this trail a difficulty level of ${trail.avg_diff}.` : 'No reviews on difficulty yet.'}</div>
                                     </div>
-                                </Media.Body>
-                            </Media>
+                                    <br/>
+                                </Card.Body>
+                            </Card>
                             <br/>
                             </div>
                         );
@@ -57,8 +63,21 @@ function Trails() {
 
 
     return (
-        <div>
-            {trails}
+        <div className='trails-bg'>
+            <Container fluid>
+                <Row>
+                    <Col>
+                        <h2 className='choose-h2'>Reviewed Trails</h2>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={3}></Col>
+                    <Col md={8}>
+                        {trails}
+                    </Col>
+                    <Col></Col>
+                </Row>
+            </Container>
         </div>
     );
 }
