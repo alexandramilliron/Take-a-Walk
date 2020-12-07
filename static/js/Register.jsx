@@ -67,9 +67,9 @@ function Register(props) {
 
                         <div className='center'>
                             <ButtonGroup vertical>
-                                <Button id='registerButton' type='submit'>Register</Button>
+                                <Button id='registerButton' className='roboto-button' variant='secondary' type='submit'>Register</Button>
                                 <br/>
-                                <Button variant='link' onClick={() => Login()}>Already have an account? Login</Button>
+                                <Button variant='link' className='roboto-button' style={{ fontSize: 1.2 + 'em' }} onClick={() => Login()}>Already have an account? Login</Button>
                             </ButtonGroup>
                         </div>
                     </Col>
