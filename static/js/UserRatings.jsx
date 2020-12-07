@@ -65,7 +65,7 @@ function UserRatings(props) {
                         <React.Fragment>
                         <div className='user-card' key={index}>
                         <Card border='dark' onClick={() => history.push(`/restaurant/${rating.rest_id}/${rating.rest_name}`)}>
-                            <Card.Img variant='top' src={`/static/img/restrating${(index % 5) + 1}.jpeg`}/>
+                            <Card.Img variant='top' src={`/static/img/restratingpic${(index % 5) + 1}.jpeg`}/>
                             <Card.Title style={{ margin: 10, padding: 0 }}>
                                 <i className='fa fa-cutlery'></i>{'   '}
                                 <Link to={`/restaurant/${rating.rest_id}`} className='rating-link'>{rating.rest_name}</Link><br/>
