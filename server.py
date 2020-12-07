@@ -69,16 +69,14 @@ def load_walk_details(walk_id):
     return jsonify(walk)
 
 
-@app.route('/api/saved-walks')
-def load_user_walks():
+@app.route('/api/saved-walks/<username>')
+def load_user_walks(username):
 
-    username = request.args.get('username')
+    walks = crud.get_user_walks(username) 
 
-    walks = crud.get_user_walks(username)
-
-    serialized_walks = [walk.serialize() for walk in walks]
+    details_for_walks = [walk.get_walk_details() for walk in walks]
     
-    return jsonify(serialized_walks)
+    return jsonify(details_for_walks)
 
 
 @app.route('/api/ratings/<username>')
