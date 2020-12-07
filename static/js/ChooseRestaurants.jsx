@@ -63,10 +63,9 @@ function ChooseRestaurants(props) {
                     <Card.Title className='center' style={{ margin: 10, padding: 0 }}>
                         <div>{rest.name ? rest.name : ''}</div>
                     </Card.Title>
-                    <Card.Body style={{margin: 7, padding: 0}}>
-                        <div>{rest.price ? rest.price : ''}</div>
-                        <div>{rest.display_phone ? rest.display_phone : ''}</div>
-                        <div>{rest.location ? prettyAddress(rest.location) : ''}</div>
+                    <Card.Body style={{ margin: 7, padding: 25 }}>
+                        <div>{rest.location ? prettyAddress(rest.location) : ''}<span className='float-right'>{rest.price ? rest.price : ''}</span></div>
+                        <div>{rest.display_phone ? rest.display_phone : ''}<span className='float-right'>{rest.categories[0].title ? rest.categories[0].title : ''}</span></div>
                     </Card.Body>
                 </Card>
                 <br/>
