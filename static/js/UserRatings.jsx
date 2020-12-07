@@ -28,6 +28,7 @@ function UserRatings(props) {
             <div>
                 {ratings.trail_ratings.map((rating, index) => {
                     return (
+                        <React.Fragment>
                         <div className='user-card' key={index}>
                         <Card border='dark' onClick={() => history.push(`/trail/${rating.trail_id}/${rating.trail_name}`)}>
                             <Card.Img variant='top' src={`/static/img/trailrating${(index % 5) + 1}.jpeg`}/>
@@ -49,6 +50,8 @@ function UserRatings(props) {
                             </Card.Body> 
                         </Card>                   
                         </div>
+                        <div><br/></div>
+                        </React.Fragment>
                     );
                 })}
             </div>
@@ -59,6 +62,7 @@ function UserRatings(props) {
             <div>
                 {ratings.restaurant_ratings.map((rating, index) => {
                     return (
+                        <React.Fragment>
                         <div className='user-card' key={index}>
                         <Card border='dark' onClick={() => history.push(`/restaurant/${rating.rest_id}/${rating.rest_name}`)}>
                             <Card.Img variant='top' src={`/static/img/restrating${(index % 5) + 1}.jpeg`}/>
@@ -81,6 +85,8 @@ function UserRatings(props) {
                             </Card.Body>
                         </Card>
                         </div>
+                        <div><br/></div>
+                        </React.Fragment>
                     );
                 })}
             </div>
@@ -95,14 +101,17 @@ function UserRatings(props) {
             <Container fluid>
                 <Row>
                     <Col md={3}>
-                        <h2 className='choose-h2'>{props.user.username}'s ratings</h2>
+                        <h2>{props.user.username}'s ratings</h2>
                     </Col>
+                    <Col md={3}></Col>
+                    <Col></Col>
                 </Row>
                 <Row>
                     <Col md={2}></Col>
                     <Col md='auto'>{trailCards}</Col>
                     <Col md={1}></Col>
                     <Col md='auto'>{restCards}</Col>
+                    
                 </Row>
             </Container>
         </div>

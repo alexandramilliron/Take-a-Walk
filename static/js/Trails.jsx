@@ -67,7 +67,7 @@ function Trails() {
             <Container fluid>
                 <Row>
                     <Col>
-                        <h2 className='choose-h2'>Reviewed Trails</h2>
+                        <h2 className='choose-h2'>Trails</h2>
                     </Col>
                 </Row>
                 <Row>

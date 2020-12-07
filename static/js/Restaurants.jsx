@@ -65,7 +65,7 @@ function Restaurants() {
             <Container fluid>
                 <Row>
                     <Col>
-                        <h2 className='choose-h2'>Reviewed Restaurants</h2>
+                        <h2 className='choose-h2'>Restaurants</h2>
                     </Col>
                 </Row>
                 <Row>
