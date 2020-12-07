@@ -59,7 +59,7 @@ function Home(props) {
                     </p>
                 </div>
                 <div>
-                    <p className='center'>
+                    <p className='center home-p'>
                     Ready to get started? 
                     Let's take a walk! 
                     </p>
