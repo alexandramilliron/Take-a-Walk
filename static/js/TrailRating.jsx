@@ -15,8 +15,8 @@ function TrailRating(props) {
 
     function TextArea() {
         return (
-        <Form.Group controlId=''>
-            <Form.Label>What did you think of {name}?</Form.Label>
+        <Form.Group>
+            <Form.Label className='center'>What did you think of the {name}?</Form.Label>
             <Form.Control as='textarea' rows={3} onChange={(event) => {setComment(event.target.value)}}/>
         </Form.Group>
         );
@@ -25,7 +25,7 @@ function TrailRating(props) {
 
     function Star({starID, marked}) {
         return (
-            <i star-id={starID} className={`fa fa-star ${marked ? 'checked' : ''}`} onClick={event => setStarRating(event.target.getAttribute('star-id'))}></i>
+            <i star-id={starID} className={`fa fa-star fa-3x trail-rating-star ${marked ? 'checked' : ''}`} onClick={event => setStarRating(event.target.getAttribute('star-id'))}></i>
         );
     };
 
@@ -33,13 +33,16 @@ function TrailRating(props) {
     function StarRating() {
         return (
             <div>
-                {Array.from({length: 5}, (value, index) => 
-                    <Star
-                        key={index + 1}
-                        starID={index + 1}
-                        marked={starRating >= (index + 1)}
-                    />        
-                )}
+                <div className='center'>How many stars would you give the {name}?</div><br/>
+                    <div className='center'>
+                    {Array.from({length: 5}, (value, index) => 
+                        <Star
+                            key={index + 1}
+                            starID={index + 1}
+                            marked={starRating >= (index + 1)}
+                        />        
+                    )}
+                    </div>
             </div>
         );
     };
@@ -48,7 +51,7 @@ function TrailRating(props) {
     function DifficultyRating() {
         return ( 
             <div>
-            <Form.Group controlId=''>
+            <Form.Group>
                 <Form.Label>How difficult was the trail?</Form.Label>
                 <Form.Control as='select' onChange={(event) => setDifficulty(event.target.value)}> 
                     <option>select a difficulty level</option>
@@ -91,32 +94,40 @@ function TrailRating(props) {
                   if (data['Error']) {
                     alert('Unable to add rating.')
                   } else {
-                    history.push(`/saved-walks/${props.user.username}`);
+                    history.push(`/ratings/${props.user.username}`);
                   };
                 });
     };
 
 
     return (
-        <div>
+        <div className='rating-form'>
+            <Container>
             <Form onSubmit={addRating}>
-
-                {/* comment box */}
-                {TextArea()}
-
-                {/* star rating */}
-                {StarRating()}
-
-                {/* difficulty rating */}
-                {DifficultyRating()}
-
-                {/* crowded rating */}
-                {IsCrowded()}
-
-                <br/>
-
-                <Button type='submit'>Submit Review</Button>
+                <Row>
+                    <Col></Col>
+                    <Col md='auto' className='border rounded-lg' style={{ padding: 4 + 'em', margin: 1 + 'em', background: "transparent url('/static/img/trailratingbg.jpeg') no-repeat center center /cover" }}>
+                    <div>
+                        {/* comment box */}
+                        {TextArea()}
+                        <br/>
+                        {/* star rating */}
+                        {StarRating()}
+                        <br/>
+                        {/* difficulty rating */}
+                        {DifficultyRating()}
+                        <br/>
+                        {/* crowded rating */}
+                        {IsCrowded()}
+                    </div>
+                    <div className='center'>
+                        <Button className='roboto-button' variant='secondary' type='submit'>Submit Rating</Button>
+                    </div>
+                    </Col>
+                    <Col></Col>                           
+                </Row>
             </Form>
+            </Container>
         </div>
     );
 }
