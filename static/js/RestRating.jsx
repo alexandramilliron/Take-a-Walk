@@ -16,8 +16,8 @@ function RestRating(props) {
     
     function TextArea() {
       return (
-      <Form.Group controlId=''>
-          <Form.Label>What did you think of {name}?</Form.Label>
+      <Form.Group>
+          <Form.Label className='center'>What did you think of {name}?</Form.Label>
           <Form.Control as='textarea' rows={3} onChange={(event) => {setComment(event.target.value)}}/>
       </Form.Group>
       );
@@ -26,7 +26,7 @@ function RestRating(props) {
 
     function Star({starID, marked}) {
       return (
-          <i star-id={starID} className={`fa fa-star ${marked ? 'checked' : ''}`} onClick={event => setStarRating(event.target.getAttribute('star-id'))}></i>
+          <i star-id={starID} className={`fa fa-star fa-3x rest-rating-star ${marked ? 'checked' : ''}`} onClick={event => setStarRating(event.target.getAttribute('star-id'))}></i>
       );
     };
 
@@ -34,6 +34,8 @@ function RestRating(props) {
     function StarRating() {
       return (
           <div>
+            <div className='center'>How many stars would you give {name}?</div><br/> 
+              <div className='center'>
               {Array.from({length: 5}, (value, index) => 
                   <Star
                       key={index + 1}
@@ -41,6 +43,7 @@ function RestRating(props) {
                       marked={starRating >= (index + 1)}
                   />        
               )}
+              </div>
           </div>
       );
     };
@@ -97,33 +100,45 @@ function RestRating(props) {
                   if (data['Error']) {
                     alert('Unable to add rating.')
                   } else {
-                    history.push(`/saved-walks/${props.user.username}`);
+                    history.push(`/ratings/${props.user.username}`);
                   };
                 });
     };
 
     return (
-        <div>
+        <div className='rating-form'>
+          <Container fluid>
             <Form onSubmit={addRating}>
+            <Row>
+              <Col></Col>
 
+              <Col md='auto' className='border rounded-lg' style={{ padding: 4 + 'em', margin: 1 + 'em', background: "transparent url('/static/img/restratingbg.jpeg') no-repeat center center /cover" }}>
+                <div>
                 {/* comment box */}
                 {TextArea()}
-
+                <br/>
                 {/* star rating */}
                 {StarRating()}
-
+                <br/>
                 {/* masks worn */}
                 {MasksWorn()}
-
+                <br/>
                 {/* socially distanced */}
                 {SociallyDistanced()}
-
+                <br/>
                 {/* outdoor seating */}
                 {OutdoorSeating()}
+                </div>
+                <div className='center'>
+                  <Button className='roboto-button' variant='secondary' type='submit'>Submit Rating</Button>
+                </div>
+              
+              </Col>
 
-                <Button type='submit'>Submit Review</Button>
-
+              <Col></Col>
+            </Row>
             </Form>
+          </Container>
         </div>
     );
 }
