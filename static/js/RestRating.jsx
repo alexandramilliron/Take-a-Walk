@@ -97,7 +97,7 @@ function RestRating(props) {
                   if (data['Error']) {
                     alert('Unable to add rating.')
                   } else {
-                    history.push('/saved-walks');
+                    history.push(`/saved-walks/${props.user.username}`);
                   };
                 });
     };
