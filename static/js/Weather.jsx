@@ -14,7 +14,7 @@ function Weather(props) {
         return response.json();
         })
         .then(data => {
-          setWeather(`The temperature will be ${data['temp']['day']} but will feel like ${data['feels_like']['day']}.
+          setWeather(`The temperature will be ${data['temp']['day']}\u00B0 but will feel like ${data['feels_like']['day']}\u00B0.
                       The weather description is "${data['weather'][0]['description']}."`)
           setOpen(true);
         });
