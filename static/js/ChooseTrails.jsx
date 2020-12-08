@@ -56,12 +56,12 @@ function ChooseTrails(props) {
                 return (
                 <div key={trail.name}>
                 <Card className='choose-card' onClick={(event) => getDetails(trail, event)}>
-                    <Card.Title className='center' style={{ margin: 10, padding: 0 }}>
+                    <Card.Title className='center' style={{ margin: 5, padding: 5 }}>
                         <div>{trail.name ? trail.name : ''}</div>
                     </Card.Title>
-                    <Card.Body style={{ margin: 7, padding: 25 }}>
+                    <Card.Body style={{ margin: 5, padding: 10 }}>
                         <div>{trail.location ? trail.location : ''}<span className='float-right'>{trail.length ? `${trail.length} miles` : ''}</span></div>
-                        <div>{trail.summary ? `Summary: "${trail.summary}"` : ''}</div>
+                        <div style = {{ paddingTop: 5 }}>{trail.summary ? `Summary: ${trail.summary}` : ''}</div>
                     </Card.Body>
                 </Card>
                 <br/>
@@ -100,7 +100,7 @@ function ChooseTrails(props) {
                 <Row>
                     <Col></Col>
 
-                    <Col md={8}>
+                    <Col md={5}>
                         <Form onSubmit={sendTrails}>
 
                         <h2 className='center choose-h2'>Choose your trails:</h2>
