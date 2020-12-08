@@ -27,8 +27,8 @@ function Restaurants() {
                             <Card className='all-card'>
                                 <Card.Body>
                                     <Image
-                                        width={200}
-                                        height={200}
+                                        width={190}
+                                        height={190}
                                         className='mr-3 float-left'
                                         src={rest.image}
                                     />
