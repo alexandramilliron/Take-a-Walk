@@ -66,7 +66,6 @@ class Trail(db.Model):
     ratings = db.relationship('TrailRating')
     walks = db.relationship('Walk', secondary='walk_trails')
 
-
     def serialize(self):
         """Return dict with this trail's id, name, lat, and long."""
         return {
@@ -76,6 +75,7 @@ class Trail(db.Model):
             'longitude': self.longitude,
             'length': self.length,
             'location': self.location,
+            'state': self.location.split(', ')[1],
             'image': self.image,
             'hiking_id': self.hiking_id,
             'avg_star': self.get_avg_star_rating(),
@@ -161,6 +161,7 @@ class Restaurant(db.Model):
             'latitude': self.latitude,
             'longitude': self.longitude,
             'location': self.location,
+            'state': self.location.split(', ')[2],
             'phone': self.phone,
             'image': self.image,
             'yelp_id': self.yelp_id,
@@ -362,6 +363,7 @@ class Walk(db.Model):
             'user_id': self.user_id, 
             'walk_id': self.walk_id,
             'walk_date': self.walk_date.strftime('%a, %b %d, %Y'),
+            'sort_date': self.walk_date.strftime('%s'),
             'trails': [t.serialize() for t in self.trails],
             'restaurants': [r.serialize() for r in self.restaurants]
         }
