@@ -11,8 +11,8 @@ function Home(props) {
 
     return (
         <div>
-            <Carousel className>
-            <Carousel.Item>
+            <Carousel>
+            <Carousel.Item className='home-carousel-item'>
                 <Image
                 className='d-block w-100'
                 src='/static/img/background1.jpg'
@@ -24,7 +24,7 @@ function Home(props) {
                     <h3>Welcome to Take a Walk!</h3>
                 </Carousel.Caption>
             </Carousel.Item>
-            <Carousel.Item>
+            <Carousel.Item className='home-carousel-item'>
                 <Image
                 className='d-block w-100'
                 src='/static/img/background2.jpg'
@@ -35,7 +35,7 @@ function Home(props) {
                     <h3></h3>
                 </Carousel.Caption>
             </Carousel.Item>
-            <Carousel.Item>
+            <Carousel.Item className='home-carousel-item'>
                 <Image
                 className='d-block w-100'
                 src='/static/img/background3.jpg'
