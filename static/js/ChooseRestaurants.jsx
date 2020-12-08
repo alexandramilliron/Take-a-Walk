@@ -60,10 +60,10 @@ function ChooseRestaurants(props) {
                 return (
                 <div key={rest.name}>
                 <Card className='choose-card' onClick={(event) => getDetails(rest, event)}>
-                    <Card.Title className='center' style={{ margin: 10, padding: 0 }}>
+                    <Card.Title className='center' style={{ margin: 5, padding: 5 }}>
                         <div>{rest.name ? rest.name : ''}</div>
                     </Card.Title>
-                    <Card.Body style={{ margin: 7, padding: 25 }}>
+                    <Card.Body style={{ margin: 5, padding: 10 }}>
                         <div>{rest.location ? prettyAddress(rest.location) : ''}<span className='float-right'>{rest.price ? rest.price : ''}</span></div>
                         <div>{rest.display_phone ? rest.display_phone : ''}<span className='float-right'>{rest.categories[0].title ? rest.categories[0].title : ''}</span></div>
                     </Card.Body>
@@ -105,7 +105,7 @@ function ChooseRestaurants(props) {
                 <Row>
                     <Col></Col>
 
-                    <Col md={8}>
+                    <Col md={5}>
                         <Form onSubmit={sendRestaurants}>
 
                             <h2 className='center choose-h2'>Choose your restaurants:</h2>          
