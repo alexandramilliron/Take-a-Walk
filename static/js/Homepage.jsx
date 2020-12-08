@@ -53,7 +53,7 @@ function Home(props) {
                 <Col xs={10}>
                 <div>   
                     <p className='home-p'>
-                        Welcome to Take a Walk, the site that encourages you to go outside and eat things - safely! 
+                        Welcome to Take a Walk, the site that encourages you to go outside and have a meal - safely! 
                         Generate an outing near you that includes restaurants and trails. Then, leave a rating based on their COVID safety
                         and read what others have had to say. 
                     </p>
