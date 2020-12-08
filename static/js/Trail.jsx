@@ -3,7 +3,7 @@
 function Trail() {
     return (
         <div>
-            this is where a single trail should go 
+            WIP: implement the page for a single trail 
         </div>
     );
 }
