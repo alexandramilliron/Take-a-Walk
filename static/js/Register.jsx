@@ -43,7 +43,9 @@ function Register(props) {
                 <Form onSubmit={handleRegistration}>    
                 <Row>
                     <Col></Col>
-                    <Col md='auto'>
+
+                    <Col md='auto' className='border rounded-lg' 
+                        style={{ padding: 12 + 'em', background: "transparent url('/static/img/registerbg.jpeg') no-repeat center center /cover" }}>
 
                     <div className='center'>
                         <h1>Register</h1>
@@ -51,25 +53,25 @@ function Register(props) {
                     <br/>
     
                         <Form.Group controlId='email'>
-                            <Form.Label>email</Form.Label>
+                            <Form.Label><span className='fa fa-envelope-o fa-lg' aria-hidden='true'></span>{' '}email</Form.Label>
                                 <Form.Control placeholder='email' onChange={(event) => {setEmailReg(event.target.value)}}/>
                         </Form.Group>
 
                         <Form.Group controlId='username'>
-                            <Form.Label>username</Form.Label>
+                            <Form.Label><span className='fa fa-user fa-lg'></span>{' '}username</Form.Label>
                                 <Form.Control placeholder='username' onChange={(event) => {setUsernameReg(event.target.value)}}/>
                         </Form.Group>
         
                         <Form.Group controlId='password'>
-                            <Form.Label>password</Form.Label>
+                            <Form.Label><span className='fa fa-lock fa-lg'></span>{' '}password</Form.Label>
                                 <Form.Control type='password' placeholder='password' onChange={(event) => {setPasswordReg(event.target.value)}}/>
                         </Form.Group>
 
                         <div className='center'>
                             <ButtonGroup vertical>
-                                <Button id='registerButton' className='roboto-button' variant='secondary' type='submit'>Register</Button>
+                                <Button className='roboto-button' variant='secondary' type='submit'>Register</Button>
                                 <br/>
-                                <Button variant='link' className='roboto-button' style={{ fontSize: 1.2 + 'em' }} onClick={() => Login()}>Already have an account? Login</Button>
+                                <Button variant='secondary' className='roboto-button' onClick={() => Login()}>Already have an account? Login</Button>
                             </ButtonGroup>
                         </div>
                     </Col>
