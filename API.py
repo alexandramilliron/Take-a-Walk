@@ -43,7 +43,6 @@ def weather_data_api(latitude, longitude, date):
     for daily_weather_object in data['daily']: 
         timestamp = daily_weather_object['dt']
         ts_to_dt = datetime.utcfromtimestamp(timestamp).strftime('%a, %b %d, %Y')
-        print(date, ts_to_dt)
         if ts_to_dt == date:
             return daily_weather_object
 
