@@ -53,8 +53,7 @@ def create_trail(latitude, longitude, name, length=None, location=None, image=No
 def create_restaurant(latitude, longitude, name, price=None, location=None, phone=None, image=None, yelp_id=None):
     """Create and return a new restaurant."""
 
-    restaurant = Restaurant.query.filter((Restaurant.name == name) & (Restaurant.latitude == latitude) & 
-    (Restaurant.longitude == longitude)).first() 
+    restaurant = Restaurant.query.filter((Restaurant.yelp_id == yelp_id)).first() 
 
     if restaurant is not None:
         return restaurant
