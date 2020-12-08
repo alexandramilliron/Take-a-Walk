@@ -35,8 +35,9 @@ function Restaurants() {
                                     <Card.Title>
                                     <h5>
                                         <Link className='all-link' to={`/restaurant/${rest.rest_id}/${rest.name}`}>{rest.name}</Link>{'  '} 
+                                    </h5>
                                         <h6>{rest.location}</h6>
-
+                                    <h5>
                                         {rest.avg_star ? Array.from({length: rest.avg_star}, (value, index) =>
                                         <span key={index}><i className={'fa fa-star checked'}></i></span>) : ''} 
                                     </h5>
@@ -65,7 +66,7 @@ function Restaurants() {
             <Container fluid>
                 <Row>
                     <Col>
-                        <h2 className='choose-h2'>Restaurants</h2>
+                        <h2 className='choose-h2'>All Restaurants</h2>
                     </Col>
                 </Row>
                 <Row>
