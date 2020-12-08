@@ -16,7 +16,7 @@ function TrailRating(props) {
     function TextArea() {
         return (
         <Form.Group>
-            <Form.Label className='center'>What did you think of the {name}?</Form.Label>
+            <Form.Label className='center'>What did you think of the {decodeURIComponent(name)}?</Form.Label>
             <Form.Control as='textarea' rows={3} onChange={(event) => {setComment(event.target.value)}}/>
         </Form.Group>
         );
@@ -33,7 +33,7 @@ function TrailRating(props) {
     function StarRating() {
         return (
             <div>
-                <div className='center'>How many stars would you give the {name}?</div><br/>
+                <div className='center'>How many stars would you give the {decodeURIComponent(name)}?</div><br/>
                     <div className='center'>
                     {Array.from({length: 5}, (value, index) => 
                         <Star
