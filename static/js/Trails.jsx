@@ -37,8 +37,9 @@ function Trails() {
                                     <Card.Title>
                                     <h5>
                                         <Link className='all-link' to={`/trail/${trail.trail_id}/${trail.name}`}>{trail.name}</Link>{'  '}
+                                    </h5>
                                         <h6>{trail.location}</h6>
-                                        
+                                    <h5>
                                         {trail.avg_star ? Array.from({length: trail.avg_star}, (value, index) =>
                                         <span key={index}><i className={'fa fa-star checked'}></i></span>) : ''} 
                                     </h5>
@@ -67,7 +68,7 @@ function Trails() {
             <Container fluid>
                 <Row>
                     <Col>
-                        <h2 className='choose-h2'>Trails</h2>
+                        <h2 className='choose-h2'>All Trails</h2>
                     </Col>
                 </Row>
                 <Row>
