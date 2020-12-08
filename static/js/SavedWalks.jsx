@@ -48,7 +48,7 @@ function SavedWalks(props) {
                             {walk.trails.map(trail => {
                                 return (
                                     <div key={trail.trail_id}><i className='fa fa-tree' aria-hidden='true'></i>{'  '}
-                                        <Link className='walk-link' title='review this trail' to={`/trail-rating/${trail.trail_id}/${trail.name}`}>{trail.name}</Link>
+                                        <Link className='walk-link' title='review this trail' to={`/trail-rating/${trail.trail_id}/${encodeURIComponent(trail.name)}`}>{trail.name}</Link>
                                     </div>
                                 );
                             })}
