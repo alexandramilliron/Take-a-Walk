@@ -23,7 +23,7 @@ body {
 
 /* Homepage Styling */
 
-.carousel-item {
+.home-carousel-item {
     height: 600px;
 }
 
@@ -133,7 +133,7 @@ body {
 
 .rating-link:hover {
     text-decoration: none;
-    color: #2683c0;
+    color: #7fb99c;
     font-size: 1.7rem;
 }
 
@@ -217,4 +217,25 @@ body {
 
 .rating-form {
     font-size: 1.1rem;
+}
+
+/* Restaurant Detail Page */
+
+.detail-card {
+    font-family: 'Lato', 'sans-serif';
+    font-size: 1.3rem;
+}
+
+.rest-detail-bg {
+    background-image: url('/static/img/restdetailsbg.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+
+.yelp-link:hover {
+    text-decoration: none;
+    color: rgb(192, 33, 12);
+    font-size: 1.7rem;
 }
