@@ -28,8 +28,8 @@ function UserRatings(props) {
             <div>
                 {ratings.trail_ratings.map((rating, index) => {
                     return (
-                        <React.Fragment>
-                        <div className='user-card' key={index}>
+                        <React.Fragment key={index}>
+                        <div className='user-card'>
                         <Card border='dark' onClick={() => history.push(`/trail/${rating.trail_id}/${rating.trail_name}`)}>
                             <Card.Img variant='top' src={`/static/img/trailrating${(index % 5) + 1}.jpeg`}/>
                             <Card.Title style={{ margin: 10, padding: 0 }}>
@@ -62,8 +62,8 @@ function UserRatings(props) {
             <div>
                 {ratings.restaurant_ratings.map((rating, index) => {
                     return (
-                        <React.Fragment>
-                        <div className='user-card' key={index}>
+                        <React.Fragment key={index}>
+                        <div className='user-card'>
                         <Card border='dark' onClick={() => history.push(`/restaurant/${rating.rest_id}/${rating.rest_name}`)}>
                             <Card.Img variant='top' src={`/static/img/restratingpic${(index % 5) + 1}.jpeg`}/>
                             <Card.Title style={{ margin: 10, padding: 0 }}>
