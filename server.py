@@ -75,8 +75,10 @@ def load_user_walks(username):
     walks = crud.get_user_walks(username) 
 
     details_for_walks = [walk.get_walk_details() for walk in walks]
+
+    walks_by_date = sorted(details_for_walks, key=lambda walk: walk['sort_date'])
     
-    return jsonify(details_for_walks)
+    return jsonify(walks_by_date) 
 
 
 @app.route('/api/ratings/<username>')
@@ -230,7 +232,9 @@ def get_trails():
 
     serialized_trails = [t.serialize() for t in trails]
 
-    return jsonify(serialized_trails)
+    trails_by_location = sorted(serialized_trails, key=lambda trail: trail['state'])
+
+    return jsonify(trails_by_location)
 
 
 @app.route('/api/restaurants')
@@ -240,7 +244,9 @@ def get_restaurants():
 
     serialized_restaurants = [r.serialize() for r in restaurants]
 
-    return jsonify(serialized_restaurants)
+    restaurants_by_location = sorted(serialized_restaurants, key=lambda rest: rest['state'])
+
+    return jsonify(restaurants_by_location)
 
 
 @app.route('/', defaults={'input_path': ''}) 
