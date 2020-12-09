@@ -25,7 +25,6 @@ class User(db.Model):
 
     # TODO: add method for validating passwords? 
 
-
     def serialize(self):
         """Return dict with this user's id, username, and email."""
         return {
@@ -66,8 +65,9 @@ class Trail(db.Model):
     ratings = db.relationship('TrailRating')
     walks = db.relationship('Walk', secondary='walk_trails')
 
+
     def serialize(self):
-        """Return dict with this trail's id, name, lat, and long."""
+        """Return dict with this trail's id, name, lat, and long..."""
         return {
             'trail_id': self.trail_id,
             'name': self.name,
@@ -154,7 +154,7 @@ class Restaurant(db.Model):
 
 
     def serialize(self):
-        """Return dict of this restaurant's id, name, lat, and long."""
+        """Return dict of this restaurant's id, name, lat, and long..."""
         return {
             'rest_id': self.rest_id,
             'name': self.name,
