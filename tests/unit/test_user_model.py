@@ -30,7 +30,7 @@ def test_serialize_user(client, user):
     }
 
 
-def test_get_user_ratings(client, user):
+def test_user_get_ratings(client, rest_rating, trail_rating, user):
     """
     GIVEN an instance of the User model
     WHEN the get_ratings method is called
@@ -38,12 +38,17 @@ def test_get_user_ratings(client, user):
     """ 
 
     user_ratings = user.get_ratings()
+
     assert set(user_ratings.keys()) == {
         'trail_ratings',
         'restaurant_ratings'
     }
 
-#TODO: check the values of these arrays 
+    user.trail_ratings.append(trail_rating)
+    user.restaurant_ratings.append(rest_rating)
+
+    assert 'Wow, what a trail.' in user.trail_ratings[0].trail_comment
+    assert 'Wow, what a restaurant.' in user.restaurant_ratings[0].rest_comment
 
 
 def test_repr_user(client, user):
