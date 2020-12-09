@@ -19,16 +19,80 @@ def client():
 
 @pytest.fixture(scope='module')
 def init_database(client):
-    # Create the database and the database table
+    
     db.create_all()
+    load_test_data()
 
-    # Commit the changes 
-    db.session.commit()
+    yield
 
-    yield  # This is where the testing happens!
-
+    db.session.close()
     db.drop_all()
     
+
+###############################
+######### Sample Data #########
+###############################
+
+def load_test_data():
+    t_user = User(
+        username='newusername', 
+        email='newuseremail@gmail.com', 
+        password='newuserpassword'
+    )
+    db.session.add(t_user)
+
+    t_trail = Trail(
+        latitude=45,
+        longitude=-122, 
+        name='New Trail',
+        length=30,
+        location='Vancouver, WA',
+        image='trail.jpg',
+        hiking_id='1234' 
+    )
+    db.session.add(t_trail)
+
+    t_restaurant = Restaurant(
+        latitude=45,
+        longitude=-122, 
+        name='New Restaurant',
+        price=4,
+        location='Test, Vancouver, WA',
+        phone='1234567890',
+        image='rest.jpg',
+        yelp_id='1234'
+    )
+    db.session.add(t_restaurant)
+
+    t_walk = Walk(
+        user=t_user,
+        walk_date=datetime.datetime(2020, 5, 17)
+    )
+    db.session.add(t_walk)
+
+    t_rest_rating = RestRating(
+        restaurant=t_restaurant,
+        user=t_user,
+        rest_comment='Wow, what a restaurant.',
+        rest_star=5,
+        masks_worn=True,
+        socially_distanced=True,
+        outdoor_seating=True
+    )
+    db.session.add(t_rest_rating)
+
+    t_trail_rating = TrailRating(
+        trail=t_trail,
+        user=t_user,
+        trail_comment='Wow, what a trail.',
+        trail_star=5,
+        difficulty_level=3,
+        crowded=False
+    )
+    db.session.add(t_trail_rating)
+
+    db.session.commit() 
+
 
 ###############################
 ## Fixtures with Sample Data ##
@@ -161,3 +225,8 @@ def rest_rating_list(restaurant, user):
     )
 
     return [rest_rating1, rest_rating2]
+
+
+
+
+
