@@ -64,8 +64,6 @@ function Restaurant() {
             return response.json();
         })
         .then(data => {
-            console.log(data)
-
             setWebsite(data['url']);
             setHours(prettyHours(data['hours']));
             setYelpRating(data['rating']);
