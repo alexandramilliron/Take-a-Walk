@@ -36,7 +36,7 @@ function NewWalk(props) {
         .then(response => response.json())
         .then(data => {
           if (data['Error']) {
-            alert('Unable to get user location.') // TODO: change the error here! 
+            alert('Unable to get user location.') 
           } else {
             setLatitude(data['latitude']);
             setLongitude(data['longitude']); 
