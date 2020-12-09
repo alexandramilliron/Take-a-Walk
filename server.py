@@ -21,8 +21,11 @@ def get_location():
 
     location_info = nomi.query_postal_code(zipcode)
 
-    return {'latitude': location_info.latitude, 'longitude': location_info.longitude, 'city': location_info.place_name,
+    if not location_info.empty:
+        return {'latitude': location_info.latitude, 'longitude': location_info.longitude, 'city': location_info.place_name,
             'state': location_info.state_name}
+    else:
+        return {'Error': 'Unable to get user location.'}
 
 
 @app.route('/api/login', methods=['POST'])
@@ -107,10 +110,11 @@ def add_rest_rating():
     user = crud.get_user_from_username(username)
     restaurant = crud.get_rest_from_id(rest_id)
 
-    crud.create_rest_rating(restaurant, user, rest_comment, rest_star, 
-                            masks_worn, socially_distanced, outdoor_seating)
-
-    return {'Success': 'Added to database.'}
+    if crud.create_rest_rating(restaurant, user, rest_comment, rest_star, 
+                            masks_worn, socially_distanced, outdoor_seating):
+        return {'Success': 'Added to database.'}
+    else:
+        return {'Error': 'Unable to add rating.'}
 
 
 @app.route('/api/add-trail-rating', methods=['POST'])
@@ -128,9 +132,10 @@ def add_trail_rating():
     user = crud.get_user_from_username(username)
     trail = crud.get_trail_from_id(trail_id)
 
-    crud.create_trail_rating(trail, user, trail_comment, trail_star, difficulty_level, crowded)
-
-    return {'Success': 'Added to database.'}
+    if crud.create_trail_rating(trail, user, trail_comment, trail_star, difficulty_level, crowded):
+        return {'Success': 'Added to database.'}
+    else:
+        return {'Error': 'Unable to add rating.'}
 
 
 @app.route('/api/new-walk', methods=['POST'])
