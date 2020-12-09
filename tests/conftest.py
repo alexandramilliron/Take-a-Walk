@@ -1,6 +1,7 @@
 from server import app
-from model import connect_to_db, db, Restaurant, RestRating, Trail, TrailRating, User
+from model import connect_to_db, db, Restaurant, RestRating, Trail, TrailRating, User, Walk
 import pytest
+import datetime
 
 
 @pytest.fixture(scope='module')
@@ -39,7 +40,7 @@ def user():
     user = User(
         username='newusername', 
         email='newuseremail@gmail.com', 
-        password='newuserpassword') 
+        password='newuserpassword')
 
     return user
 
@@ -51,7 +52,10 @@ def restaurant():
         longitude=-122, 
         name='New Restaurant',
         price=4,
-        location='Vancouver, WA'
+        location='Test, Vancouver, WA',
+        phone='1234567890',
+        image='rest.jpg',
+        yelp_id='1234'
     )
 
     return restaurant
@@ -64,7 +68,9 @@ def trail():
         longitude=-122, 
         name='New Trail',
         length=30,
-        location='Vancouver, WA'
+        location='Vancouver, WA',
+        image='trail.jpg',
+        hiking_id='1234'
     )
 
     return trail 
@@ -97,3 +103,61 @@ def trail_rating(trail, user):
     )
 
     return trail_rating
+
+
+@pytest.fixture
+def walk(user):
+    walk = Walk(
+        user=user,
+        walk_date=datetime.datetime(2020, 5, 17)
+    )
+
+    return walk
+
+
+@pytest.fixture
+def trail_rating_list(trail, user):
+    trail_rating1 = TrailRating(
+        trail=trail,
+        user=user,
+        trail_comment='Wow, what a trail.',
+        trail_star=1,
+        difficulty_level=1,
+        crowded=False
+    )
+
+    trail_rating2 = TrailRating(
+        trail=trail,
+        user=user,
+        trail_comment='Wow, what a trail.',
+        trail_star=5,
+        difficulty_level=5,
+        crowded=True
+    )
+
+    return [trail_rating1, trail_rating2]
+
+
+@pytest.fixture
+def rest_rating_list(restaurant, user):
+    rest_rating1 = RestRating(
+        restaurant=restaurant,
+        user=user,
+        rest_comment='Wow, what a restaurant.',
+        rest_star=1,
+        masks_worn=True,
+        socially_distanced=True,
+        outdoor_seating=True
+    )
+
+    rest_rating2 = RestRating(
+        restaurant=restaurant,
+        user=user,
+        rest_comment='Wow, what a restaurant.',
+        rest_star=5,
+        masks_worn=False,
+        socially_distanced=False,
+        outdoor_seating=False
+    )
+
+    return [rest_rating1, rest_rating2]
