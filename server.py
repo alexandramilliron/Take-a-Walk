@@ -149,7 +149,10 @@ def create_walk():
 
     new_walk = crud.create_walk(user, walk_date)
 
-    return {'walk_id': new_walk.walk_id}
+    if new_walk:
+        return {'walk_id': new_walk.walk_id}
+    else:
+        return {'Error': 'Unable to add walk.'}
 
 
 @app.route('/api/weather')
