@@ -16,7 +16,6 @@ function Trails() {
             return response.json(); 
         })
         .then(data => {
-            console.log(data);
 
             const trails = data;
 
