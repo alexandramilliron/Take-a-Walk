@@ -1,4 +1,7 @@
-def test_home_page(client, init_database): # testing with fixtures 
+import pytest
+
+
+def test_home_page(client, init_database): 
     """
     GIVEN a Flask application configured for testing
     WHEN the '/' page is requested (GET)
@@ -6,8 +9,7 @@ def test_home_page(client, init_database): # testing with fixtures
     """
     response = client.get('/')
     assert response.status_code == 200
-    assert b"Take a Walk" in response.data
-    # assert b"Need an account?" in response.data
-    # assert b"Existing user?" in response.data
+    assert b'Take a Walk' in response.data
+
 
 
