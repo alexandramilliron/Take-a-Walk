@@ -12,20 +12,7 @@ app.secret_key = 'dev'
 app.config['PRESERVE_CONTEXT_ON_EXCEPTION'] = True
 
 
-@app.route('/api/get-location')
-def get_location():
-
-    zipcode = request.args.get('zipcode')
-
-    nomi = pgeocode.Nominatim('us')
-
-    location_info = nomi.query_postal_code(zipcode)
-
-    if not location_info.empty:
-        return {'latitude': location_info.latitude, 'longitude': location_info.longitude, 'city': location_info.place_name,
-            'state': location_info.state_name}
-    else:
-        return {'Error': 'Unable to get user location.'}
+########## Login and Registration ##########
 
 
 @app.route('/api/login', methods=['POST'])
@@ -64,16 +51,78 @@ def user_registration():
         return {'Error': 'This email or username already exists.'}
 
 
-@app.route('/api/walk-details/<walk_id>')
-def load_walk_details(walk_id):
+########## User's Ratings ##########
 
-    walk = crud.get_walk_details(walk_id)
 
-    return jsonify(walk)
+@app.route('/api/ratings/<username>')
+def load_user_ratings(username):
+    """Get the ratings associated with this user."""
+
+    user = crud.get_user_from_username(username)
+
+    user_ratings = user.get_ratings() 
+
+    return user_ratings
+
+
+########## Get Location ##########
+
+
+@app.route('/api/get-location')
+def get_location():
+    """Get latitude, longitude, city, and state from the zipcode provided by user."""
+
+    zipcode = request.args.get('zipcode')
+
+    nomi = pgeocode.Nominatim('us')
+
+    location_info = nomi.query_postal_code(zipcode)
+
+    if not location_info.empty:
+        return {'latitude': location_info.latitude, 'longitude': location_info.longitude, 'city': location_info.place_name,
+            'state': location_info.state_name}
+    else:
+        return {'Error': 'Unable to get user location.'}
+
+
+########## Get Weather ##########
+
+
+@app.route('/api/weather')
+def get_weather():
+    """Get the weather based on the provided latitude, longitude, and date."""
+
+    latitude = request.args.get('latitude')
+    longitude = request.args.get('longitude')
+    date = request.args.get('walk_date')
+    
+    return weather_data_api(latitude, longitude, date)
+
+
+########## Walk Routes ##########
+
+
+@app.route('/api/new-walk', methods=['POST'])
+def create_walk():
+    """Create a new walk for this user."""
+
+    post_request = request.get_json()
+    username = post_request['user']['username']
+    walk_date = post_request['date'] 
+
+    user = crud.get_user_from_username(username)
+
+    new_walk = crud.create_walk(user, walk_date)
+
+    if new_walk:
+        return {'walk_id': new_walk.walk_id}
+    else:
+        return {'Error': 'Unable to add walk.'}
 
 
 @app.route('/api/saved-walks/<username>')
 def load_user_walks(username):
+    """Load the walks stored in the database associated with this user."""
 
     walks = crud.get_user_walks(username) 
 
@@ -84,18 +133,53 @@ def load_user_walks(username):
     return jsonify(walks_by_date) 
 
 
-@app.route('/api/ratings/<username>')
-def load_user_ratings(username):
+@app.route('/api/walk-details/<walk_id>')
+def load_walk_details(walk_id):
+    """Get the walk details for this walk."""
 
-    user = crud.get_user_from_username(username)
+    walk = crud.get_walk_details(walk_id)
 
-    user_ratings = user.get_ratings() 
+    return jsonify(walk)
 
-    return user_ratings
+
+########## Restaurant Routes ##########
+
+
+@app.route('/api/choose-restaurants')
+def get_api_restaurants():
+    """Call the Yelp API to return restaurants based on the provided latitude/longitude."""
+
+    latitude = request.args.get('latitude')
+    longitude = request.args.get('longitude')
+    
+    return yelp_data_api(latitude, longitude)
+
+
+@app.route('/api/add-restaurants', methods=['POST'])
+def add_restaurants():
+    """Add the user's chosen restaurants for this walk to the database."""
+
+    post_request = request.get_json()
+
+    restaurants = post_request['restaurants']
+    latitude = post_request['latitude']
+    longitude = post_request['longitude']
+    walk_id = post_request['walk']
+
+    walk = crud.get_walk_from_id(walk_id)
+
+    for restaurant in restaurants:
+        restaurant = crud.create_restaurant(latitude, longitude, restaurant['name'], 
+                        restaurant['price'], restaurant['location'], restaurant['display_phone'],
+                        restaurant['image'], restaurant['yelp_id'])
+        crud.create_walk_restaurant(restaurant, walk)
+    
+    return {'Success': 'Added to database.'} 
 
 
 @app.route('/api/add-rest-rating', methods=['POST'])
 def add_rest_rating():
+    """Add a restaurant rating from this user to the database."""
 
     post_request = request.get_json()
 
@@ -117,8 +201,66 @@ def add_rest_rating():
         return {'Error': 'Unable to add rating.'}
 
 
+@app.route('/api/restaurant-details')
+def get_api_restaurant_details():
+    """Call the Yelp API to get additional information about a restaurant."""
+
+    rest_id = request.args.get('rest_id')
+    
+    rest = crud.get_rest_from_id(rest_id)
+    
+    return yelp_data_api_id(rest.yelp_id)
+
+
+@app.route('/api/restaurants')
+def get_restaurants():
+    """Get all of the restaurants in the database and sort them by state."""
+
+    restaurants = crud.get_restaurants() 
+
+    serialized_restaurants = [r.serialize() for r in restaurants]
+
+    restaurants_by_location = sorted(serialized_restaurants, key=lambda rest: rest['state'])
+
+    return jsonify(restaurants_by_location)
+
+
+########## Trail Routes ##########
+
+
+@app.route('/api/choose-trails')
+def get_api_trails():
+    """Call the All Trails API to return trails based on the provided latitude/longitude."""
+
+    latitude = request.args.get('latitude')
+    longitude = request.args.get('longitude')
+
+    return hiking_data_api(latitude, longitude)
+
+
+@app.route('/api/add-trails', methods=['POST'])
+def add_trails():
+    """Add the user's chosen trails for this walk to the database."""
+
+    post_request = request.get_json() 
+
+    trails = post_request['trails']
+    latitude = post_request['latitude']
+    longitude = post_request['longitude']
+    walk_id = post_request['walk']
+
+    walk = crud.get_walk_from_id(walk_id)
+    
+    for trail in trails:
+        trail = crud.create_trail(latitude, longitude, trail['name'], trail['length'], trail['location'], trail['image'], trail['hiking_id'])
+        crud.create_walk_trail(trail, walk)
+    
+    return {'Success': 'Added to database.'}
+
+
 @app.route('/api/add-trail-rating', methods=['POST'])
 def add_trail_rating():
+    """Add a trail rating from this user to the database."""
 
     post_request = request.get_json()
 
@@ -138,103 +280,9 @@ def add_trail_rating():
         return {'Error': 'Unable to add rating.'}
 
 
-@app.route('/api/new-walk', methods=['POST'])
-def create_walk():
-
-    post_request = request.get_json()
-    username = post_request['user']['username']
-    walk_date = post_request['date'] 
-
-    user = crud.get_user_from_username(username)
-
-    new_walk = crud.create_walk(user, walk_date)
-
-    if new_walk:
-        return {'walk_id': new_walk.walk_id}
-    else:
-        return {'Error': 'Unable to add walk.'}
-
-
-@app.route('/api/weather')
-def get_weather():
-
-    latitude = request.args.get('latitude')
-    longitude = request.args.get('longitude')
-    date = request.args.get('walk_date')
-    
-    return weather_data_api(latitude, longitude, date)
-
-
-@app.route('/api/choose-restaurants')
-def get_api_restaurants():
-
-    latitude = request.args.get('latitude')
-    longitude = request.args.get('longitude')
-    
-    return yelp_data_api(latitude, longitude)
-
-
-@app.route('/api/restaurant-details')
-def get_api_restaurant_details():
-
-    rest_id = request.args.get('rest_id')
-    
-    rest = crud.get_rest_from_id(rest_id)
-    
-    return yelp_data_api_id(rest.yelp_id)
-
-
-@app.route('/api/choose-trails')
-def get_api_trails():
-
-    latitude = request.args.get('latitude')
-    longitude = request.args.get('longitude')
-
-    return hiking_data_api(latitude, longitude)
-
-
-@app.route('/api/add-restaurants', methods=['POST'])
-def add_restaurants():
-
-    post_request = request.get_json()
-
-    restaurants = post_request['restaurants']
-    latitude = post_request['latitude']
-    longitude = post_request['longitude']
-    walk_id = post_request['walk']
-
-    walk = crud.get_walk_from_id(walk_id)
-
-    for restaurant in restaurants:
-        restaurant = crud.create_restaurant(latitude, longitude, restaurant['name'], 
-                        restaurant['price'], restaurant['location'], restaurant['display_phone'],
-                        restaurant['image'], restaurant['yelp_id'])
-        crud.create_walk_restaurant(restaurant, walk)
-    
-    return {'Success': 'Added to database.'} 
-
-
-@app.route('/api/add-trails', methods=['POST'])
-def add_trails():
-
-    post_request = request.get_json() 
-
-    trails = post_request['trails']
-    latitude = post_request['latitude']
-    longitude = post_request['longitude']
-    walk_id = post_request['walk']
-
-    walk = crud.get_walk_from_id(walk_id)
-    
-    for trail in trails:
-        trail = crud.create_trail(latitude, longitude, trail['name'], trail['length'], trail['location'], trail['image'], trail['hiking_id'])
-        crud.create_walk_trail(trail, walk)
-    
-    return {'Success': 'Added to database.'}
-    
-
 @app.route('/api/trails')
 def get_trails():
+    """Get all of the trails in the database and sort them by state."""
 
     trails = crud.get_trails()
 
@@ -243,18 +291,6 @@ def get_trails():
     trails_by_location = sorted(serialized_trails, key=lambda trail: trail['state'])
 
     return jsonify(trails_by_location)
-
-
-@app.route('/api/restaurants')
-def get_restaurants():
-
-    restaurants = crud.get_restaurants() 
-
-    serialized_restaurants = [r.serialize() for r in restaurants]
-
-    restaurants_by_location = sorted(serialized_restaurants, key=lambda rest: rest['state'])
-
-    return jsonify(restaurants_by_location)
 
 
 @app.route('/', defaults={'input_path': ''}) 
