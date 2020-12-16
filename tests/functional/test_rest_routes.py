@@ -19,6 +19,7 @@ def simple_user(init_database):
 
 
 def test_get_restaurant(client, simple_restaurant):
+
     response = client.get('/api/restaurants')
     restaurants = response.json 
     assert response.status_code == 200
@@ -26,6 +27,7 @@ def test_get_restaurant(client, simple_restaurant):
 
 
 def test_add_restaurant(client, simple_restaurant):
+
     response = client.post('/api/add-restaurants', json={        
         'latitude': 45,
         'longitude': -122, 
@@ -46,6 +48,7 @@ def test_add_restaurant(client, simple_restaurant):
 
 
 def test_add_rest_rating(client, simple_restaurant, simple_rest_rating, simple_user):
+    
     response = client.post('/api/add-rest-rating', json={
         'username': simple_user.username,
         'rest_id': simple_restaurant.rest_id,
