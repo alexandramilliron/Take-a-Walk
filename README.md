@@ -40,7 +40,7 @@ The app also generates the weather for each walk based on the date and location 
 ![](savedwalksweather.gif)
 
 
-On the Saved Walks component, the user can rate the restaurants and trails by clicking on their names. The RestaurantRating and TrailRating components prompt the user for information related to COVID safety. 
+On the Saved Walks component, the user can rate the restaurants and trails by clicking on their names. The Restaurant Rating and Trail Rating components prompt the user for information related to COVID safety. 
 
 
 ![](restreview.gif)
