@@ -2,7 +2,7 @@ Welcome to Take a Walk!
 
 This app allows a user to generate nearby restaurants and trails for an outing and leave reviews on how COVID-safe they were. 
 
-![](takeawalkhomepage.gif)
+The app’s backend utilizes a Flask framework and a SQL Alchemy ORM. The frontend is written in React, with styling completed in React Bootstrap. To generate the restaurants, trails, and the weather, the app utilizes the Yelp Fusion API, the Hiking Project API, and the Open Weather Map API.
 
 The app allows users to register for accounts and validates login credentials: 
 
@@ -12,3 +12,7 @@ To start a new walk, the user clicks the button on the homepage or in the search
 Restaurants and trails are generated, allowing the user to select where they'd like to go. When the user submits their choices, the app redirects to the Saved Walks component, which sends a fetch request to the server to display all of the walks for this user sorted by date. 
 
 ![](newwalk.gif)
+
+![](choosecomponents.gif)
+
+When the user submits their choices, the app redirects to the Saved Walks component, which sends a fetch request to the server to display all of the walks for this user sorted by date. 
