@@ -250,9 +250,23 @@ body {
     background-size: cover;
 }
 
-
 .yelp-link:hover {
     text-decoration: none;
     color: rgb(192, 33, 12);
+    font-size: 1.7rem;
+}
+
+/* Trail Detail Page  */
+
+.trail-detail-bg {
+    background-image: url('/static/img/traildetailbg.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; 
+}
+
+.trail-link:hover {
+    text-decoration: none;
+    color: rgb(37, 141, 37);
     font-size: 1.7rem;
 }
