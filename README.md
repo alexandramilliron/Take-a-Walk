@@ -55,7 +55,13 @@ Both components route to the User Ratings component upon submission, which displ
 ![](userratings.gif)
 
 
-The user can access more information about a restaurant by clicking on the rating (either the card or the name of the restaurant). This loads additional information retrieved via a fetch request to the Yelp Fusion API. The page also links to the restaurant on Yelp. 
+The user can access more information about a restaurant by clicking on the rating (either the card or the name). This loads additional information retrieved via a fetch request to the Yelp Fusion API. The page also links to the restaurant on Yelp. 
 
 
 ![](restinfo.gif)
+
+
+Finally, the user also has access to all of the restaurants and trails stored in the database. The names similarly link to the information pages. 
+
+
+![](allrestaurants.gif)
