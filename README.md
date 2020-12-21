@@ -42,7 +42,7 @@ The app also generates the weather for each walk based on the date and location 
 ![](savedwalksweather.gif)
 
 
-On the Saved Walks component, the user can rate the restaurants and trails by clicking on their names. The Restaurant Rating and Trail Rating components prompt the user for information related to COVID safety. 
+On the Saved Walks component, the user can rate the restaurants and trails. The Restaurant Rating and Trail Rating components prompt the user for information related to COVID safety. 
 
 
 ![](restreview.gif)
@@ -55,13 +55,13 @@ Both components route to the User Ratings component upon submission, which displ
 ![](userratings.gif)
 
 
-The user can access more information about a restaurant by clicking on the rating (either the card or the name). This loads additional information retrieved via a fetch request to the Yelp Fusion API. The page also links to the restaurant on Yelp. 
+The user can access more information by clicking on the rating (either the card or the name). This loads additional information retrieved via fetch requests to the Hiking Project and Yelp Fusion APIs. 
 
 
 ![](restinfo.gif)
 
 
-Finally, the user also has access to all of the restaurants and trails stored in the database. The names similarly link to the information pages. 
+Finally, the user also has access to all of the restaurants and trails stored in the database, sorted by state (for now). This page also routes to the components that provide additional information.  
 
 
 ![](allrestaurants.gif)
