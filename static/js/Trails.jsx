@@ -4,6 +4,7 @@
 function Trails() {
 
     const [trails, setTrails] = useState([]);
+    const history = useHistory();
 
     useEffect(() => {
         fetchTrails();
@@ -25,7 +26,7 @@ function Trails() {
                     {trails.map((trail, index) => {
                         return (
                             <div key={index}>
-                            <Card className='all-card'>
+                            <Card className='all-card' onClick={() => history.push(`/trail/${trail.trail_id}/${trail.name}`)}>
                                 <Card.Body>
                                     <Image
                                         width={200}

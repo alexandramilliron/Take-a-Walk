@@ -3,6 +3,7 @@
 function Restaurants() {
     
     const [restaurants, setRestaurants] = useState([]);
+    const history = useHistory(); 
 
     useEffect(() => {
         fetchRestaurants();
@@ -24,7 +25,7 @@ function Restaurants() {
                     {rests.map((rest, index) => {
                         return (
                             <div key={index}>
-                            <Card className='all-card'>
+                            <Card className='all-card' onClick={() => history.push(`/restaurant/${rest.rest_id}/${rest.name}`)}>
                                 <Card.Body>
                                     <Image
                                         width={190}
