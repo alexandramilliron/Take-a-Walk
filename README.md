@@ -61,7 +61,7 @@ The user can access more information by clicking on the rating (either the card 
 ![](restinfo.gif)
 
 
-The user has access to all of the restaurants and trails stored in the database sorted by state (for now). This page displays the aggregated ratings from all users. Finally, these pages also route to the components that provide additional information.  
+The user has access to all of the restaurants and trails stored in the database sorted by state (for now). These pages display the aggregate ratings from all users if available; otherwise, they show that no reviews have been added. Finally, these pages also route to the components that provide additional information.  
 
 
 ![](allrestaurants.gif)
