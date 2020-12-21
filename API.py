@@ -13,6 +13,15 @@ def hiking_data_api(latitude, longitude):
     return data
 
 
+def hiking_data_api_id(hiking_id):
+    HIKING_KEY = os.environ['HIKING_PROJECT_KEY']
+    url = 'https://www.hikingproject.com/data/get-trails-by-id?ids=' + hiking_id
+    payload = {'key': HIKING_KEY}
+    response = requests.get(url, params=payload)
+    data = response.json() 
+    return data
+
+
 def yelp_data_api(latitude, longitude):
     YELP_KEY = os.environ['YELP_KEY']
     url = 'https://api.yelp.com/v3/businesses/search'
