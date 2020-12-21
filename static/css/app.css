@@ -192,6 +192,10 @@ body {
     width: 50rem;
 }
 
+.all-card:hover {
+    box-shadow: 5px 10px 20px 1px rgba(199, 199, 195, 0.76);
+}
+
 .all-link {
     color: black;
 }
