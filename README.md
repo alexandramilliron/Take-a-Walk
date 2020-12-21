@@ -26,10 +26,12 @@ The app allows the user to register for an account and login.
 
 To start a new walk, the user clicks the button on the homepage or in the navigation bar. The user is prompted for the zipcode for where they'd like to walk and the date they'd like to go.
 
-Restaurants and trails are generated via fetch requests to the Hiking Project and Yelp Fusion APIs, respectively. When the user submits their choices, the app routes to the Saved Walks component, which sends a fetch request to the server to display all of the walks for the user sorted by date. 
-
 
 ![](newwalk.gif)
+
+
+Restaurants and trails are generated via fetch requests to the Hiking Project and Yelp Fusion APIs, respectively. When the user submits their choices, the app routes to the Saved Walks component, which sends a fetch request to the server to display all of the walks for the user sorted by date. 
+
 
 ![](choosecomponents.gif)
 
@@ -47,7 +49,13 @@ On the Saved Walks component, the user can rate the restaurants and trails by cl
 ![](trailreview.gif)
 
 
-Both rating components route to the User Ratings component upon submission, which displays all ratings submitted by this user. 
+Both components route to the User Ratings component upon submission, which displays all ratings for the logged-in user. 
 
 
 ![](userratings.gif)
+
+
+The user can access more information about a restaurant by clicking on the rating (either the card or the name of the restaurant). This loads additional information retrieved via a fetch request to the Yelp Fusion API. The page also links to the restaurant on Yelp. 
+
+
+![](restinfo.gif)
