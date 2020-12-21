@@ -26,7 +26,7 @@ function Trails() {
                     {trails.map((trail, index) => {
                         return (
                             <div key={index}>
-                            <Card className='all-card' onClick={() => history.push(`/trail/${trail.trail_id}/${trail.name}`)}>
+                            <Card className='all-card' onClick={() => history.push(`/trail/${trail.trail_id}/${encodeURIComponent(trail.name)}`)}>
                                 <Card.Body>
                                     <Image
                                         width={200}
@@ -36,7 +36,7 @@ function Trails() {
                                     />
                                     <Card.Title>
                                     <h5>
-                                        <Link className='all-link' to={`/trail/${trail.trail_id}/${trail.name}`}>{trail.name}</Link>{'  '}
+                                        <Link className='all-link' to={`/trail/${trail.trail_id}/${encodeURIComponent(trail.name)}`}>{trail.name}</Link>{'  '}
                                     </h5>
                                         <h6>{trail.location}</h6>
                                     <h5>
