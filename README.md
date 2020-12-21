@@ -22,7 +22,7 @@ APIs:
 - Open Weather Map API
 - Yelp Fusion API 
 
-Users can register and login for accounts. 
+Users can register / login to existing accounts. 
 
 
 ![](/github-gifs/registerlogin.gif)
