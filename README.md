@@ -21,47 +21,47 @@ APIs:
 The app allows the user to register for an account and login. 
 
 
-![](registerlogin.gif)
+![](/github-gifs/registerlogin.gif)
 
 
 To start a new walk, the user clicks the button on the homepage or in the navigation bar. The user is prompted for the zipcode for where they'd like to walk and the date they'd like to go.
 
 
-![](newwalk.gif)
+![](/github-gifs/newwalk.gif)
 
 
 Restaurants and trails are generated via fetch requests to the Hiking Project and Yelp Fusion APIs, respectively. When the user submits their choices, the app routes to the Saved Walks component, which sends a fetch request to the server to display all of the walks for the user sorted by date. 
 
 
-![](choosecomponents.gif)
+![](/github-gifs/choosecomponents.gif)
 
 
 The app also generates the weather for each walk based on the date and location via a fetch request to the Open Weather Map API. 
 
 
-![](savedwalksweather.gif)
+![](/github-gifs/savedwalksweather.gif)
 
 
 On the Saved Walks component, the user can rate the restaurants and trails. The Restaurant Rating and Trail Rating components prompt the user for information related to COVID safety. 
 
 
-![](restreview.gif)
-![](trailreview.gif)
+![](/github-gifs/restreview.gif)
+![](/github-gifs/trailreview.gif)
 
 
 Both components route to the User Ratings component upon submission, which displays all ratings for the logged-in user. 
 
 
-![](userratings.gif)
+![](/github-gifs/userratings.gif)
 
 
 The user can access more information by clicking on the rating (either the card or the name). This loads additional information retrieved via fetch requests to the Hiking Project and Yelp Fusion APIs. 
 
 
-![](restinfo.gif)
+![](/github-gifs/restinfo.gif)
 
 
 The user has access to all of the restaurants and trails stored in the database sorted by state (for now). These pages display the aggregate ratings from all users if available; otherwise, they show that no reviews have been added. Finally, these pages also route to the components that provide additional information.  
 
 
-![](allrestaurants.gif)
+![](/github-gifs/allrestaurants.gif)
