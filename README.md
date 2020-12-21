@@ -1,3 +1,7 @@
+
+![](/github-gifs/homepage.gif)
+
+
 Welcome to Take a Walk! 
 
 This app allows the user to generate nearby restaurants and trails for an outing and leave reviews on how COVID-safe they were. 
@@ -18,7 +22,7 @@ APIs:
 - Open Weather Map API
 - Yelp Fusion API 
 
-The app allows the user to register for an account and login. 
+Users can register and login for accounts. 
 
 
 ![](/github-gifs/registerlogin.gif)
