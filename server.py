@@ -2,7 +2,7 @@
 
 from flask import (Flask, render_template, request, flash, session, redirect, jsonify)
 from model import connect_to_db
-from API import hiking_data_api, yelp_data_api, yelp_data_api_id, weather_data_api
+from API import hiking_data_api, hiking_data_api_id, yelp_data_api, yelp_data_api_id, weather_data_api
 import crud 
 import pgeocode 
 
@@ -201,17 +201,6 @@ def add_rest_rating():
         return {'Error': 'Unable to add rating.'}
 
 
-@app.route('/api/restaurant-details')
-def get_api_restaurant_details():
-    """Call the Yelp API to get additional information about a restaurant."""
-
-    rest_id = request.args.get('rest_id')
-    
-    rest = crud.get_rest_from_id(rest_id)
-    
-    return yelp_data_api_id(rest.yelp_id)
-
-
 @app.route('/api/restaurants')
 def get_restaurants():
     """Get all of the restaurants in the database and sort them by state."""
@@ -223,6 +212,17 @@ def get_restaurants():
     restaurants_by_location = sorted(serialized_restaurants, key=lambda rest: rest['state'])
 
     return jsonify(restaurants_by_location)
+
+
+@app.route('/api/restaurant-details')
+def get_api_restaurant_details():
+    """Call the Yelp API to get additional information about a restaurant."""
+
+    rest_id = request.args.get('rest_id')
+    
+    rest = crud.get_rest_from_id(rest_id)
+    
+    return yelp_data_api_id(rest.yelp_id)
 
 
 ########## Trail Routes ##########
@@ -291,6 +291,22 @@ def get_trails():
     trails_by_location = sorted(serialized_trails, key=lambda trail: trail['state'])
 
     return jsonify(trails_by_location)
+
+
+@app.route('/api/trail-details')
+def get_api_trail_details():
+    """Call the All Trails API to get additional information about a trail."""
+
+    trail_id = request.args.get('trail_id')
+    
+    trail = crud.get_trail_from_id(trail_id)
+
+    string_trail = str(trail.hiking_id)
+    
+    return hiking_data_api_id(string_trail)
+
+
+########## Catch-All Route ##########
 
 
 @app.route('/', defaults={'input_path': ''}) 
