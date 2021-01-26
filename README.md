@@ -24,7 +24,7 @@ APIs:
 
 ## Running Project Locally ##
 
-NOTE: The Hiking Project Data API has been deprecated and is no longer available. 
+NOTE: The Hiking Project Data API has been deprecated and is no longer available.
 
 The project assumes the user has Python3 and PostgreSQL installed. Using the Python virtualenv tool is recommended. 
 
@@ -39,15 +39,15 @@ The project assumes the user has Python3 and PostgreSQL installed. Using the Pyt
 4. The project requires API keys. 
 
 These can be obtained at the following links:
-https://www.yelp.com/fusion 
-https://www.hikingproject.com/data (deprecated)
-https://openweathermap.org/api (free API tier)
+- https://www.yelp.com/fusion 
+- https://www.hikingproject.com/data (deprecated)
+- https://openweathermap.org/api (free API tier)
 
 5. Set in the following environment variables:
 
-YELP_KEY="YOUR_KEY"
-HIKING_PROJECT_KEY="YOUR_KEY2"
-OPEN_WEATHER_KEY="YOUR_KEY3"
+- YELP_KEY="YOUR_KEY"
+- HIKING_PROJECT_KEY="YOUR_KEY2"
+- OPEN_WEATHER_KEY="YOUR_KEY3"
 
 6. Run the application `python3 server.py`
 
