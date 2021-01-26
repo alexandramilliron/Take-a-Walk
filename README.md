@@ -24,11 +24,12 @@ APIs:
 
 ## Running Project Locally ##
 
-NOTE: The Hiking Project Data API has been deprecated and is no longer available.
+NOTE: The Hiking Project Data API has been deprecated, but those with existing API keys still have access to the API endpoints. 
+For other users, the functionality of the app will be impacted. The instructions are included below for those with access to an API key. 
 
 The project assumes the user has Python3 and PostgreSQL installed. Using the Python virtualenv tool is recommended. 
 
-# Steps #
+## Steps ##
 
 1. Clone the repository
 
@@ -36,14 +37,13 @@ The project assumes the user has Python3 and PostgreSQL installed. Using the Pyt
 
 3. Seed the database `python3 seed_database.py` - this will drop and create the takeawalk database that the project relies on
 
-4. The project requires API keys. 
+4. The project requires API keys. These can be obtained at the following links:
 
-These can be obtained at the following links:
 - https://www.yelp.com/fusion 
 - https://www.hikingproject.com/data (deprecated)
 - https://openweathermap.org/api (free API tier)
 
-5. Set in the following environment variables:
+5. Set the following environment variables:
 
 - YELP_KEY="YOUR_KEY"
 - HIKING_PROJECT_KEY="YOUR_KEY2"
