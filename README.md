@@ -18,9 +18,40 @@ Styling:
 - React Bootstrap 
 
 APIs:
-- Hiking Project API 
+- Hiking Project API (deprecated)
 - Open Weather Map API
 - Yelp Fusion API 
+
+## Running Project Locally ##
+
+NOTE: The Hiking Project Data API has been deprecated and is no longer available. 
+
+The project assumes the user has Python3 and PostgreSQL installed. Using the Python virtualenv tool is recommended. 
+
+# Steps #
+
+1. Clone the repository
+
+2. Install the requirements `pip3 install -r requirements.txt`
+
+3. Seed the database `python3 seed_database.py` - this will drop and create the takeawalk database that the project relies on
+
+4. The project requires API keys. 
+
+These can be obtained at the following links:
+https://www.yelp.com/fusion 
+https://www.hikingproject.com/data (deprecated)
+https://openweathermap.org/api (free API tier)
+
+5. Set in the following environment variables:
+
+YELP_KEY="YOUR_KEY"
+HIKING_PROJECT_KEY="YOUR_KEY2"
+OPEN_WEATHER_KEY="YOUR_KEY3"
+
+6. Run the application `python3 server.py`
+
+
 
 Users can register / login to existing accounts. 
 
